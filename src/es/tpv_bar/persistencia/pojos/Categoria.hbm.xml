@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11-abr-2012 12:45:25 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="es.tpv_bar.persistencia.pojos.Categoria" table="Categoria" catalog="mydb">
+        <id name="idCategoria" type="java.lang.Integer">
+            <column name="IdCategoria" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="Nombre" length="45" />
+        </property>
+        <set name="productoses" inverse="true">
+            <key>
+                <column name="IdCategoria" not-null="true" />
+            </key>
+            <one-to-many class="es.tpv_bar.persistencia.pojos.Productos" />
+        </set>
+    </class>
+</hibernate-mapping>

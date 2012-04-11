@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11-abr-2012 12:45:25 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="es.tpv_bar.persistencia.pojos.Camarero" table="Camarero" catalog="mydb">
+        <id name="idCamarero" type="java.lang.Integer">
+            <column name="IdCamarero" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="Nombre" length="45" />
+        </property>
+        <property name="apellidos" type="string">
+            <column name="Apellidos" length="100" />
+        </property>
+        <property name="telefono" type="java.lang.Integer">
+            <column name="Telefono" />
+        </property>
+        <set name="cabezeras" inverse="true">
+            <key>
+                <column name="IdCamarero" not-null="true" />
+            </key>
+            <one-to-many class="es.tpv_bar.persistencia.pojos.Cabezera" />
+        </set>
+    </class>
+</hibernate-mapping>

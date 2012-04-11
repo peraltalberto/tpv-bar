@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11-abr-2012 12:45:25 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="es.tpv_bar.persistencia.pojos.Linea" table="Linea" catalog="mydb">
+        <id name="idLinea" type="java.lang.Integer">
+            <column name="IdLinea" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="servicios" class="es.tpv_bar.persistencia.pojos.Servicios" fetch="select">
+            <column name="IdServiceo" not-null="true" />
+        </many-to-one>
+        <many-to-one name="productos" class="es.tpv_bar.persistencia.pojos.Productos" fetch="select">
+            <column name="IdProductos" not-null="true" />
+        </many-to-one>
+        <many-to-one name="cabezera" class="es.tpv_bar.persistencia.pojos.Cabezera" fetch="select">
+            <column name="IdCabezera" />
+        </many-to-one>
+        <property name="precio" type="java.lang.Double">
+            <column name="Precio" precision="22" scale="0" />
+        </property>
+        <property name="catidad" type="java.lang.Double">
+            <column name="catidad" precision="22" scale="0" />
+        </property>
+        <property name="total" type="java.lang.Double">
+            <column name="Total" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>
