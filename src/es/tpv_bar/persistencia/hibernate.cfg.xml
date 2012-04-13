@@ -7,6 +7,8 @@
     <property name="hibernate.connection.url">jdbc:mysql://172.16.7.147:3306/mydb</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">Vtiucric863</property>
+     <property name="current_session_context_class">thread</property>
+    <property name="hibernate.show_sql">true</property>
     <mapping resource="es/tpv_bar/persistencia/pojos/Categoria.hbm.xml"/>
     <mapping resource="es/tpv_bar/persistencia/pojos/Servicios.hbm.xml"/>
     <mapping resource="es/tpv_bar/persistencia/pojos/Cabezera.hbm.xml"/>
@@ -14,5 +16,6 @@
     <mapping resource="es/tpv_bar/persistencia/pojos/Productos.hbm.xml"/>
     <mapping resource="es/tpv_bar/persistencia/pojos/Ubicacion.hbm.xml"/>
     <mapping resource="es/tpv_bar/persistencia/pojos/Linea.hbm.xml"/>
+    <mapping resource="es/tpv_bar/persistencia/pojos/BloqueUbicacion.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

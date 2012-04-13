@@ -1,5 +1,5 @@
 package es.tpv_bar.persistencia.pojos;
-// Generated 11-abr-2012 12:45:24 by Hibernate Tools 3.2.1.GA
+// Generated 13-abr-2012 9:10:04 by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -8,7 +8,11 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,7 +26,8 @@ import javax.persistence.Table;
 public class Ubicacion  implements java.io.Serializable {
 
 
-     private int idUbicacion;
+     private Integer idUbicacion;
+     private BloqueUbicacion bloqueUbicacion;
      private String nombre;
      private String descripcion;
      private Set<Servicios> servicioses = new HashSet<Servicios>(0);
@@ -31,25 +36,34 @@ public class Ubicacion  implements java.io.Serializable {
     }
 
 	
-    public Ubicacion(int idUbicacion) {
-        this.idUbicacion = idUbicacion;
+    public Ubicacion(BloqueUbicacion bloqueUbicacion) {
+        this.bloqueUbicacion = bloqueUbicacion;
     }
-    public Ubicacion(int idUbicacion, String nombre, String descripcion, Set<Servicios> servicioses) {
-       this.idUbicacion = idUbicacion;
+    public Ubicacion(BloqueUbicacion bloqueUbicacion, String nombre, String descripcion, Set<Servicios> servicioses) {
+       this.bloqueUbicacion = bloqueUbicacion;
        this.nombre = nombre;
        this.descripcion = descripcion;
        this.servicioses = servicioses;
     }
    
-     @Id 
+     @Id @GeneratedValue(strategy=IDENTITY)
     
     @Column(name="IdUbicacion", unique=true, nullable=false)
-    public int getIdUbicacion() {
+    public Integer getIdUbicacion() {
         return this.idUbicacion;
     }
     
-    public void setIdUbicacion(int idUbicacion) {
+    public void setIdUbicacion(Integer idUbicacion) {
         this.idUbicacion = idUbicacion;
+    }
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="IdBloqueUbicacion", nullable=false)
+    public BloqueUbicacion getBloqueUbicacion() {
+        return this.bloqueUbicacion;
+    }
+    
+    public void setBloqueUbicacion(BloqueUbicacion bloqueUbicacion) {
+        this.bloqueUbicacion = bloqueUbicacion;
     }
     
     @Column(name="Nombre", length=45)
