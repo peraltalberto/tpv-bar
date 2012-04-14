@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 11-abr-2012 12:45:25 by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 13-abr-2012 9:10:04 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
     <class name="es.tpv_bar.persistencia.pojos.Productos" table="Productos" catalog="mydb">
         <id name="idProductos" type="java.lang.Integer">

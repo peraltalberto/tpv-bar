@@ -68,7 +68,7 @@ public class TBSessionFactory {
 
          */
 
-        private static String CONFIG_FILE_LOCATION = "/es/tpv_bar/persistencia/gitvHibernate.cfg.xml";
+        private static String CONFIG_FILE_LOCATION = "/es/tpv_bar/persistencia/hibernate.cfg.xml";
 
 
 
