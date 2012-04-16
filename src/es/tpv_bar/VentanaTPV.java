@@ -61,6 +61,7 @@ cargarCategorias();
         }
     }
     private void cargarProductos(Categoria cat){
+        this.pProductos.removeAll();
         ArrayList<Productos> prod = (ArrayList<Productos>) productos.busquedaDatos("categoria", cat);
         for(int i = 0; i<prod.size(); i++){
             final BTProducto bt = new BTProducto(prod.get(i));
