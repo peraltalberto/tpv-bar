@@ -4,9 +4,21 @@
  */
 package es.tpv_bar;
 
+import es.tpv_bar.gui.botones.BTCategoria;
+import es.tpv_bar.gui.botones.BTProducto;
 import es.tpv_bar.gui.ventanas.VentanaMesas;
+import es.tpv_bar.persistencia.modelos.CategoriaModel;
+import es.tpv_bar.persistencia.modelos.ProductosModel;
 import es.tpv_bar.persistencia.modelos.UbicacionModel;
+import es.tpv_bar.persistencia.pojos.Categoria;
+import es.tpv_bar.persistencia.pojos.Productos;
+import es.tpv_bar.persistencia.pojos.Ubicacion;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,9 +29,9 @@ public class VentanaTPV extends javax.swing.JFrame {
     /**
      * Variables de los modelos de datos
      */
-   
-    
-    
+    VentanaMesas mesa;
+        CategoriaModel categorias = new CategoriaModel();
+        ProductosModel   productos = new ProductosModel();
     
     /**
      * Creates new form VentanaTPV
@@ -31,8 +43,40 @@ this.setVisible(true);
 
 this.toFront();
 this.setAlwaysOnTop(true);
+cargarCategorias();
     }
 
+    private void cargarCategorias(){
+        ArrayList<Categoria> cat = categorias.getLista();
+        for(int i = 0; i<cat.size(); i++){
+            final BTCategoria bt = new BTCategoria(cat.get(i));
+            bt.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    cargarProductos(bt.getCategoria());
+                }
+            });
+            this.pCategorias.add(bt);
+        }
+    }
+    private void cargarProductos(Categoria cat){
+        this.pProductos.removeAll();
+        ArrayList<Productos> prod = (ArrayList<Productos>) productos.busquedaDatos("categoria", cat);
+        for(int i = 0; i<prod.size(); i++){
+            final BTProducto bt = new BTProducto(prod.get(i));
+            bt.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                   
+                }
+            });
+            this.pProductos.add(bt);
+        }
+        this.pProductos.updateUI();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,15 +88,16 @@ this.setAlwaysOnTop(true);
 
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jPanel1 = new javax.swing.JPanel();
+        pCategorias = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jPanel2 = new javax.swing.JPanel();
+        pProductos = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         PanelUbicaciones = new javax.swing.JPanel();
+        lbUbicacion = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -64,31 +109,11 @@ this.setAlwaysOnTop(true);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 938, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 202, Short.MAX_VALUE)
-        );
+        pCategorias.setLayout(new java.awt.GridLayout(0, 6));
+        jScrollPane2.setViewportView(pCategorias);
 
-        jScrollPane2.setViewportView(jPanel1);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 922, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 584, Short.MAX_VALUE)
-        );
-
-        jScrollPane3.setViewportView(jPanel2);
+        pProductos.setLayout(new java.awt.GridLayout(0, 6));
+        jScrollPane3.setViewportView(pProductos);
 
         jToolBar1.setFloatable(false);
 
@@ -129,14 +154,16 @@ this.setAlwaysOnTop(true);
         PanelUbicaciones.setLayout(PanelUbicacionesLayout);
         PanelUbicacionesLayout.setHorizontalGroup(
             PanelUbicacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 262, Short.MAX_VALUE)
+            .addGap(0, 370, Short.MAX_VALUE)
         );
         PanelUbicacionesLayout.setVerticalGroup(
             PanelUbicacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 327, Short.MAX_VALUE)
+            .addGap(0, 493, Short.MAX_VALUE)
         );
 
         jScrollPane1.setViewportView(PanelUbicaciones);
+
+        lbUbicacion.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -146,14 +173,15 @@ this.setAlwaysOnTop(true);
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
-                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbUbicacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1))
-                    .addComponent(jScrollPane3)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 832, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -164,15 +192,17 @@ this.setAlwaysOnTop(true);
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
-                        .addGap(226, 226, 226)
-                        .addComponent(jButton1)
-                        .addGap(51, 51, 51))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addComponent(lbUbicacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)))
+                .addGap(226, 226, 226)
+                .addComponent(jButton1)
+                .addGap(51, 51, 51))
         );
 
         pack();
@@ -183,7 +213,10 @@ this.setAlwaysOnTop(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new VentanaMesas(this,true,2).setVisible(true);
+       mesa=  new VentanaMesas(this,true,2);
+       mesa.setVisible(true);
+      
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -235,17 +268,22 @@ this.setAlwaysOnTop(true);
             }
         });
     }
+    public void setUbicacion(Ubicacion ubicacion){
+        this.lbUbicacion.setText(ubicacion.getNombre());
+        
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelUbicaciones;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JLabel lbUbicacion;
+    private javax.swing.JPanel pCategorias;
+    private javax.swing.JPanel pProductos;
     // End of variables declaration//GEN-END:variables
 }

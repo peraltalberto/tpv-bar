@@ -19,6 +19,8 @@ public class BTCategoria extends JButton {
    
    public BTCategoria(Categoria categoria){
        this.categoria = categoria;
+       
+       this.setText(this.categoria.getNombre());
    }
    
    Categoria categoria;

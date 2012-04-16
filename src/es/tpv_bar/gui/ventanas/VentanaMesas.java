@@ -4,10 +4,13 @@
  */
 package es.tpv_bar.gui.ventanas;
 
+import es.tpv_bar.VentanaTPV;
 import es.tpv_bar.gui.botones.BTMesa;
 import es.tpv_bar.persistencia.modelos.BloqueUbicacionModel;
 import es.tpv_bar.persistencia.modelos.UbicacionModel;
 import es.tpv_bar.persistencia.pojos.Ubicacion;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
@@ -30,13 +33,14 @@ public class VentanaMesas extends javax.swing.JDialog {
     /**
      * Creates new form VentanaMesas
      */
-    public VentanaMesas(java.awt.Frame parent, boolean modal,int catUbi) {
+    public VentanaMesas(VentanaTPV parent, boolean modal,int catUbi) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(parent);
         cargarMesas(catUbi);
+        this.parent = parent;
     }
-
+VentanaTPV parent;
     
     /**
      * Carga de las ubicaciones segun el parametro CatUbi
@@ -44,7 +48,16 @@ public class VentanaMesas extends javax.swing.JDialog {
     private void cargarMesas(int ubi){
         this.ubicaciones = (ArrayList<Ubicacion>) um.busquedaDatos("bloqueUbicacion", bum.busquedaDato(ubi));
         for (int i = 0; i< this.ubicaciones.size(); i++){
-            this.jPanel1.add(new BTMesa(this.ubicaciones.get(i)));
+            final BTMesa bt = new BTMesa(this.ubicaciones.get(i));
+            bt.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    parent.setUbicacion(bt.getUbicacion());
+                    dispose();
+                }
+            });
+            this.jPanel1.add(bt);
         }
         this.jPanel1.updateUI();
     }
