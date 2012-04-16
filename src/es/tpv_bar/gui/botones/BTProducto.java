@@ -19,6 +19,7 @@ public class BTProducto extends JButton {
    
    public BTProducto(Productos producto){
        this.producto = producto;
+       this.setText(this.producto.getNombre());
    }
    
    Productos producto;
