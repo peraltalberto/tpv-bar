@@ -5,6 +5,7 @@
 package es.tpv_bar;
 
 import es.tpv_bar.gui.botones.BTCategoria;
+import es.tpv_bar.gui.botones.BTLineas;
 import es.tpv_bar.gui.botones.BTProducto;
 import es.tpv_bar.gui.ventanas.VentanaMesas;
 import es.tpv_bar.persistencia.modelos.CategoriaModel;
@@ -29,6 +30,7 @@ public class VentanaTPV extends javax.swing.JFrame {
     /**
      * Variables de los modelos de datos
      */
+    VentanaTPV instanceOf;
     VentanaMesas mesa;
         CategoriaModel categorias = new CategoriaModel();
         ProductosModel   productos = new ProductosModel();
@@ -44,6 +46,7 @@ this.setVisible(true);
 this.toFront();
 this.setAlwaysOnTop(true);
 cargarCategorias();
+instanceOf = this;
     }
 
     private void cargarCategorias(){
@@ -69,7 +72,10 @@ cargarCategorias();
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                   
+                    if(ubicacion != null){
+                        panelLineas.add(new BTLineas(bt.getProducto(),instanceOf));
+                    }
+                    panelLineas.updateUI();
                 }
             });
             this.pProductos.add(bt);
@@ -96,7 +102,7 @@ cargarCategorias();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        PanelUbicaciones = new javax.swing.JPanel();
+        panelLineas = new javax.swing.JPanel();
         lbUbicacion = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -150,18 +156,8 @@ cargarCategorias();
         });
         jToolBar1.add(jButton4);
 
-        javax.swing.GroupLayout PanelUbicacionesLayout = new javax.swing.GroupLayout(PanelUbicaciones);
-        PanelUbicaciones.setLayout(PanelUbicacionesLayout);
-        PanelUbicacionesLayout.setHorizontalGroup(
-            PanelUbicacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 370, Short.MAX_VALUE)
-        );
-        PanelUbicacionesLayout.setVerticalGroup(
-            PanelUbicacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 493, Short.MAX_VALUE)
-        );
-
-        jScrollPane1.setViewportView(PanelUbicaciones);
+        panelLineas.setLayout(new javax.swing.BoxLayout(panelLineas, javax.swing.BoxLayout.PAGE_AXIS));
+        jScrollPane1.setViewportView(panelLineas);
 
         lbUbicacion.setText("jLabel1");
 
@@ -171,16 +167,17 @@ cargarCategorias();
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbUbicacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbUbicacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 832, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 835, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -269,11 +266,12 @@ cargarCategorias();
         });
     }
     public void setUbicacion(Ubicacion ubicacion){
+        this.ubicacion = ubicacion;
         this.lbUbicacion.setText(ubicacion.getNombre());
         
     }
+    Ubicacion ubicacion = null;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel PanelUbicaciones;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -285,5 +283,6 @@ cargarCategorias();
     private javax.swing.JLabel lbUbicacion;
     private javax.swing.JPanel pCategorias;
     private javax.swing.JPanel pProductos;
+    private javax.swing.JPanel panelLineas;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,7 +4,9 @@
  */
 package es.tpv_bar.gui.pruebas;
 
+import es.tpv_bar.gui.DlTecladoNum;
 import es.tpv_bar.gui.TecladoNumerico;
+import javax.swing.JFrame;
 
 /**
  *
@@ -39,8 +41,13 @@ TecladoNumerico tn;
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTextField1.setText("jTextField1");
+        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField1MouseClicked(evt);
+            }
+        });
 
-        jPanel1.setLayout(new java.awt.GridLayout());
+        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -86,6 +93,10 @@ TecladoNumerico tn;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         tn.setIniciar(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
+     new DlTecladoNum(new JFrame(),true,this.jTextField1).setVisible(true);
+    }//GEN-LAST:event_jTextField1MouseClicked
 
     /**
      * @param args the command line arguments

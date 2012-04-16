@@ -1,5 +1,5 @@
 package es.tpv_bar.persistencia.pojos;
-// Generated 13-abr-2012 9:10:04 by Hibernate Tools 3.2.1.GA
+// Generated 16-abr-2012 17:37:42 by Hibernate Tools 3.2.1.GA
 
 
 import javax.persistence.Column;
@@ -23,28 +23,31 @@ public class Linea  implements java.io.Serializable {
 
 
      private Integer idLinea;
-     private Servicios servicios;
      private Productos productos;
      private Cabezera cabezera;
+     private Ubicacion ubicacion;
      private Double precio;
      private Double catidad;
      private Double total;
+     private boolean cobrado;
 
     public Linea() {
     }
 
 	
-    public Linea(Servicios servicios, Productos productos) {
-        this.servicios = servicios;
+    public Linea(Productos productos, Ubicacion ubicacion, boolean cobrado) {
         this.productos = productos;
+        this.ubicacion = ubicacion;
+        this.cobrado = cobrado;
     }
-    public Linea(Servicios servicios, Productos productos, Cabezera cabezera, Double precio, Double catidad, Double total) {
-       this.servicios = servicios;
+    public Linea(Productos productos, Cabezera cabezera, Ubicacion ubicacion, Double precio, Double catidad, Double total, boolean cobrado) {
        this.productos = productos;
        this.cabezera = cabezera;
+       this.ubicacion = ubicacion;
        this.precio = precio;
        this.catidad = catidad;
        this.total = total;
+       this.cobrado = cobrado;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -56,15 +59,6 @@ public class Linea  implements java.io.Serializable {
     
     public void setIdLinea(Integer idLinea) {
         this.idLinea = idLinea;
-    }
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="IdServiceo", nullable=false)
-    public Servicios getServicios() {
-        return this.servicios;
-    }
-    
-    public void setServicios(Servicios servicios) {
-        this.servicios = servicios;
     }
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="IdProductos", nullable=false)
@@ -83,6 +77,15 @@ public class Linea  implements java.io.Serializable {
     
     public void setCabezera(Cabezera cabezera) {
         this.cabezera = cabezera;
+    }
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="IdUbicacion", nullable=false)
+    public Ubicacion getUbicacion() {
+        return this.ubicacion;
+    }
+    
+    public void setUbicacion(Ubicacion ubicacion) {
+        this.ubicacion = ubicacion;
     }
     
     @Column(name="Precio", precision=22, scale=0)
@@ -110,6 +113,15 @@ public class Linea  implements java.io.Serializable {
     
     public void setTotal(Double total) {
         this.total = total;
+    }
+    
+    @Column(name="cobrado", nullable=false)
+    public boolean isCobrado() {
+        return this.cobrado;
+    }
+    
+    public void setCobrado(boolean cobrado) {
+        this.cobrado = cobrado;
     }
 
 

@@ -1,5 +1,5 @@
 package es.tpv_bar.persistencia.pojos;
-// Generated 13-abr-2012 9:10:04 by Hibernate Tools 3.2.1.GA
+// Generated 16-abr-2012 17:37:42 by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -30,7 +30,7 @@ public class Ubicacion  implements java.io.Serializable {
      private BloqueUbicacion bloqueUbicacion;
      private String nombre;
      private String descripcion;
-     private Set<Servicios> servicioses = new HashSet<Servicios>(0);
+     private Set<Linea> lineas = new HashSet<Linea>(0);
 
     public Ubicacion() {
     }
@@ -39,11 +39,11 @@ public class Ubicacion  implements java.io.Serializable {
     public Ubicacion(BloqueUbicacion bloqueUbicacion) {
         this.bloqueUbicacion = bloqueUbicacion;
     }
-    public Ubicacion(BloqueUbicacion bloqueUbicacion, String nombre, String descripcion, Set<Servicios> servicioses) {
+    public Ubicacion(BloqueUbicacion bloqueUbicacion, String nombre, String descripcion, Set<Linea> lineas) {
        this.bloqueUbicacion = bloqueUbicacion;
        this.nombre = nombre;
        this.descripcion = descripcion;
-       this.servicioses = servicioses;
+       this.lineas = lineas;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -84,12 +84,12 @@ public class Ubicacion  implements java.io.Serializable {
         this.descripcion = descripcion;
     }
 @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="ubicacion")
-    public Set<Servicios> getServicioses() {
-        return this.servicioses;
+    public Set<Linea> getLineas() {
+        return this.lineas;
     }
     
-    public void setServicioses(Set<Servicios> servicioses) {
-        this.servicioses = servicioses;
+    public void setLineas(Set<Linea> lineas) {
+        this.lineas = lineas;
     }
 
 

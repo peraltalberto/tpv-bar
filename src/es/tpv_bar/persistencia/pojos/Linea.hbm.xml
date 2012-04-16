@@ -1,21 +1,21 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 13-abr-2012 9:10:04 by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 16-abr-2012 17:37:43 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
     <class name="es.tpv_bar.persistencia.pojos.Linea" table="Linea" catalog="mydb">
         <id name="idLinea" type="java.lang.Integer">
             <column name="IdLinea" />
             <generator class="identity" />
         </id>
-        <many-to-one name="servicios" class="es.tpv_bar.persistencia.pojos.Servicios" fetch="select">
-            <column name="IdServiceo" not-null="true" />
-        </many-to-one>
         <many-to-one name="productos" class="es.tpv_bar.persistencia.pojos.Productos" fetch="select">
             <column name="IdProductos" not-null="true" />
         </many-to-one>
         <many-to-one name="cabezera" class="es.tpv_bar.persistencia.pojos.Cabezera" fetch="select">
             <column name="IdCabezera" />
+        </many-to-one>
+        <many-to-one name="ubicacion" class="es.tpv_bar.persistencia.pojos.Ubicacion" fetch="select">
+            <column name="IdUbicacion" not-null="true" />
         </many-to-one>
         <property name="precio" type="java.lang.Double">
             <column name="Precio" precision="22" scale="0" />
@@ -25,6 +25,9 @@
         </property>
         <property name="total" type="java.lang.Double">
             <column name="Total" precision="22" scale="0" />
+        </property>
+        <property name="cobrado" type="boolean">
+            <column name="cobrado" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>
