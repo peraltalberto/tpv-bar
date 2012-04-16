@@ -1,9 +1,9 @@
-package es.tpv_bar.persistencia.pojos;
+ package es.tpv_bar.persistencia.pojos;
 // Generated 13-abr-2012 9:10:04 by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
-import java.util.Set;
+import java.util.Set; 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
