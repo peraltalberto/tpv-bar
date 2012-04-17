@@ -24,8 +24,8 @@ public class AdminCamarero extends javax.swing.JFrame {
         String[] cabeceras = {"nombre","apellido","telefono"};
         String[] cabecerasTex = {"Nombre","Apellido","Telefono"};
    
-        this.jTableArrayList1.setCaps(cabeceras, cabecerasTex);
-        this.jTableArrayList1.setList(camarero.getLista());
+      //  this.jTableArrayList1.setCaps(cabeceras, cabecerasTex);
+       // this.jTableArrayList1.setList(camarero.getLista());
         cargarCamarero();
     }
 
@@ -159,7 +159,7 @@ public class AdminCamarero extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTableArrayList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableArrayList1MouseClicked
-        this.camareroSelect = (Camarero) this.jTableArrayList1.getSelectElement();
+        //this.camareroSelect = (Camarero) this.jTableArrayList1.getSelectElement();
         this.txtnombre.setText(this.camareroSelect.getNombre());
         this.txtapellidos.setText(this.camareroSelect.getApellidos());
         this.txttelefono.setText(Integer.toString(this.camareroSelect.getTelefono()));
@@ -171,7 +171,7 @@ public class AdminCamarero extends javax.swing.JFrame {
         this.camareroSelect.setApellidos(this.txtapellidos.getText());
         this.camareroSelect.setTelefono(Integer.parseInt(this.txttelefono.getText()));
         this.camarero.saveDato(this.camareroSelect);
-        this.jTableArrayList1.setList(camarero.getLista());
+        //this.jTableArrayList1.setList(camarero.getLista());
                                         
     }//GEN-LAST:event_jButton1ActionPerformed
 

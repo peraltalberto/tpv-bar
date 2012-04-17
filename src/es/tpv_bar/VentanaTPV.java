@@ -9,9 +9,11 @@ import es.tpv_bar.gui.botones.BTLineas;
 import es.tpv_bar.gui.botones.BTProducto;
 import es.tpv_bar.gui.ventanas.VentanaMesas;
 import es.tpv_bar.persistencia.modelos.CategoriaModel;
+import es.tpv_bar.persistencia.modelos.LineaModel;
 import es.tpv_bar.persistencia.modelos.ProductosModel;
 import es.tpv_bar.persistencia.modelos.UbicacionModel;
 import es.tpv_bar.persistencia.pojos.Categoria;
+import es.tpv_bar.persistencia.pojos.Linea;
 import es.tpv_bar.persistencia.pojos.Productos;
 import es.tpv_bar.persistencia.pojos.Ubicacion;
 import java.awt.Toolkit;
@@ -34,7 +36,7 @@ public class VentanaTPV extends javax.swing.JFrame {
     VentanaMesas mesa;
         CategoriaModel categorias = new CategoriaModel();
         ProductosModel   productos = new ProductosModel();
-    
+        public LineaModel lineas = new LineaModel();
     /**
      * Creates new form VentanaTPV
      */
@@ -92,7 +94,9 @@ instanceOf = this;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        jSeparator5 = new javax.swing.JSeparator();
+        jSeparator6 = new javax.swing.JSeparator();
+        jSeparator7 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
         pCategorias = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -101,19 +105,21 @@ instanceOf = this;
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jSeparator4 = new javax.swing.JToolBar.Separator();
+        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         panelLineas = new javax.swing.JPanel();
+        jToolBar2 = new javax.swing.JToolBar();
         lbUbicacion = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JToolBar.Separator();
+        jSeparator3 = new javax.swing.JToolBar.Separator();
+        jButton5 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
-
-        jButton1.setText("Cerrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         pCategorias.setLayout(new java.awt.GridLayout(0, 6));
         jScrollPane2.setViewportView(pCategorias);
@@ -155,51 +161,95 @@ instanceOf = this;
             }
         });
         jToolBar1.add(jButton4);
+        jToolBar1.add(jSeparator4);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/1334673090_Log Out.png"))); // NOI18N
+        jButton1.setText("Cerrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton1);
 
         panelLineas.setLayout(new javax.swing.BoxLayout(panelLineas, javax.swing.BoxLayout.PAGE_AXIS));
         jScrollPane1.setViewportView(panelLineas);
 
-        lbUbicacion.setText("jLabel1");
+        jToolBar2.setFloatable(false);
+
+        lbUbicacion.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lbUbicacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/iconoComedor.png"))); // NOI18N
+        lbUbicacion.setText("Ubicacion");
+        jToolBar2.add(lbUbicacion);
+        jToolBar2.add(jSeparator1);
+        jToolBar2.add(jSeparator3);
+
+        jButton5.setText("Imprimir Ticket");
+        jButton5.setFocusable(false);
+        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar2.add(jButton5);
+
+        jTextField1.setBackground(new java.awt.Color(1, 1, 1));
+        jTextField1.setEditable(false);
+        jTextField1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(255, 51, 0));
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField1.setText("0.0");
+
+        jLabel1.setFont(new java.awt.Font("Verdana", 3, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(26, 0, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/1334302320_Cup.png"))); // NOI18N
+        jLabel1.setText("La Taberna de leo");
+        jLabel1.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbUbicacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jSeparator2)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(12, 12, 12)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jToolBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1)
+                                .addComponent(jToolBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 835, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 849, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbUbicacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)))
-                .addGap(226, 226, 226)
-                .addComponent(jButton1)
-                .addGap(51, 51, 51))
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(44, 44, 44))
         );
 
         pack();
@@ -212,16 +262,18 @@ instanceOf = this;
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        mesa=  new VentanaMesas(this,true,2);
        mesa.setVisible(true);
-      
+      lbUbicacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/iconoComedor.png")));
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         new VentanaMesas(this,true,1).setVisible(true);
+        lbUbicacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/iconoTerraza.png")));
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
        new VentanaMesas(this,true,3).setVisible(true);
+       lbUbicacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/iconoBarra.png")));
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
@@ -266,20 +318,50 @@ instanceOf = this;
         });
     }
     public void setUbicacion(Ubicacion ubicacion){
+        this.panelLineas.removeAll();
         this.ubicacion = ubicacion;
         this.lbUbicacion.setText(ubicacion.getNombre());
-        
+        this.lineasUbi = (ArrayList<Linea>) lineas.busquedaDatos("ubicacion", ubicacion);
+        System.out.println("Ubicacion: "+this.lineasUbi.size());
+        for(int i = 0; i < lineasUbi.size(); i++){
+            panelLineas.add(new BTLineas(lineasUbi.get(i),instanceOf));
+        }
+        this.panelLineas.updateUI();
     }
+
+    public Ubicacion getUbicacion() {
+        return ubicacion;
+    }
+    public void eliminarLinea(Linea l){
+        lineas.removeDato(l);
+        this.setUbicacion(ubicacion);
+    }
+     public void actualizarLinea(Linea l){
+        lineas.updateDato(l);
+        this.setUbicacion(ubicacion);
+    }
+    ArrayList<Linea> lineasUbi;
     Ubicacion ubicacion = null;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JToolBar.Separator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JToolBar.Separator jSeparator3;
+    private javax.swing.JToolBar.Separator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JToolBar jToolBar2;
     private javax.swing.JLabel lbUbicacion;
     private javax.swing.JPanel pCategorias;
     private javax.swing.JPanel pProductos;

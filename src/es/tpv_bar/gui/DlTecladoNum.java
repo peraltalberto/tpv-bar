@@ -17,9 +17,12 @@ public class DlTecladoNum extends javax.swing.JDialog {
      */
     public DlTecladoNum(java.awt.Frame parent, boolean modal,JTextField campo) {
         super(parent, modal);
+        
         initComponents();
+        this.setLocationRelativeTo(parent);
         tn.setPantalla(campo);
         this.jPanel1.add(tn);
+       
     }
 TecladoNumerico tn = new TecladoNumerico();
     /**
