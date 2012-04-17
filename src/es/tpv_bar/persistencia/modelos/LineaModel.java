@@ -7,9 +7,11 @@ package es.tpv_bar.persistencia.modelos;
 
 import es.tpv_bar.persistencia.AbstractModel;
 import es.tpv_bar.persistencia.pojos.Linea;
+import es.tpv_bar.persistencia.pojos.Ubicacion;
 import java.util.ArrayList;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 
 /**
@@ -44,4 +46,15 @@ public class LineaModel extends AbstractModel {
         tx.commit();
         //cargarLista();
     }
+     
+     public ArrayList<Linea> getLineasUbicacion(Ubicacion ubi){
+         ArrayList<Linea> result = null;
+        Session session = factory.getCurrentSession();
+        Transaction tx = session.beginTransaction();
+        result = (ArrayList<Linea>) session.createCriteria(Linea.class)
+                .add(Restrictions.eq("ubicacion", ubi))
+                .add(Restrictions.eq("cobrado",false))
+                .list();
+        return result;
+     }
 }

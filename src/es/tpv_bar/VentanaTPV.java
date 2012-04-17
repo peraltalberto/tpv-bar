@@ -114,7 +114,7 @@ instanceOf = this;
         jSeparator1 = new javax.swing.JToolBar.Separator();
         jSeparator3 = new javax.swing.JToolBar.Separator();
         jButton5 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txTotal = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
 
@@ -190,12 +190,12 @@ instanceOf = this;
         jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar2.add(jButton5);
 
-        jTextField1.setBackground(new java.awt.Color(1, 1, 1));
-        jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(255, 51, 0));
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField1.setText("0.0");
+        txTotal.setBackground(new java.awt.Color(1, 1, 1));
+        txTotal.setEditable(false);
+        txTotal.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        txTotal.setForeground(new java.awt.Color(255, 51, 0));
+        txTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txTotal.setText("0.0");
 
         jLabel1.setFont(new java.awt.Font("Verdana", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(26, 0, 255));
@@ -221,7 +221,7 @@ instanceOf = this;
                                 .addComponent(jToolBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 849, Short.MAX_VALUE)
@@ -248,7 +248,7 @@ instanceOf = this;
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(44, 44, 44))
         );
 
@@ -321,12 +321,16 @@ instanceOf = this;
         this.panelLineas.removeAll();
         this.ubicacion = ubicacion;
         this.lbUbicacion.setText(ubicacion.getNombre());
-        this.lineasUbi = (ArrayList<Linea>) lineas.busquedaDatos("ubicacion", ubicacion);
+        this.lineasUbi = (ArrayList<Linea>) lineas.getLineasUbicacion(ubicacion);
         System.out.println("Ubicacion: "+this.lineasUbi.size());
+        total =0.0;
         for(int i = 0; i < lineasUbi.size(); i++){
-            panelLineas.add(new BTLineas(lineasUbi.get(i),instanceOf));
+            Linea l = lineasUbi.get(i);
+            panelLineas.add(new BTLineas(l,instanceOf));
+            total += l.getTotal();
         }
         this.panelLineas.updateUI();
+        this.txTotal.setText(total.toString());
     }
 
     public Ubicacion getUbicacion() {
@@ -342,6 +346,7 @@ instanceOf = this;
     }
     ArrayList<Linea> lineasUbi;
     Ubicacion ubicacion = null;
+    Double total= 0.0;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -359,12 +364,12 @@ instanceOf = this;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
     private javax.swing.JLabel lbUbicacion;
     private javax.swing.JPanel pCategorias;
     private javax.swing.JPanel pProductos;
     private javax.swing.JPanel panelLineas;
+    private javax.swing.JTextField txTotal;
     // End of variables declaration//GEN-END:variables
 }
