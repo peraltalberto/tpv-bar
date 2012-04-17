@@ -112,6 +112,7 @@ instanceOf = this;
         jToolBar2 = new javax.swing.JToolBar();
         lbUbicacion = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JToolBar.Separator();
+        jLabel2 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JToolBar.Separator();
         jButton5 = new javax.swing.JButton();
         txTotal = new javax.swing.JTextField();
@@ -182,8 +183,13 @@ instanceOf = this;
         lbUbicacion.setText("Ubicacion");
         jToolBar2.add(lbUbicacion);
         jToolBar2.add(jSeparator1);
+
+        jLabel2.setText("                 ");
+        jToolBar2.add(jLabel2);
         jToolBar2.add(jSeparator3);
 
+        jButton5.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/1334676433_stock_print.png"))); // NOI18N
         jButton5.setText("Imprimir Ticket");
         jButton5.setFocusable(false);
         jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -216,9 +222,9 @@ instanceOf = this;
                             .addGap(12, 12, 12)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jToolBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
+                                .addComponent(jToolBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jScrollPane1)
-                                .addComponent(jToolBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(jToolBar2, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(txTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -354,6 +360,7 @@ instanceOf = this;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
