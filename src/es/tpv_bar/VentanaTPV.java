@@ -11,7 +11,6 @@ import es.tpv_bar.gui.ventanas.VentanaMesas;
 import es.tpv_bar.persistencia.modelos.CategoriaModel;
 import es.tpv_bar.persistencia.modelos.LineaModel;
 import es.tpv_bar.persistencia.modelos.ProductosModel;
-import es.tpv_bar.persistencia.modelos.UbicacionModel;
 import es.tpv_bar.persistencia.pojos.Categoria;
 import es.tpv_bar.persistencia.pojos.Linea;
 import es.tpv_bar.persistencia.pojos.Productos;
@@ -19,8 +18,6 @@ import es.tpv_bar.persistencia.pojos.Ubicacion;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
 /**
@@ -76,7 +73,9 @@ instanceOf = this;
                 public void actionPerformed(ActionEvent e) {
                     if(ubicacion != null){
                         panelLineas.add(new BTLineas(bt.getProducto(),instanceOf));
+                        total += bt.getProducto().getPrecio();
                     }
+                    txTotal.setText(total.toString());
                     panelLineas.updateUI();
                 }
             });
