@@ -36,27 +36,9 @@ public class Print {
     public Print() {
     }
 
-    public Print(String neto, String tara, String bruto, String lote, String cliente, String producto, String codBarras, String caducidad, String envasado) {
-        this.neto = neto;
-        this.tara = tara;
-        this.bruto = bruto;
-        this.lote = lote;
-        this.cliente = cliente;
-        this.producto = producto;
-        this.codBarras = codBarras;
-        this.caducidad = caducidad;
-        this.envasado = envasado;
-    }
+  
     int copias;
-    String neto;
-    String tara;
-    String bruto;
-    String lote;
-    String cliente;
-    String producto;
-    String codBarras;
-    String caducidad;
-    String envasado;
+   
     String impresora;
     String etiqueta;
 
@@ -84,89 +66,14 @@ public class Print {
         this.impresora = impresora;
     }
 
-    public String getBruto() {
-        return bruto;
-    }
 
-    public void setBruto(String bruto) {
-        this.bruto = bruto;
-    }
-
-    public String getCaducidad() {
-        return caducidad;
-    }
-
-    public void setCaducidad(String caducidad) {
-        this.caducidad = caducidad;
-    }
-
-    public String getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(String cliente) {
-        this.cliente = cliente;
-    }
-
-    public String getCodBarras() {
-        return codBarras;
-    }
-
-    public void setCodBarras(String codBarras) {
-        this.codBarras = codBarras;
-    }
-
-    public String getEnvasado() {
-        return envasado;
-    }
-
-    public void setEnvasado(String envasado) {
-        this.envasado = envasado;
-    }
-
-    public String getLote() {
-        return lote;
-    }
-
-    public void setLote(String lote) {
-        this.lote = lote;
-    }
-
-    public String getNeto() {
-        return neto;
-    }
-
-    public void setNeto(String neto) {
-        this.neto = neto;
-    }
-
-    public String getProducto() {
-        return producto;
-    }
-
-    public void setProducto(String producto) {
-        this.producto = producto;
-    }
-
-    public String getTara() {
-        return tara;
-    }
-
-    public void setTara(String tara) {
-        this.tara = tara;
-    }
 
     public void startPrint() {
         try {
             Map parameters = new HashMap();
 
 
-            parameters.put("NETO", neto);
-            parameters.put("TARA", tara);
-            parameters.put("BRUTO", bruto);
-            parameters.put("LOTE", lote);
-            parameters.put("CLIENTE", cliente);
-            parameters.put("PRODUCTO", producto);
+       
 
             JasperPrint print = JasperFillManager.fillReport(etiqueta, parameters,
                     new EtiDataSource());
@@ -225,36 +132,12 @@ public class Print {
         public Object getFieldValue(JRField jrf) throws JRException {
             Object value = null;
 
-            if ("cliente".equals(jrf.getName())) {
-                value = cliente;
-            }
-            if ("producto".equals(jrf.getName())) {
-                value = producto;
-            }
-            if ("neto".equals(jrf.getName())) {
-                value = neto;
-            }
-            if ("bruto".equals(jrf.getName())) {
-                value = bruto;
-            }
-            if ("tara".equals(jrf.getName())) {
-                value = tara;
-            }
-            if ("lote".equals(jrf.getName())) {
-                value = lote;
-            }
-            if ("codBarras".equals(jrf.getName())) {
-                value = codBarras;
-            }
-            if ("barcode".equals(jrf.getName())) {
-                value = codBarras;
-            }
-            if ("caducidad".equals(jrf.getName())) {
-                value = caducidad;
-            }
+           /*
             if ("envasado".equals(jrf.getName())) {
                 value = envasado;
             }
+            * *
+            */
             return value;
         }
     }
