@@ -312,6 +312,14 @@ instanceOf = this;
         }
         cab.setTotal(totalCab);
         cabezeras.saveDato(cab);
+        Caja movimiento = new Caja();
+        movimiento.setIdCamarero(camarero.getIdCamarero());
+        movimiento.setIdCabezera(cab.getIdCabezera());
+        movimiento.setFecha(new Date());
+        movimiento.setMovimiento(totalCab);
+        movimiento.setSaldo(caja.getSaldo()+totalCab);
+        caja.saveDato(movimiento);
+        System.out.println(movimiento.getIdCaja());
         this.panelLineas.updateUI();
     }//GEN-LAST:event_jButton5ActionPerformed
 
