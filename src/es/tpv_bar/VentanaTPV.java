@@ -8,17 +8,14 @@ import es.tpv_bar.gui.botones.BTCategoria;
 import es.tpv_bar.gui.botones.BTLineas;
 import es.tpv_bar.gui.botones.BTProducto;
 import es.tpv_bar.gui.ventanas.VentanaMesas;
-import es.tpv_bar.persistencia.modelos.CategoriaModel;
-import es.tpv_bar.persistencia.modelos.LineaModel;
-import es.tpv_bar.persistencia.modelos.ProductosModel;
-import es.tpv_bar.persistencia.pojos.Categoria;
-import es.tpv_bar.persistencia.pojos.Linea;
-import es.tpv_bar.persistencia.pojos.Productos;
-import es.tpv_bar.persistencia.pojos.Ubicacion;
+import es.tpv_bar.persistencia.modelos.*;
+import es.tpv_bar.persistencia.pojos.*;
+import java.awt.Component;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -33,6 +30,10 @@ public class VentanaTPV extends javax.swing.JFrame {
     VentanaMesas mesa;
         CategoriaModel categorias = new CategoriaModel();
         ProductosModel   productos = new ProductosModel();
+        CajaModel caja = new CajaModel();
+        CabezeraModel cabezeras = new CabezeraModel();
+        CamareroModel camareros = new CamareroModel();
+        
         public LineaModel lineas = new LineaModel();
     /**
      * Creates new form VentanaTPV
@@ -193,6 +194,11 @@ instanceOf = this;
         jButton5.setFocusable(false);
         jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         jToolBar2.add(jButton5);
 
         txTotal.setBackground(new java.awt.Color(1, 1, 1));
@@ -280,6 +286,31 @@ instanceOf = this;
        new VentanaMesas(this,true,3).setVisible(true);
        lbUbicacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/iconoBarra.png")));
     }//GEN-LAST:event_jButton4ActionPerformed
+    double totalCab = 0.0;
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        totalCab = 0.0;
+        Component[] c = this.panelLineas.getComponents();
+        Cabezera cab = new Cabezera();
+        cab.setCamarero((Camarero)camareros.busquedaDato(1));
+        cab.setCod(1);
+        cab.setFecha(new Date());
+        cab.setEstado(0);
+        
+        cabezeras.saveDato(cab);
+        for (int i = 0; i < c.length; i++){
+            BTLineas bt =(BTLineas) c[i];
+            if(bt.isSelect()){
+                totalCab += bt.getLinea().getTotal();
+                bt.getLinea().setCabezera(cab);
+                bt.getLinea().setCobrado(true);
+                lineas.saveDato(bt.getLinea());
+                panelLineas.remove(bt);
+             }            
+        }
+        cab.setTotal(totalCab);
+        cabezeras.saveDato(cab);
+        this.panelLineas.updateUI();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments

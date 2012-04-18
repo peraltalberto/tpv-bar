@@ -1,5 +1,5 @@
 package es.tpv_bar.persistencia.pojos;
-// Generated 16-abr-2012 17:37:42 by Hibernate Tools 3.2.1.GA
+// Generated 18-abr-2012 16:51:34 by Hibernate Tools 3.2.1.GA
 
 
 import java.util.Date;
@@ -32,22 +32,25 @@ public class Cabezera  implements java.io.Serializable {
      private Integer idCabezera;
      private Camarero camarero;
      private Double total;
-     private Boolean estado;
+     private Integer estado;
      private Date fecha;
+     private int cod;
      private Set<Linea> lineas = new HashSet<Linea>(0);
 
     public Cabezera() {
     }
 
 	
-    public Cabezera(Camarero camarero) {
+    public Cabezera(Camarero camarero, int cod) {
         this.camarero = camarero;
+        this.cod = cod;
     }
-    public Cabezera(Camarero camarero, Double total, Boolean estado, Date fecha, Set<Linea> lineas) {
+    public Cabezera(Camarero camarero, Double total, Integer estado, Date fecha, int cod, Set<Linea> lineas) {
        this.camarero = camarero;
        this.total = total;
        this.estado = estado;
        this.fecha = fecha;
+       this.cod = cod;
        this.lineas = lineas;
     }
    
@@ -81,11 +84,11 @@ public class Cabezera  implements java.io.Serializable {
     }
     
     @Column(name="Estado")
-    public Boolean getEstado() {
+    public Integer getEstado() {
         return this.estado;
     }
     
-    public void setEstado(Boolean estado) {
+    public void setEstado(Integer estado) {
         this.estado = estado;
     }
     @Temporal(TemporalType.TIMESTAMP)
@@ -96,6 +99,15 @@ public class Cabezera  implements java.io.Serializable {
     
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+    
+    @Column(name="cod", nullable=false)
+    public int getCod() {
+        return this.cod;
+    }
+    
+    public void setCod(int cod) {
+        this.cod = cod;
     }
 @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="cabezera")
     public Set<Linea> getLineas() {

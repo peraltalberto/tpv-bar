@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-abr-2012 16:51:34 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="es.tpv_bar.persistencia.pojos.Caja" table="Caja" catalog="mydb">
+        <id name="idCaja" type="java.lang.Integer">
+            <column name="idCaja" />
+            <generator class="identity" />
+        </id>
+        <property name="fecha" type="timestamp">
+            <column name="fecha" length="19" not-null="true" />
+        </property>
+        <property name="movimiento" type="double">
+            <column name="movimiento" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="saldo" type="double">
+            <column name="saldo" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="idCamarero" type="java.lang.Integer">
+            <column name="idCamarero" />
+        </property>
+        <property name="idCabezera" type="java.lang.Integer">
+            <column name="idCabezera" />
+        </property>
+    </class>
+</hibernate-mapping>

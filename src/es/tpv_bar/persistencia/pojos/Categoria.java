@@ -1,5 +1,5 @@
 package es.tpv_bar.persistencia.pojos;
-// Generated 16-abr-2012 17:37:42 by Hibernate Tools 3.2.1.GA
+// Generated 18-abr-2012 16:51:34 by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;

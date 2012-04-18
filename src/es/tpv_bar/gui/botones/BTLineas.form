@@ -61,6 +61,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Producto"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbProductoMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCheckBox1">
       <Properties>

@@ -7,7 +7,8 @@
   <table-filter match-name="Categoria"/>
   <table-filter match-name="BloqueUbicacion"/>
   <table-filter match-name="Cabezera"/>
-
+<table-filter match-name="Caja"/>
+<table-filter match-name="Configuracion"/>
   <table-filter match-name="Ubicacion"/>
   <table-filter match-name="Linea"/>
 </hibernate-reverse-engineering>

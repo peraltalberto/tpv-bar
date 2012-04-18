@@ -30,6 +30,7 @@ public class BTLineas extends javax.swing.JPanel {
     Linea linea;
     
     
+    
     public BTLineas(Productos producto,VentanaTPV parent) {
         this();
         this.parent = parent;
@@ -73,6 +74,11 @@ public class BTLineas extends javax.swing.JPanel {
         setName("");
 
         lbProducto.setText("Producto");
+        lbProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbProductoMouseClicked(evt);
+            }
+        });
 
         jCheckBox1.setSelected(true);
 
@@ -169,6 +175,14 @@ DlTecladoNum tld;
        }
     }//GEN-LAST:event_jLabel1MouseClicked
 
+    private void lbProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbProductoMouseClicked
+        if(this.jCheckBox1.isSelected()){
+            this.jCheckBox1.setSelected(false);
+        }else{
+            this.jCheckBox1.setSelected(true);
+        }
+    }//GEN-LAST:event_lbProductoMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
@@ -187,4 +201,23 @@ private void addProducto(){
         this.linea.setTotal(this.producto.getPrecio());
         this.parent.lineas.saveDato(this.linea);
 }
+
+    public boolean isSelect() {
+        return this.jCheckBox1.isSelected();
+    }
+
+    public void setSelect(boolean select) {
+        this.jCheckBox1.setSelected(select);
+    }
+
+    public Linea getLinea() {
+        return linea;
+    }
+
+    public void setLinea(Linea linea) {
+        this.linea = linea;
+    }
+
+  
+    
 }

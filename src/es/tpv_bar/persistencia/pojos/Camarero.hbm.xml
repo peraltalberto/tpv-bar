@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 16-abr-2012 17:37:43 by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 18-abr-2012 16:51:34 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
     <class name="es.tpv_bar.persistencia.pojos.Camarero" table="Camarero" catalog="mydb">
         <id name="idCamarero" type="java.lang.Integer">
@@ -12,7 +12,7 @@
             <column name="Nombre" length="45" />
         </property>
         <property name="apellidos" type="string">
-             <column name="Apellidos" length="100" />
+            <column name="Apellidos" length="100" />
         </property>
         <property name="telefono" type="java.lang.Integer">
             <column name="Telefono" />
