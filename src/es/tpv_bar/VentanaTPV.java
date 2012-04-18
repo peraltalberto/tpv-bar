@@ -7,6 +7,7 @@ package es.tpv_bar;
 import es.tpv_bar.gui.botones.BTCategoria;
 import es.tpv_bar.gui.botones.BTLineas;
 import es.tpv_bar.gui.botones.BTProducto;
+import es.tpv_bar.gui.ventanas.VentanaCamareros;
 import es.tpv_bar.gui.ventanas.VentanaMesas;
 import es.tpv_bar.persistencia.modelos.*;
 import es.tpv_bar.persistencia.pojos.*;
@@ -32,7 +33,8 @@ public class VentanaTPV extends javax.swing.JFrame {
         ProductosModel   productos = new ProductosModel();
         CajaModel caja = new CajaModel();
         CabezeraModel cabezeras = new CabezeraModel();
-        CamareroModel camareros = new CamareroModel();
+        //CamareroModel camareros = new CamareroModel();
+        Camarero camarero;
         
         public LineaModel lineas = new LineaModel();
     /**
@@ -288,10 +290,11 @@ instanceOf = this;
     }//GEN-LAST:event_jButton4ActionPerformed
     double totalCab = 0.0;
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        new VentanaCamareros(this,true).setVisible(true);
         totalCab = 0.0;
         Component[] c = this.panelLineas.getComponents();
         Cabezera cab = new Cabezera();
-        cab.setCamarero((Camarero)camareros.busquedaDato(1));
+        cab.setCamarero(camarero);
         cab.setCod(1);
         cab.setFecha(new Date());
         cab.setEstado(0);
@@ -354,6 +357,7 @@ instanceOf = this;
         });
     }
     public void setUbicacion(Ubicacion ubicacion){
+        
         this.panelLineas.removeAll();
         this.ubicacion = ubicacion;
         this.lbUbicacion.setText(ubicacion.getNombre());
@@ -409,4 +413,13 @@ instanceOf = this;
     private javax.swing.JPanel panelLineas;
     private javax.swing.JTextField txTotal;
     // End of variables declaration//GEN-END:variables
+
+    public Camarero getCamarero() {
+        return camarero;
+    }
+
+    public void setCamarero(Camarero camarero) {
+        this.camarero = camarero;
+    }
+    
 }
