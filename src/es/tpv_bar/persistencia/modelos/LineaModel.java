@@ -73,7 +73,7 @@ public class LineaModel extends AbstractModel {
                 + "AS producto,"
                 + " COUNT( idProductos ) "
                 + "as cantidad , "
-                + "SUM( Precio )"
+                + "SUM( Total )"
                 + "as total "
                 + "FROM  `Linea` WHERE idCabezera =" +cabezera
                 + " GROUP BY idProductos";
