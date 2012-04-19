@@ -264,7 +264,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/es/tpv_bar/gui/resources/1334302320_Cup.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="La Taberna de leo"/>
+        <Property name="text" type="java.lang.String" value="La Tasca de leo"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
