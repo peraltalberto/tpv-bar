@@ -18,7 +18,7 @@ public class Configuracion  implements java.io.Serializable {
 
 
      private int id;
-     private String key;
+     private String clave;
      private String value;
 
     public Configuracion() {
@@ -30,7 +30,7 @@ public class Configuracion  implements java.io.Serializable {
     }
     public Configuracion(int id, String key, String value) {
        this.id = id;
-       this.key = key;
+       this.clave = key;
        this.value = value;
     }
    
@@ -45,13 +45,13 @@ public class Configuracion  implements java.io.Serializable {
         this.id = id;
     }
     
-    @Column(name="key", length=45)
-    public String getKey() {
-        return this.key;
+    @Column(name="clave", length=45)
+    public String getClave() {
+        return this.clave;
     }
     
-    public void setKey(String key) {
-        this.key = key;
+    public void setClave(String key) {
+        this.clave = key;
     }
     
     @Column(name="value", length=45)

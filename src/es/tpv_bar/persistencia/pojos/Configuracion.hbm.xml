@@ -8,8 +8,8 @@
             <column name="id" />
             <generator class="assigned" />
         </id>
-        <property name="key" type="string">
-            <column name="key" length="45" />
+        <property name="clave" type="string">
+            <column name="clave" length="45" />
         </property>
         <property name="value" type="string">
             <column name="value" length="45" />

@@ -35,18 +35,19 @@ public class ConfiguracionModel extends AbstractModel {
         Session session = factory.getCurrentSession();
         Transaction tx = session.beginTransaction();
         result =(Configuracion) session.createCriteria(Configuracion.class)
-                .add(Restrictions.eq("key", "codTicket")).uniqueResult();
+                .add(Restrictions.eq("clave", "codTicket")).uniqueResult();
         if (result == null){
             Configuracion conf = new Configuracion();
-            conf.setKey("codTicket");
+            conf.setClave("codTicket");
             conf.setValue("0");
-            super.saveDato(conf);
+            session.save(conf);
         }else{
              i = Integer.parseInt(result.getValue());
              i++;
              result.setValue(i.toString());
-             super.saveDato(result);
+             session.save(result);
         }
+        tx.commit();
         return i;
     }
 }
