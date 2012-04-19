@@ -4,8 +4,12 @@
  */
 package es.tpv_bar.prints;
 
+import es.tpv_bar.persistencia.modelos.LineaModel;
+import es.tpv_bar.persistencia.pojos.Cabezera;
+import es.tpv_bar.persistencia.pojos.Ubicacion;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -37,10 +41,12 @@ public class Print {
     }
 
   
-    int copias;
+    int copias = 1;
    
-    String impresora;
+    String impresora = "";
     String etiqueta;
+    Cabezera cabezera;
+    Ubicacion ubi;
 
     public String getEtiqueta() {
         return etiqueta;
@@ -66,17 +72,41 @@ public class Print {
         this.impresora = impresora;
     }
 
+    
+    
+    
+    public Cabezera getCabezera() {
+        return cabezera;
+    }
 
+    public void setCabezera(Cabezera cabezera) {
+        this.cabezera = cabezera;
+    }
+
+    public Ubicacion getUbi() {
+        return ubi;
+    }
+
+    public void setUbi(Ubicacion ubi) {
+        this.ubi = ubi;
+    }
+
+
+    
+    
+    
 
     public void startPrint() {
         try {
             Map parameters = new HashMap();
 
-
-       
+            parameters.put("IdTicket", cabezera.getCod());
+            parameters.put("UBICACION",ubi.getIdUbicacion());
+            parameters.put("fechaTicket", cabezera.getFecha());
+            EtiDataSource recorredor = new EtiDataSource();
 
             JasperPrint print = JasperFillManager.fillReport(etiqueta, parameters,
-                    new EtiDataSource());
+                   recorredor );
             PrinterJob job = PrinterJob.getPrinterJob();
             /* Create an array of PrintServices */
             PrintService[] services = PrintServiceLookup.lookupPrintServices(null, null);
@@ -86,6 +116,7 @@ public class Print {
                 if (services[i].getName().equals(this.impresora)) {
                     /*If the service is named as what we are querying we select it */
                     selectedService = i;
+                    break;
                 }
             }
             System.out.println(services[selectedService]);
@@ -105,9 +136,7 @@ public class Print {
             exporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PRINT_DIALOG, Boolean.FALSE);
             exporter.exportReport();
             System.out.println("Fin reporte");
-        } catch (PrinterException ex) {
-            Logger.getLogger(Print.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (JRException ex) {
+        } catch (PrinterException | JRException ex) {
             Logger.getLogger(Print.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -116,28 +145,42 @@ public class Print {
     private class EtiDataSource implements JRDataSource {
 
         public EtiDataSource() {
-            una = true;
+            iActual = -1;
+            lista = lm.getTicket(cabezera.getIdCabezera());
         }
-        boolean una = true;
-
+        
+        LineaModel lm = new LineaModel();
+        ArrayList<Ticket> lista;
+        int iActual;
+        
+        @Override
         public boolean next() throws JRException {
-            if (una) {
-                una = false;
-                return true;
-            } else {
-                return false;
-            }
+           return ++iActual < lista.size();
         }
 
+        @Override
         public Object getFieldValue(JRField jrf) throws JRException {
-            Object value = null;
+            Object value = "";
 
-           /*
-            if ("envasado".equals(jrf.getName())) {
-                value = envasado;
+           System.out.println(jrf.getName());
+            if ("nombre".equals(jrf.getName())) {
+                System.out.println("Dentro de nombre:"+lista.get(iActual).getProducto());
+                
+                value = lista.get(iActual).getProducto();
+                
             }
-            * *
-            */
+            if ("cantidad".equals(jrf.getName())) {
+                value = lista.get(iActual).getCantidad().intValue();
+            }
+            if ("precio".equals(jrf.getName())) {
+                value = lista.get(iActual).getPrecio();
+            }
+            if ("importe".equals(jrf.getName())) {
+                value = lista.get(iActual).getTotal();
+            }
+            if(value == null){
+                System.out.println("ERROR");
+            }
             return value;
         }
     }

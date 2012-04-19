@@ -11,6 +11,7 @@ import es.tpv_bar.gui.ventanas.VentanaCamareros;
 import es.tpv_bar.gui.ventanas.VentanaMesas;
 import es.tpv_bar.persistencia.modelos.*;
 import es.tpv_bar.persistencia.pojos.*;
+import es.tpv_bar.prints.Print;
 import java.awt.Component;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -29,31 +30,32 @@ public class VentanaTPV extends javax.swing.JFrame {
      */
     VentanaTPV instanceOf;
     VentanaMesas mesa;
-        CategoriaModel categorias = new CategoriaModel();
-        ProductosModel   productos = new ProductosModel();
-        CajaModel caja = new CajaModel();
-        CabezeraModel cabezeras = new CabezeraModel();
-        //CamareroModel camareros = new CamareroModel();
-        Camarero camarero;
-        
-        public LineaModel lineas = new LineaModel();
+    CategoriaModel categorias = new CategoriaModel();
+    ProductosModel productos = new ProductosModel();
+    CajaModel caja = new CajaModel();
+    CabezeraModel cabezeras = new CabezeraModel();
+    Print impresora = new Print();
+    //CamareroModel camareros = new CamareroModel();
+    Camarero camarero;
+    public LineaModel lineas = new LineaModel();
+
     /**
      * Creates new form VentanaTPV
      */
     public VentanaTPV() {
         initComponents();
         this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-this.setVisible(true);
-
-this.toFront();
-this.setAlwaysOnTop(true);
-cargarCategorias();
-instanceOf = this;
+        this.setVisible(true);
+        
+        this.toFront();
+        this.setAlwaysOnTop(true);
+        cargarCategorias();
+        instanceOf = this;
     }
 
-    private void cargarCategorias(){
+    private void cargarCategorias() {
         ArrayList<Categoria> cat = categorias.getLista();
-        for(int i = 0; i<cat.size(); i++){
+        for (int i = 0; i < cat.size(); i++) {
             final BTCategoria bt = new BTCategoria(cat.get(i));
             bt.addActionListener(new ActionListener() {
 
@@ -65,17 +67,18 @@ instanceOf = this;
             this.pCategorias.add(bt);
         }
     }
-    private void cargarProductos(Categoria cat){
+
+    private void cargarProductos(Categoria cat) {
         this.pProductos.removeAll();
         ArrayList<Productos> prod = (ArrayList<Productos>) productos.busquedaDatos("categoria", cat);
-        for(int i = 0; i<prod.size(); i++){
+        for (int i = 0; i < prod.size(); i++) {
             final BTProducto bt = new BTProducto(prod.get(i));
             bt.addActionListener(new ActionListener() {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if(ubicacion != null){
-                        panelLineas.add(new BTLineas(bt.getProducto(),instanceOf));
+                    if (ubicacion != null) {
+                        panelLineas.add(new BTLineas(bt.getProducto(), instanceOf));
                         total += bt.getProducto().getPrecio();
                     }
                     txTotal.setText(total.toString());
@@ -86,7 +89,7 @@ instanceOf = this;
         }
         this.pProductos.updateUI();
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -269,28 +272,28 @@ instanceOf = this;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       mesa=  new VentanaMesas(this,true,2);
-       mesa.setVisible(true);
-      lbUbicacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/iconoComedor.png")));
-        
+        mesa = new VentanaMesas(this, true, 2);
+        mesa.setVisible(true);
+        lbUbicacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/iconoComedor.png")));
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        new VentanaMesas(this,true,1).setVisible(true);
+        new VentanaMesas(this, true, 1).setVisible(true);
         lbUbicacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/iconoTerraza.png")));
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       new VentanaMesas(this,true,3).setVisible(true);
-       lbUbicacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/iconoBarra.png")));
+        new VentanaMesas(this, true, 3).setVisible(true);
+        lbUbicacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/iconoBarra.png")));
     }//GEN-LAST:event_jButton4ActionPerformed
     double totalCab = 0.0;
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        new VentanaCamareros(this,true).setVisible(true);
+        new VentanaCamareros(this, true).setVisible(true);
         totalCab = 0.0;
         Component[] c = this.panelLineas.getComponents();
         Cabezera cab = new Cabezera();
@@ -298,17 +301,17 @@ instanceOf = this;
         cab.setCod(1);
         cab.setFecha(new Date());
         cab.setEstado(0);
-        
+
         cabezeras.saveDato(cab);
-        for (int i = 0; i < c.length; i++){
-            BTLineas bt =(BTLineas) c[i];
-            if(bt.isSelect()){
+        for (int i = 0; i < c.length; i++) {
+            BTLineas bt = (BTLineas) c[i];
+            if (bt.isSelect()) {
                 totalCab += bt.getLinea().getTotal();
                 bt.getLinea().setCabezera(cab);
                 bt.getLinea().setCobrado(true);
                 lineas.saveDato(bt.getLinea());
                 panelLineas.remove(bt);
-             }            
+            }
         }
         cab.setTotal(totalCab);
         cabezeras.saveDato(cab);
@@ -317,9 +320,13 @@ instanceOf = this;
         movimiento.setIdCabezera(cab.getIdCabezera());
         movimiento.setFecha(new Date());
         movimiento.setMovimiento(totalCab);
-        movimiento.setSaldo(caja.getSaldo()+totalCab);
+        movimiento.setSaldo(caja.getSaldo() + totalCab);
         caja.saveDato(movimiento);
         System.out.println(movimiento.getIdCaja());
+        impresora.setEtiqueta(this.getClass().getResource("/es/tpv_bar/prints/jaspers/ticket.jasper").getPath());
+        impresora.setCabezera(cab);
+        impresora.setUbi(ubicacion);
+        impresora.startPrint();
         this.panelLineas.updateUI();
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -364,17 +371,18 @@ instanceOf = this;
             }
         });
     }
-    public void setUbicacion(Ubicacion ubicacion){
-        
+
+    public void setUbicacion(Ubicacion ubicacion) {
+
         this.panelLineas.removeAll();
         this.ubicacion = ubicacion;
         this.lbUbicacion.setText(ubicacion.getNombre());
         this.lineasUbi = (ArrayList<Linea>) lineas.getLineasUbicacion(ubicacion);
-        System.out.println("Ubicacion: "+this.lineasUbi.size());
-        total =0.0;
-        for(int i = 0; i < lineasUbi.size(); i++){
+        System.out.println("Ubicacion: " + this.lineasUbi.size());
+        total = 0.0;
+        for (int i = 0; i < lineasUbi.size(); i++) {
             Linea l = lineasUbi.get(i);
-            panelLineas.add(new BTLineas(l,instanceOf));
+            panelLineas.add(new BTLineas(l, instanceOf));
             total += l.getTotal();
         }
         this.panelLineas.updateUI();
@@ -384,17 +392,19 @@ instanceOf = this;
     public Ubicacion getUbicacion() {
         return ubicacion;
     }
-    public void eliminarLinea(Linea l){
+
+    public void eliminarLinea(Linea l) {
         lineas.removeDato(l);
         this.setUbicacion(ubicacion);
     }
-     public void actualizarLinea(Linea l){
+
+    public void actualizarLinea(Linea l) {
         lineas.updateDato(l);
         this.setUbicacion(ubicacion);
     }
     ArrayList<Linea> lineasUbi;
     Ubicacion ubicacion = null;
-    Double total= 0.0;
+    Double total = 0.0;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -429,5 +439,4 @@ instanceOf = this;
     public void setCamarero(Camarero camarero) {
         this.camarero = camarero;
     }
-    
 }
