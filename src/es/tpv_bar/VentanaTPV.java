@@ -214,7 +214,7 @@ instanceOf = this;
         jLabel1.setForeground(new java.awt.Color(26, 0, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/1334302320_Cup.png"))); // NOI18N
-        jLabel1.setText("La Taberna de leo");
+        jLabel1.setText("La Tasca de leo");
         jLabel1.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -286,7 +286,8 @@ instanceOf = this;
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
        new VentanaMesas(this,true,3).setVisible(true);
-       lbUbicacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/iconoBarra.png")));
+       lbUbicacion.setIcon(new javax.swing.ImageIcon(getClass().getResource
+               ("/es/tpv_bar/gui/resources/iconoBarra.png")));
     }//GEN-LAST:event_jButton4ActionPerformed
     double totalCab = 0.0;
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
