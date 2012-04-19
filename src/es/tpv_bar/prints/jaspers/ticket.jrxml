@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ticket" language="groovy" pageWidth="300" pageHeight="500" columnWidth="260" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ticket" language="groovy" pageWidth="350" pageHeight="500" columnWidth="310" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -26,22 +26,26 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="57" splitType="Stretch">
+		<band height="62" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="260" height="24"/>
+				<reportElement x="0" y="7" width="260" height="24"/>
 				<textElement>
 					<font fontName="Verdana" size="18" isBold="true" isItalic="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[La Taberna de Leo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="24" width="260" height="16"/>
-				<textElement/>
+				<reportElement x="0" y="28" width="260" height="19"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
 				<text><![CDATA[Direccion, en teruel teleel cif y demas]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="40" width="260" height="14"/>
-				<textElement/>
+				<reportElement x="0" y="37" width="260" height="17"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
 				<text><![CDATA[Telefono 978 000 000 fax 978 600 000]]></text>
 			</staticText>
 		</band>
@@ -69,7 +73,9 @@
 			</textField>
 			<textField pattern="dd/MM/yyyy h.mm a">
 				<reportElement x="2" y="0" width="100" height="20"/>
-				<textElement/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{fechaTicket}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -78,22 +84,30 @@
 		<band height="22" splitType="Stretch">
 			<staticText>
 				<reportElement x="37" y="2" width="85" height="16"/>
-				<textElement/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
 				<text><![CDATA[DESCRIPCION]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="2" width="24" height="16"/>
-				<textElement/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
 				<text><![CDATA[Und.]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="156" y="2" width="49" height="20"/>
-				<textElement/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
 				<text><![CDATA[PRECIO]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="205" y="2" width="55" height="20"/>
-				<textElement/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
 				<text><![CDATA[IMPORTE]]></text>
 			</staticText>
 		</band>
@@ -127,14 +141,14 @@
 			<staticText>
 				<reportElement x="101" y="27" width="65" height="20"/>
 				<textElement>
-					<font size="16" isBold="true"/>
+					<font fontName="Arial" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[TOTAL: ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="166" y="23" width="83" height="24"/>
+				<reportElement x="166" y="27" width="55" height="20"/>
 				<textElement textAlignment="Right">
-					<font size="18"/>
+					<font fontName="Arial" size="16" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{importe_1}]]></textFieldExpression>
 			</textField>
