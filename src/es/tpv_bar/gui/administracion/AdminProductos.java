@@ -226,6 +226,7 @@ public class AdminProductos extends javax.swing.JFrame {
         this.jTextObject1.setSelectObject(this.productoSelect.getCategoria());
         this.txNombre.setText(this.productoSelect.getNombre());
         this.txPrecio.setText(Double.toString(this.productoSelect.getPrecio()));
+    //    this.jComboBox1.setText(this.categoriasSelect.getNombre());
     }//GEN-LAST:event_jTableArrayList1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
