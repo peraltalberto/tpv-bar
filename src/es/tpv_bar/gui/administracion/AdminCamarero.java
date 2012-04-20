@@ -24,6 +24,7 @@ public class AdminCamarero extends javax.swing.JFrame {
         String[] cabecerasTex = {"Nombre","Apellidos","Telefono"};
         this.jTableArrayList1.setCaps(cabeceras, cabecerasTex); 
         this.jTableArrayList1.setList(camarero.getLista());
+        
     }
 
     /**
@@ -47,6 +48,7 @@ public class AdminCamarero extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
 
         jTableArrayList1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
