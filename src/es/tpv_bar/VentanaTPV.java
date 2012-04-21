@@ -7,6 +7,7 @@ package es.tpv_bar;
 import es.tpv_bar.gui.botones.BTCategoria;
 import es.tpv_bar.gui.botones.BTLineas;
 import es.tpv_bar.gui.botones.BTProducto;
+import es.tpv_bar.gui.ventanas.AnularTicket;
 import es.tpv_bar.gui.ventanas.VentanaCamareros;
 import es.tpv_bar.gui.ventanas.VentanaMesas;
 import es.tpv_bar.persistencia.modelos.*;
@@ -121,6 +122,8 @@ public class VentanaTPV extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JToolBar.Separator();
         jButton5 = new javax.swing.JButton();
+        jSeparator8 = new javax.swing.JToolBar.Separator();
+        jButton7 = new javax.swing.JButton();
         txTotal = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
@@ -207,6 +210,18 @@ public class VentanaTPV extends javax.swing.JFrame {
             }
         });
         jToolBar2.add(jButton5);
+        jToolBar2.add(jSeparator8);
+
+        jButton7.setText("Anular Ticket");
+        jButton7.setFocusable(false);
+        jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(jButton7);
 
         txTotal.setBackground(new java.awt.Color(1, 1, 1));
         txTotal.setEditable(false);
@@ -353,6 +368,10 @@ public class VentanaTPV extends javax.swing.JFrame {
         impresora.abrirCaja();
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        new AnularTicket(this,true).setVisible(true);
+    }//GEN-LAST:event_jButton7ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -435,6 +454,7 @@ public class VentanaTPV extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -447,6 +467,7 @@ public class VentanaTPV extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JToolBar.Separator jSeparator8;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
     private javax.swing.JLabel lbUbicacion;
