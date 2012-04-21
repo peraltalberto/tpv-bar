@@ -224,6 +224,11 @@ public class VentanaTPV extends javax.swing.JFrame {
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/1334848821_cashbox.png"))); // NOI18N
         jButton6.setText("Abrir Caja");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -332,12 +337,21 @@ public class VentanaTPV extends javax.swing.JFrame {
         movimiento.setSaldo(caja.getSaldo() + totalCab);
         caja.saveDato(movimiento);
         System.out.println(movimiento.getIdCaja());
-        impresora.setEtiqueta(this.getClass().getResource("/es/tpv_bar/prints/jaspers/ticket.jasper").getPath());
+        impresora.setImpresora(((Configuracion)conf.busquedaDato(1)).getValue());
+        impresora.setEtiqueta("C:\\tpv\\jaspers\\ticket.jasper");
         impresora.setCabezera(cab);
         impresora.setUbi(ubicacion);
         impresora.startPrint();
         this.panelLineas.updateUI();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        impresora.setImpresora(((Configuracion)conf.busquedaDato(2)).getValue());
+        impresora.setEtiqueta("C:\\tpv\\jaspers\\enBlanco.jasper");
+        //impresora.setCabezera(cab);
+        //impresora.setUbi(ubicacion);
+        impresora.abrirCaja();
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -94,7 +94,64 @@ public class Print {
 
     
     
-    
+    public void abrirCaja() {
+        try {
+            Map parameters = new HashMap();
+
+            
+
+            JasperPrint print = JasperFillManager.fillReport(etiqueta, parameters,
+                    new JRDataSource() {
+                        boolean t = true;
+                @Override
+                public boolean next() throws JRException {
+                    if(t){
+                        t = false;
+                        return true;
+                    }else{
+                        return t;
+                    }
+                }
+
+                @Override
+                public Object getFieldValue(JRField jrf) throws JRException {
+                    return 1;
+                }
+            } );
+            PrinterJob job = PrinterJob.getPrinterJob();
+            /* Create an array of PrintServices */
+            PrintService[] services = PrintServiceLookup.lookupPrintServices(null, null);
+            int selectedService = 0;
+            /* Scan found services to see if anyone suits our needs */
+            for (int i = 0; i < services.length; i++) {
+                if (services[i].getName().equals(this.impresora)) {
+                    /*If the service is named as what we are querying we select it */
+                    selectedService = i;
+                    break;
+                }
+            }
+            System.out.println(services[selectedService]);
+            job.setPrintService(services[selectedService]);
+            PrintRequestAttributeSet printRequestAttributeSet = new HashPrintRequestAttributeSet();
+            MediaSizeName mediaSizeName = MediaSize.findMedia(4, 4, MediaPrintableArea.INCH);
+            printRequestAttributeSet.add(mediaSizeName);
+            printRequestAttributeSet.add(new Copies(this.copias));
+            JRPrintServiceExporter exporter;
+            exporter = new JRPrintServiceExporter();
+            exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
+            /* We set the selected service and pass it as a paramenter */
+            exporter.setParameter(JRPrintServiceExporterParameter.PRINT_SERVICE, services[selectedService]);
+            exporter.setParameter(JRPrintServiceExporterParameter.PRINT_SERVICE_ATTRIBUTE_SET, services[selectedService].getAttributes());
+            exporter.setParameter(JRPrintServiceExporterParameter.PRINT_REQUEST_ATTRIBUTE_SET, printRequestAttributeSet);
+            exporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PAGE_DIALOG, Boolean.FALSE);
+            exporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PRINT_DIALOG, Boolean.FALSE);
+            exporter.exportReport();
+            System.out.println("Fin reporte");
+        } catch (PrinterException | JRException ex) {
+            Logger.getLogger(Print.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 
     public void startPrint() {
         try {
@@ -173,7 +230,7 @@ public class Print {
                 value = lista.get(iActual).getCantidad().intValue();
             }
             if ("precio".equals(jrf.getName())) {
-                value = lista.get(iActual).getPrecio();
+                value = lista.get(iActual).getTotal();
             }
             if ("importe".equals(jrf.getName())) {
                 value = lista.get(iActual).getTotal();
