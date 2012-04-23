@@ -5,6 +5,7 @@
 package es.tpv_bar.gui.botones;
 
 import es.tpv_bar.persistencia.pojos.Productos;
+import java.awt.Dimension;
 import javax.swing.JButton;
 
 /**
@@ -20,6 +21,7 @@ public class BTProducto extends JButton {
    public BTProducto(Productos producto){
        this.producto = producto;
        this.setText(this.producto.getNombre());
+      
    }
    
    Productos producto;
