@@ -32,7 +32,7 @@
 				<textElement>
 					<font fontName="Verdana" size="18" isBold="true" isItalic="true" isUnderline="true"/>
 				</textElement>
-				<text><![CDATA[La Taberna de Leo]]></text>
+				<text><![CDATA[La Tasca de Leo]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="28" width="260" height="19"/>
