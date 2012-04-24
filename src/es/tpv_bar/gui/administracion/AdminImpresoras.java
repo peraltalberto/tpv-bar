@@ -121,6 +121,8 @@ public class AdminImpresoras extends javax.swing.JDialog {
         Configuracion im2 = (Configuracion) conf.busquedaDato(2);
         im1.setValue((String)this.jComboBox1.getSelectedItem());
         im2.setValue((String)this.jComboBox2.getSelectedItem());
+        conf.saveDato(im1);
+        conf.saveDato(im2);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
