@@ -19,7 +19,7 @@ public class BTCategoria extends JButton {
    
    public BTCategoria(Categoria categoria){
        this.categoria = categoria;
-       
+       this.setFont(new java.awt.Font("Arial", 1, 16));
        this.setText(this.categoria.getNombre());
    }
    

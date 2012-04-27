@@ -23,6 +23,7 @@ public class BTMesa extends JButton {
        this.ubicacion = ubicacion;
        this.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/1334302320_Cup.png")));
        this.setText(this.ubicacion.getNombre());
+       this.setFont(new java.awt.Font("Arial", 1, 16));
    }
    
    Ubicacion ubicacion;

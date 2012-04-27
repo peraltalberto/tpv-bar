@@ -24,6 +24,7 @@ public class BTCamarero extends JButton {
        this.camarero = camarero;
        this.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/IconCamarero.png")));
        this.setText(this.camarero.getNombre());
+       this.setFont(new java.awt.Font("Arial", 1, 16));
    }
    
    Camarero camarero;
