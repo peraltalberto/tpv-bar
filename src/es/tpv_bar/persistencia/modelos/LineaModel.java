@@ -34,10 +34,11 @@ public class LineaModel extends AbstractModel {
     
    
      public void updateDato(Linea dato) {
+         try{
         Session session = factory.getCurrentSession();
         Double d = ((Linea)dato).getPrecio();
         System.out.println(((Linea)dato).getPrecio());
-        Linea l = (Linea) session.load(Linea.class,dato.getIdLinea());
+        Linea l = (Linea) session.get(Linea.class,dato.getIdLinea());
         l.setPrecio(d);
         l.setTotal(d);
         session.saveOrUpdate(l);
@@ -46,6 +47,9 @@ public class LineaModel extends AbstractModel {
         session.saveOrUpdate(l);
          System.out.println(l.getTotal());
         tx.commit();
+         }catch(Exception  e){
+             super.saveDato(dato);
+         }
         //cargarLista();
     }
      

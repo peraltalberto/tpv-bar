@@ -92,6 +92,11 @@ public class BTLineas extends javax.swing.JPanel {
                 txPrecioMouseClicked(evt);
             }
         });
+        txPrecio.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txPrecioFocusGained(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/1334646224_list-remove.png"))); // NOI18N
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -108,26 +113,28 @@ public class BTLineas extends javax.swing.JPanel {
                 .addComponent(jCheckBox1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lbProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(txPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbProducto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jCheckBox1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txPrecio, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 DlTecladoNum tld;
     private void txPrecioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txPrecioMouseClicked
-     tld =  new DlTecladoNum(parent,true,this.txPrecio);
+       // numeros();
+    }//GEN-LAST:event_txPrecioMouseClicked
+private void numeros(){
+    tld =  new DlTecladoNum(parent,true,this.txPrecio);
      tld.setVisible(true);
      tld.addWindowListener(new WindowListener() {
 
@@ -171,8 +178,7 @@ DlTecladoNum tld;
                
             }
         });
-    }//GEN-LAST:event_txPrecioMouseClicked
-
+}
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
        if(JOptionPane.showConfirmDialog(parent, "¿Esta seguro de eliminar este producto?")==0){
            this.parent.eliminarLinea(linea);
@@ -186,6 +192,10 @@ DlTecladoNum tld;
             this.jCheckBox1.setSelected(true);
         }
     }//GEN-LAST:event_lbProductoMouseClicked
+
+    private void txPrecioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txPrecioFocusGained
+       numeros();
+    }//GEN-LAST:event_txPrecioFocusGained
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox jCheckBox1;

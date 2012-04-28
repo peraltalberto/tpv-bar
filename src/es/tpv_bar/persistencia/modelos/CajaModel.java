@@ -35,9 +35,10 @@ public class CajaModel extends AbstractModel {
         Transaction tx = ses.beginTransaction();
         Integer id= (Integer)ses.createCriteria(Caja.class)
                 .setProjection(Projections.max("idCaja")).uniqueResult();
-        Caja c=  (Caja) super.busquedaDato(id);
+        System.out.println(id);
+        Caja c=  (Caja) ses.load(Caja.class,id);
         return c.getSaldo();
-        }catch(NullPointerException e){
+        }catch(Exception e){
         return 0.0;
         }
     }

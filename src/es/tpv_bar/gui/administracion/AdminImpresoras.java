@@ -21,12 +21,13 @@ public class AdminImpresoras extends javax.swing.JDialog {
     public AdminImpresoras(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+        Configuracion im1 = (Configuracion) conf.busquedaDato(1);
         PrintService[] services = PrintServiceLookup.lookupPrintServices(null, null);
         for(int i = 0; i< services.length; i++){
             this.jComboBox1.addItem(services[i].getName());
-            this.jComboBox2.addItem(services[i].getName());
+            //this.jComboBox2.addItem(services[i].getName());
         }
+        this.jComboBox1.setSelectedItem(im1.getValue());
     }
 
     /**
@@ -40,7 +41,6 @@ public class AdminImpresoras extends javax.swing.JDialog {
 
         jComboBox1 = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -75,13 +75,11 @@ public class AdminImpresoras extends javax.swing.JDialog {
                         .addGap(47, 47, 47)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel1)
-                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBox2, 0, 290, Short.MAX_VALUE)))
+                            .addComponent(jLabel1)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 38, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(211, Short.MAX_VALUE)
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2)))
@@ -96,9 +94,7 @@ public class AdminImpresoras extends javax.swing.JDialog {
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -111,16 +107,16 @@ public class AdminImpresoras extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    ConfiguracionModel conf = new ConfiguracionModel();
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ConfiguracionModel conf = new ConfiguracionModel();
+        
         
         //Configuracion im1 = (Configuracion) conf.busquedaDato("clave","impresora1");
         
         Configuracion im1 = (Configuracion) conf.busquedaDato(1);
         Configuracion im2 = (Configuracion) conf.busquedaDato(2);
         im1.setValue((String)this.jComboBox1.getSelectedItem());
-        im2.setValue((String)this.jComboBox2.getSelectedItem());
+       // im2.setValue((String)this.jComboBox2.getSelectedItem());
         conf.saveDato(im1);
         conf.saveDato(im2);
         this.dispose();
@@ -179,7 +175,6 @@ public class AdminImpresoras extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
