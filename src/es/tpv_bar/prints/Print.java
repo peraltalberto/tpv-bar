@@ -165,6 +165,7 @@ public class Print {
             JasperPrint print = JasperFillManager.fillReport(etiqueta, parameters,
                    recorredor );
             PrinterJob job = PrinterJob.getPrinterJob();
+            
             /* Create an array of PrintServices */
             PrintService[] services = PrintServiceLookup.lookupPrintServices(null, null);
             int selectedService = 0;

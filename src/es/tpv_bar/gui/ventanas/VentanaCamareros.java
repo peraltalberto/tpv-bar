@@ -26,13 +26,13 @@ public class VentanaCamareros extends javax.swing.JDialog {
      * Variables de modelos
      *
      */
-        CamareroModel um = new CamareroModel();
-        BloqueUbicacionModel bum = new BloqueUbicacionModel();
-     /**
-      * variables de listas de botones
-      */
-     ArrayList<Camarero> camareros;
-     
+    CamareroModel um = new CamareroModel();
+    BloqueUbicacionModel bum = new BloqueUbicacionModel();
+    /**
+     * variables de listas de botones
+     */
+    ArrayList<Camarero> camareros;
+
     /**
      * Creates new form VentanaMesas
      */
@@ -43,20 +43,34 @@ public class VentanaCamareros extends javax.swing.JDialog {
         cargarMesas();
         this.parent = parent;
     }
-VentanaTPV parent;
-    
+    VentanaTPV parent;
+
+    public VentanaCamareros(MovimientoCaja parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
+        this.setLocationRelativeTo(parent);
+        cargarMesas();
+        this.parent2 = parent;
+    }
+    MovimientoCaja parent2;
+
     /**
      * Carga de las ubicaciones segun el parametro CatUbi
      */
-    private void cargarMesas(){
+    private void cargarMesas() {
         this.camareros = (ArrayList<Camarero>) um.getLista();
-        for (int i = 0; i< this.camareros.size(); i++){
+        for (int i = 0; i < this.camareros.size(); i++) {
             final BTCamarero bt = new BTCamarero(this.camareros.get(i));
             bt.addActionListener(new ActionListener() {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    parent.setCamarero(bt.getUbicacion());
+
+                    try {
+                        parent.setCamarero(bt.getUbicacion());
+                    } catch (NullPointerException ex) {
+                        parent2.setCamarero(bt.getUbicacion());
+                    }
                     dispose();
                 }
             });
@@ -64,7 +78,7 @@ VentanaTPV parent;
         }
         this.jPanel1.updateUI();
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -114,9 +128,8 @@ VentanaTPV parent;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;

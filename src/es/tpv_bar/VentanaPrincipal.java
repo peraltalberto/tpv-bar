@@ -5,6 +5,7 @@
 package es.tpv_bar;
 
 import es.tpv_bar.gui.administracion.*;
+import es.tpv_bar.gui.ventanas.MovimientoCaja;
 
 /**
  *
@@ -64,6 +65,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/Salida_cashbox.png"))); // NOI18N
         jButton3.setText("Retirada de dinero");
         jButton3.setToolTipText("");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Administracion");
 
@@ -168,8 +174,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        new MovimientoCaja(this,true,false).setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        new MovimientoCaja(this,true,true).setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

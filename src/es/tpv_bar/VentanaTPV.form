@@ -202,7 +202,7 @@
         <Container class="javax.swing.JPanel" name="panelLineas">
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout">
-            <Property name="axis" type="int" value="3"/>
+            <Property name="axis" type="int" value="1"/>
           </Layout>
         </Container>
       </SubComponents>

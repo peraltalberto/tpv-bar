@@ -197,7 +197,7 @@ public class VentanaTPV extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton1);
 
-        panelLineas.setLayout(new javax.swing.BoxLayout(panelLineas, javax.swing.BoxLayout.PAGE_AXIS));
+        panelLineas.setLayout(new javax.swing.BoxLayout(panelLineas, javax.swing.BoxLayout.Y_AXIS));
         jScrollPane1.setViewportView(panelLineas);
 
         jToolBar2.setFloatable(false);

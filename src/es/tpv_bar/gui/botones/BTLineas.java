@@ -70,7 +70,7 @@ public class BTLineas extends javax.swing.JPanel {
         txPrecio1.setText("0.0");
         txPrecio1.setToolTipText("");
 
-        setMaximumSize(new java.awt.Dimension(322, 25));
+        setMaximumSize(new java.awt.Dimension(322, 39));
         setName("");
 
         lbProducto.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -83,7 +83,7 @@ public class BTLineas extends javax.swing.JPanel {
 
         jCheckBox1.setSelected(true);
 
-        txPrecio.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txPrecio.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txPrecio.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txPrecio.setText("0.0");
         txPrecio.setToolTipText("");
@@ -111,17 +111,18 @@ public class BTLineas extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(txPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1))
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbProducto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txPrecio, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                    .addComponent(jCheckBox1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txPrecio, javax.swing.GroupLayout.Alignment.LEADING))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 DlTecladoNum tld;
