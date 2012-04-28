@@ -19,6 +19,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.print.*;
 
 /**
  *
@@ -48,7 +51,7 @@ public class VentanaTPV extends javax.swing.JFrame {
         initComponents();
         this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
         this.setVisible(true);
-        
+
         this.toFront();
         this.setAlwaysOnTop(true);
         cargarCategorias();
@@ -312,9 +315,8 @@ public class VentanaTPV extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       new VentanaMesas(this,true,3).setVisible(true);
-       lbUbicacion.setIcon(new javax.swing.ImageIcon(getClass().getResource
-               ("/es/tpv_bar/gui/resources/iconoBarra.png")));
+        new VentanaMesas(this, true, 3).setVisible(true);
+        lbUbicacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/iconoBarra.png")));
     }//GEN-LAST:event_jButton4ActionPerformed
     double totalCab = 0.0;
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -348,7 +350,7 @@ public class VentanaTPV extends javax.swing.JFrame {
         movimiento.setSaldo(caja.getSaldo() + totalCab);
         caja.saveDato(movimiento);
         System.out.println(movimiento.getIdCaja());
-        impresora.setImpresora(((Configuracion)conf.busquedaDato(1)).getValue());
+        impresora.setImpresora(((Configuracion) conf.busquedaDato(1)).getValue());
         impresora.setEtiqueta("C:\\tpv\\jaspers\\ticket.jasper");
         impresora.setCabezera(cab);
         impresora.setUbi(ubicacion);
@@ -357,19 +359,56 @@ public class VentanaTPV extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        /**
-         * impresora.setImpresora(((Configuracion)conf.busquedaDato(2)).getValue());
-        impresora.setEtiqueta("C:\\tpv\\jaspers\\enBlanco.jasper");
-        //impresora.setCabezera(cab);
-        //impresora.setUbi(ubicacion);
-        impresora.abrirCaja();
-        * *
-        */
-         
+        try {
+            /*
+             * Create an array of PrintServices
+             */
+            PrintService[] services = PrintServiceLookup.lookupPrintServices(null, null);
+            int selectedService = 0;
+            /*
+             * Scan found services to see if anyone suits our needs
+             */
+            for (int i = 0; i < services.length; i++) {
+                if (services[i].getName().equals(((Configuracion) conf.busquedaDato(2)).getValue())) {
+                    /*
+                     * If the service is named as what we are querying we select it
+                     */
+                    selectedService = i;
+                    break;
+                }
+            }
+            PrintService printService = PrintServiceLookup.lookupDefaultPrintService();
+            char[] a = {0x1b,0x70,0x00,0x19,0xff};
+            
+            String zplCommand ="";
+            for (int i = 0; i<a.length;i++){
+                zplCommand += a[i];
+            }
+
+    // convertimos el comando a bytes
+            byte[] by = zplCommand.getBytes();
+            DocFlavor flavor = DocFlavor.BYTE_ARRAY.AUTOSENSE;
+            Doc doc = new SimpleDoc(by, flavor, null);
+
+    // creamos el printjob
+            DocPrintJob job = printService.createPrintJob();
+
+    // imprimimos
+            job.print(doc, null);
+            /**
+             * impresora.setImpresora(((Configuracion)conf.busquedaDato(2)).getValue());
+             * impresora.setEtiqueta("C:\\tpv\\jaspers\\enBlanco.jasper");
+             * //impresora.setCabezera(cab); //impresora.setUbi(ubicacion);
+             * impresora.abrirCaja(); *
+             */
+        } catch (PrintException ex) {
+            Logger.getLogger(VentanaTPV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        new AnularTicket(this,true).setVisible(true);
+        new AnularTicket(this, true).setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
