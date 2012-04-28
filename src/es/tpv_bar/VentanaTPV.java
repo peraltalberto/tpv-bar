@@ -357,11 +357,15 @@ public class VentanaTPV extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        impresora.setImpresora(((Configuracion)conf.busquedaDato(2)).getValue());
+        /**
+         * impresora.setImpresora(((Configuracion)conf.busquedaDato(2)).getValue());
         impresora.setEtiqueta("C:\\tpv\\jaspers\\enBlanco.jasper");
         //impresora.setCabezera(cab);
         //impresora.setUbi(ubicacion);
         impresora.abrirCaja();
+        * *
+        */
+         
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
