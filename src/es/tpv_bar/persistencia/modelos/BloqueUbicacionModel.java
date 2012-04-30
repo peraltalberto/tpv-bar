@@ -6,7 +6,7 @@
 package es.tpv_bar.persistencia.modelos;
 
 import es.tpv_bar.persistencia.AbstractModel;
-import es.tpv_bar.persistencia.pojos.BloqueUbicacion;
+import es.tpv_bar.persistencia.pojos.Bloqueubicacion;
 import java.util.ArrayList;
 
 
@@ -17,12 +17,12 @@ import java.util.ArrayList;
 public class BloqueUbicacionModel extends AbstractModel {
     
     public BloqueUbicacionModel() {
-        super(BloqueUbicacion.class);
+        super(Bloqueubicacion.class);
     }
     
     @Override
-    public ArrayList<BloqueUbicacion> getLista() {
+    public ArrayList<Bloqueubicacion> getLista() {
         this.cargarLista();
-        return (ArrayList<BloqueUbicacion>) super.getLista();
+        return (ArrayList<Bloqueubicacion>) super.getLista();
     }
 }

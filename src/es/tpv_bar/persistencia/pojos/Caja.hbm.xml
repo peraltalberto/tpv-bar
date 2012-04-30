@@ -1,13 +1,19 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 18-abr-2012 16:51:34 by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 30-abr-2012 18:02:24 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="es.tpv_bar.persistencia.pojos.Caja" table="Caja" catalog="mydb">
+    <class name="es.tpv_bar.persistencia.pojos.Caja" table="caja" catalog="mydb">
         <id name="idCaja" type="java.lang.Integer">
             <column name="idCaja" />
             <generator class="identity" />
         </id>
+        <many-to-one name="camarero" class="es.tpv_bar.persistencia.pojos.Camarero" fetch="select">
+            <column name="IdCamarero" not-null="true" />
+        </many-to-one>
+        <many-to-one name="cabezera" class="es.tpv_bar.persistencia.pojos.Cabezera" fetch="select">
+            <column name="IdCabezera" />
+        </many-to-one>
         <property name="fecha" type="timestamp">
             <column name="fecha" length="19" not-null="true" />
         </property>
@@ -17,11 +23,14 @@
         <property name="saldo" type="double">
             <column name="saldo" precision="22" scale="0" not-null="true" />
         </property>
-        <property name="idCamarero" type="java.lang.Integer">
-            <column name="idCamarero" />
+        <property name="descripcion" type="string">
+            <column name="descripcion" />
         </property>
-        <property name="idCabezera" type="java.lang.Integer">
-            <column name="idCabezera" />
-        </property>
+        <set name="arqueoses" inverse="true">
+            <key>
+                <column name="IdCaja" not-null="true" />
+            </key>
+            <one-to-many class="es.tpv_bar.persistencia.pojos.Arqueos" />
+        </set>
     </class>
 </hibernate-mapping>

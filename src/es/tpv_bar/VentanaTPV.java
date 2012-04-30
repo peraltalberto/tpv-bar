@@ -418,7 +418,7 @@ public class VentanaTPV extends javax.swing.JFrame {
             if (bt.isSelect()) {
                 totalCab += bt.getLinea().getTotal();
                 bt.getLinea().setCabezera(cab);
-                bt.getLinea().setCobrado(true);
+                bt.getLinea().setCobrado(1);
                 lineas.saveDato(bt.getLinea());
                 panelLineas.remove(bt);
             }
@@ -426,8 +426,8 @@ public class VentanaTPV extends javax.swing.JFrame {
         cab.setTotal(totalCab);
         cabezeras.saveDato(cab);
         Caja movimiento = new Caja();
-        movimiento.setIdCamarero(camarero.getIdCamarero());
-        movimiento.setIdCabezera(cab.getIdCabezera());
+        movimiento.setCamarero(camarero);
+        movimiento.setCabezera(cab);
         movimiento.setFecha(new Date());
         movimiento.setMovimiento(totalCab);
         movimiento.setSaldo(caja.getSaldo() + totalCab);

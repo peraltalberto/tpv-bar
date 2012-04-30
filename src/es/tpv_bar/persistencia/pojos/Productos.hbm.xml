@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 18-abr-2012 16:51:34 by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 30-abr-2012 18:02:24 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="es.tpv_bar.persistencia.pojos.Productos" table="Productos" catalog="mydb">
+    <class name="es.tpv_bar.persistencia.pojos.Productos" table="productos" catalog="mydb">
         <id name="idProductos" type="java.lang.Integer">
             <column name="IdProductos" />
             <generator class="identity" />
@@ -16,6 +16,9 @@
         </property>
         <property name="precio" type="java.lang.Double">
             <column name="Precio" precision="22" scale="0" />
+        </property>
+        <property name="activo" type="boolean">
+            <column name="Activo" not-null="true" />
         </property>
         <set name="lineas" inverse="true">
             <key>

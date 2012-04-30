@@ -108,7 +108,7 @@ public class MovimientoCaja extends javax.swing.JDialog {
        Caja mov = new Caja();
        mov.setFecha(new Date());
        new VentanaCamareros(this,true).setVisible(true);
-       mov.setIdCamarero(this.camarero.getIdCamarero());
+       mov.setCamarero(this.camarero);
        if(retirada){
            saldo = saldo - Double.parseDouble(this.jTextField1.getText());
            mov.setSaldo(saldo);

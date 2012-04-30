@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 18-abr-2012 16:51:34 by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 30-abr-2012 18:02:24 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="es.tpv_bar.persistencia.pojos.Cabezera" table="Cabezera" catalog="mydb">
+    <class name="es.tpv_bar.persistencia.pojos.Cabezera" table="cabezera" catalog="mydb">
         <id name="idCabezera" type="java.lang.Integer">
             <column name="IdCabezera" />
             <generator class="identity" />
@@ -23,6 +23,12 @@
         <property name="cod" type="int">
             <column name="cod" not-null="true" />
         </property>
+        <set name="cajas" inverse="true">
+            <key>
+                <column name="IdCabezera" />
+            </key>
+            <one-to-many class="es.tpv_bar.persistencia.pojos.Caja" />
+        </set>
         <set name="lineas" inverse="true">
             <key>
                 <column name="IdCabezera" />

@@ -80,7 +80,7 @@ public class LineaModel extends AbstractModel {
                 + "SUM( Total )"
                 + "as total "
                 + "FROM  `Linea` WHERE idCabezera =" +cabezera
-                + " GROUP BY idProductos";
+                + "and Invitacion = 0 GROUP BY idProductos";
         
         result = (ArrayList<Ticket>) session.createSQLQuery(sql)
                 .setResultTransformer(Transformers.aliasToBean(Ticket.class))

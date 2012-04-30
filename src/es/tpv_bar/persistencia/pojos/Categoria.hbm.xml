@@ -1,15 +1,18 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 18-abr-2012 16:51:34 by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 30-abr-2012 18:02:24 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="es.tpv_bar.persistencia.pojos.Categoria" table="Categoria" catalog="mydb">
+    <class name="es.tpv_bar.persistencia.pojos.Categoria" table="categoria" catalog="mydb">
         <id name="idCategoria" type="java.lang.Integer">
             <column name="IdCategoria" />
             <generator class="identity" />
         </id>
         <property name="nombre" type="string">
             <column name="Nombre" length="45" />
+        </property>
+        <property name="activo" type="boolean">
+            <column name="Activo" not-null="true" />
         </property>
         <set name="productoses" inverse="true">
             <key>
