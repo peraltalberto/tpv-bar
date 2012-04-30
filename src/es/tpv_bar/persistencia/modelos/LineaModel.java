@@ -59,7 +59,7 @@ public class LineaModel extends AbstractModel {
         Transaction tx = session.beginTransaction();
         result = (ArrayList<Linea>) session.createCriteria(Linea.class)
                 .add(Restrictions.eq("ubicacion", ubi))
-                .add(Restrictions.eq("cobrado",false))
+                .add(Restrictions.eq("cobrado",0))
                 .list();
         return result;
      }

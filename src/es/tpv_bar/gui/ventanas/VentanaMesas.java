@@ -46,7 +46,7 @@ VentanaTPV parent;
      * Carga de las ubicaciones segun el parametro CatUbi
      */
     private void cargarMesas(int ubi){
-        this.ubicaciones = (ArrayList<Ubicacion>) um.busquedaDatos("bloqueUbicacion", bum.busquedaDato(ubi));
+        this.ubicaciones = (ArrayList<Ubicacion>) um.busquedaDatos("bloqueubicacion", bum.busquedaDato(ubi));
         for (int i = 0; i< this.ubicaciones.size(); i++){
             final BTMesa bt = new BTMesa(this.ubicaciones.get(i));
             bt.addActionListener(new ActionListener() {
