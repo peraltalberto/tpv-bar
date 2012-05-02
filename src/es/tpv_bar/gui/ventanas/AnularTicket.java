@@ -95,7 +95,7 @@ public class AnularTicket extends javax.swing.JDialog {
        CabezeraModel cabs = new CabezeraModel();
        Cabezera cab = (Cabezera) cabs.busquedaDato("cod",
                Integer.parseInt(this.jTextField1.getText()));
-       cab.setEstado(1);
+       cab.setEstado(3);
        cabs.saveDato(cab);
        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
