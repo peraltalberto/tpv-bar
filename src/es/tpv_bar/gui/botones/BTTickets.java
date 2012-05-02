@@ -5,8 +5,10 @@
 package es.tpv_bar.gui.botones;
 
 import es.tpv_bar.VentanaTPV;
+import es.tpv_bar.gui.ventanas.VentanaCobro;
 import es.tpv_bar.persistencia.modelos.CabezeraModel;
 import es.tpv_bar.persistencia.pojos.Cabezera;
+import java.awt.Frame;
 
 /**
  *
@@ -17,17 +19,17 @@ public class BTTickets extends javax.swing.JPanel {
     /**
      * Creates new form BTTickets
      */
-    public BTTickets(VentanaTPV parent ,Cabezera cab) {
+    public BTTickets(VentanaTPV parent, Cabezera cab) {
         initComponents();
         this.cab = cab;
         this.parent = parent;
-        this.jCheckBox1.setText("COD. "+this.cab.getCod());
-        this.jLabel1.setText(this.cab.getTotal().toString()+" €");
+        this.jCheckBox1.setText("COD. " + this.cab.getCod());
+        this.jLabel1.setText(this.cab.getTotal().toString() + " €");
     }
-    
     VentanaTPV parent;
     Cabezera cab;
     CabezeraModel cm = new CabezeraModel();
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -97,11 +99,12 @@ public class BTTickets extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        cab.setEstado(1);
-        cm.saveDato(cab);
-       parent.removeTicket(this);
+        if (new VentanaCobro(this.parent, true, cab.getTotal()).HelpCambio()) {
+            cab.setEstado(1);
+            cm.saveDato(cab);
+            parent.removeTicket(this);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
