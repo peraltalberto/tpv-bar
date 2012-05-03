@@ -12,6 +12,7 @@ import es.tpv_bar.persistencia.modelos.CamareroModel;
 import es.tpv_bar.persistencia.modelos.UbicacionModel;
 import es.tpv_bar.persistencia.pojos.Camarero;
 import es.tpv_bar.persistencia.pojos.Ubicacion;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class VentanaCamareros extends javax.swing.JDialog {
      * variables de listas de botones
      */
     ArrayList<Camarero> camareros;
+    private Camarero camarero;
 
     /**
      * Creates new form VentanaMesas
@@ -53,7 +55,13 @@ public class VentanaCamareros extends javax.swing.JDialog {
         this.parent2 = parent;
     }
     MovimientoCaja parent2;
-
+    public VentanaCamareros(Frame parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
+        this.setLocationRelativeTo(parent);
+        cargarMesas();
+        //this.parent2 = parent;
+    }
     /**
      * Carga de las ubicaciones segun el parametro CatUbi
      */
@@ -65,11 +73,15 @@ public class VentanaCamareros extends javax.swing.JDialog {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
-
+                    camarero = bt.getUbicacion(); 
                     try {
                         parent.setCamarero(bt.getUbicacion());
                     } catch (NullPointerException ex) {
+                       try{
                         parent2.setCamarero(bt.getUbicacion());
+                       }catch(NullPointerException exp){
+                       
+                       }
                     }
                     dispose();
                 }
@@ -127,6 +139,11 @@ public class VentanaCamareros extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public Camarero getCamarero(){
+        this.setVisible(true);
+        return camarero;
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed

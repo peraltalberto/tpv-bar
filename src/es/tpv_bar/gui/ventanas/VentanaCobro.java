@@ -23,6 +23,7 @@ public class VentanaCobro extends javax.swing.JDialog {
     public VentanaCobro(java.awt.Frame parent, boolean modal,double valor) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(parent);
         this.jLabel1.setText(nf.format(valor));
         this.importe = valor;
         this.jTextField1.setText(nf.format(valor));
