@@ -468,14 +468,7 @@ public class VentanaTPV extends javax.swing.JFrame {
         }
         cab.setTotal(totalCab);
         cabezeras.saveDato(cab);
-        Caja movimiento = new Caja();
-        movimiento.setCamarero(camarero);
-        movimiento.setCabezera(cab);
-        movimiento.setFecha(new Date());
-        movimiento.setMovimiento(totalCab);
-        movimiento.setSaldo(caja.getSaldo() + totalCab);
-        caja.saveDato(movimiento);
-        System.out.println(movimiento.getIdCaja());
+     
         impresora.setImpresora(((Configuracion) conf.busquedaDato(1)).getValue());
         impresora.setEtiqueta("C:\\tpv\\jaspers\\ticket.jasper");
         impresora.setCabezera(cab);

@@ -5,9 +5,14 @@
 package es.tpv_bar.gui.ventanas;
 
 import es.tpv_bar.gui.TecladoNumerico;
+import es.tpv_bar.persistencia.modelos.CajaModel;
+import es.tpv_bar.persistencia.pojos.Cabezera;
+import es.tpv_bar.persistencia.pojos.Caja;
+import java.awt.Frame;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,18 +25,20 @@ public class VentanaCobro extends javax.swing.JDialog {
     /**
      * Creates new form VentanaCobro
      */
-    public VentanaCobro(java.awt.Frame parent, boolean modal,double valor) {
+    public VentanaCobro(java.awt.Frame parent, boolean modal,Cabezera valor) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(parent);
+        this.valor = valor;
         this.jLabel1.setText(nf.format(valor));
-        this.importe = valor;
+        this.importe = valor.getTotal();
         this.jTextField1.setText(nf.format(valor));
         this.jPanel2.add(new TecladoNumerico(this.jTextField1));
     }
       Double importe = 0.0;
       NumberFormat nf = new DecimalFormat("0.00");
-    
+      Cabezera valor;
+      CajaModel cm = new CajaModel();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -181,7 +188,16 @@ public class VentanaCobro extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextField1CaretUpdate
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       result = true;
+          Caja movimiento = new Caja();
+        movimiento.setCamarero(new VentanaCamareros((Frame)this.getParent(),true).getCamarero());
+        movimiento.setCabezera(valor);
+        movimiento.setFecha(new Date());
+        movimiento.setMovimiento(valor.getTotal());
+        movimiento.setSaldo(cm.getSaldo() + valor.getTotal());
+        cm.saveDato(movimiento);
+        System.out.println(movimiento.getIdCaja());
+        
+        result = true;
        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
     
@@ -198,52 +214,7 @@ public class VentanaCobro extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /*
-         * Set the Nimbus look and feel
-         */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the
-         * default look and feel. For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaCobro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaCobro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaCobro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaCobro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /*
-         * Create and display the dialog
-         */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                VentanaCobro dialog = new VentanaCobro(new javax.swing.JFrame(), true,25.6);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

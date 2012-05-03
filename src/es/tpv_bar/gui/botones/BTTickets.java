@@ -5,6 +5,7 @@
 package es.tpv_bar.gui.botones;
 
 import es.tpv_bar.VentanaTPV;
+import es.tpv_bar.gui.ventanas.VentanaAcceso;
 import es.tpv_bar.gui.ventanas.VentanaCobro;
 import es.tpv_bar.persistencia.modelos.CabezeraModel;
 import es.tpv_bar.persistencia.pojos.Cabezera;
@@ -70,6 +71,11 @@ public class BTTickets extends javax.swing.JPanel {
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jToolBar2.add(jButton2);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
@@ -99,12 +105,21 @@ public class BTTickets extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (new VentanaCobro(this.parent, true, cab.getTotal()).HelpCambio()) {
+        if (new VentanaCobro(this.parent, true, cab).HelpCambio()) {
             cab.setEstado(1);
             cm.saveDato(cab);
             parent.removeTicket(this);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       if(new VentanaAcceso(this.parent,true).getAcceso()){
+           cab.setEstado(3);
+            cm.saveDato(cab);
+            parent.removeTicket(this);
+       }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
