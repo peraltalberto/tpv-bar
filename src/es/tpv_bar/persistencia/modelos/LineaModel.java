@@ -37,10 +37,12 @@ public class LineaModel extends AbstractModel {
          try{
         Session session = factory.getCurrentSession();
         Double d = ((Linea)dato).getPrecio();
+        boolean invi = dato.isInvitacion();
         System.out.println(((Linea)dato).getPrecio());
         Linea l = (Linea) session.get(Linea.class,dato.getIdLinea());
         l.setPrecio(d);
         l.setTotal(d);
+        l.setInvitacion(invi);
         session.saveOrUpdate(l);
         Transaction tx = session.beginTransaction();
        

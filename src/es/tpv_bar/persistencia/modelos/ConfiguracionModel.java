@@ -50,4 +50,8 @@ public class ConfiguracionModel extends AbstractModel {
         tx.commit();
         return i;
     }
+    public String getValue(String clave){
+        Configuracion conf = (Configuracion) super.busquedaDato("clave", clave);
+        return conf.getValue();
+    }
 }

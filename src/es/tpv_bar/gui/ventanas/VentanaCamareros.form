@@ -50,7 +50,7 @@
         <Container class="javax.swing.JPanel" name="jPanel1">
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
-            <Property name="columns" type="int" value="3"/>
+            <Property name="columns" type="int" value="2"/>
             <Property name="rows" type="int" value="0"/>
             <Property name="horizontalGap" type="int" value="5"/>
             <Property name="verticalGap" type="int" value="5"/>

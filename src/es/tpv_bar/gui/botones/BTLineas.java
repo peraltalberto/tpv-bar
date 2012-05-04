@@ -36,7 +36,7 @@ public class BTLineas extends javax.swing.JPanel {
         this.producto = producto;
 
         this.linea = new Linea();
-        
+
         addProducto();
 
     }
@@ -46,7 +46,7 @@ public class BTLineas extends javax.swing.JPanel {
         this.parent = parent;
         this.producto = linea.getProductos();
         this.linea = linea;
-        if(linea.isInvitacion()){
+        if (linea.isInvitacion()) {
             this.txPrecio.setForeground(Color.green);
             System.out.println("Invitación");
             this.txPrecio.updateUI();
@@ -154,17 +154,19 @@ public class BTLineas extends javax.swing.JPanel {
             @Override
             public void windowClosed(WindowEvent e) {
                 System.out.println("Escribiendo....");
-               
-                    linea.setPrecio(Double.parseDouble(txPrecio.getText()));
-                    linea.setTotal(Double.parseDouble(txPrecio.getText()));
-                if(tld.isInvita()){
-            linea.setInvitacion(true);
-            linea.setTotal(0.0);
-            txPrecio.setText("0.0"); 
-        }
+
+                linea.setPrecio(Double.parseDouble(txPrecio.getText()));
+                linea.setTotal(Double.parseDouble(txPrecio.getText()));
+                if (tld.isInvita()) {
+                    
+                    linea.setInvitacion(true);
+                    linea.setTotal(0.0);
+                    txPrecio.setText("0.0");
+                    System.out.print("yo invito");
+                }
                 parent.actualizarLinea(linea);
 
-                txPrecio.transferFocus();
+                lbProducto.grabFocus();
                 System.out.println(linea.getPrecio());
             }
 
@@ -184,7 +186,7 @@ public class BTLineas extends javax.swing.JPanel {
             public void windowDeactivated(WindowEvent e) {
             }
         });
-       
+
     }
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         if (JOptionPane.showConfirmDialog(parent, "¿Esta seguro de eliminar este producto?") == 0) {

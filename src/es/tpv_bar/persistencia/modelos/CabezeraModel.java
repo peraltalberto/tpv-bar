@@ -40,4 +40,16 @@ public class CabezeraModel extends AbstractModel {
                 .list();
         return result;
      }
+     public ArrayList<Cabezera> getCierreCaja(int id){
+         ArrayList<Cabezera> result = null; 
+        Session session = factory.getCurrentSession();
+        Transaction tx = session.beginTransaction();
+        result = (ArrayList<Cabezera>) session.createCriteria(Cabezera.class)
+                .add(Restrictions.gt("idCabezera", id))
+                .list();
+        System.out.println("Cantidad de tickets: "+result.size());
+        
+        return result;
+     }
+     
 }

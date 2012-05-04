@@ -107,7 +107,7 @@ public class VentanaCamareros extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setLayout(new java.awt.GridLayout(0, 3, 5, 5));
+        jPanel1.setLayout(new java.awt.GridLayout(0, 2, 5, 5));
         jScrollPane1.setViewportView(jPanel1);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/1334675214_Select.png"))); // NOI18N
