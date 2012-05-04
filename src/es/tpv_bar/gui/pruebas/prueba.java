@@ -40,6 +40,8 @@ TecladoNumerico tn;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jTextField1.setBackground(new java.awt.Color(0, 255, 9));
+        jTextField1.setForeground(new java.awt.Color(0, 255, 30));
         jTextField1.setText("jTextField1");
         jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

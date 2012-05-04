@@ -9,6 +9,7 @@ import es.tpv_bar.gui.DlTecladoNum;
 import es.tpv_bar.persistencia.modelos.LineaModel;
 import es.tpv_bar.persistencia.pojos.Linea;
 import es.tpv_bar.persistencia.pojos.Productos;
+import java.awt.Color;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JOptionPane;
@@ -28,28 +29,32 @@ public class BTLineas extends javax.swing.JPanel {
     Productos producto;
     VentanaTPV parent;
     Linea linea;
-    
-    
-    
-    public BTLineas(Productos producto,VentanaTPV parent) {
+
+    public BTLineas(Productos producto, VentanaTPV parent) {
         this();
         this.parent = parent;
         this.producto = producto;
-        
+
         this.linea = new Linea();
         
         addProducto();
-        
+
     }
-    
-    public BTLineas(Linea linea,VentanaTPV parent){
+
+    public BTLineas(Linea linea, VentanaTPV parent) {
         this();
         this.parent = parent;
         this.producto = linea.getProductos();
         this.linea = linea;
-         this.lbProducto.setText(this.producto.getNombre());
+        if(linea.isInvitacion()){
+            this.txPrecio.setForeground(Color.green);
+            System.out.println("Invitación");
+            this.txPrecio.updateUI();
+        }
+        this.lbProducto.setText(this.producto.getNombre());
         this.txPrecio.setText(this.linea.getPrecio().toString());
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -129,74 +134,75 @@ public class BTLineas extends javax.swing.JPanel {
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-DlTecladoNum tld;
+    DlTecladoNum tld;
     private void txPrecioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txPrecioMouseClicked
-       // numeros();
+        // numeros();
     }//GEN-LAST:event_txPrecioMouseClicked
-private void numeros(){
-    tld =  new DlTecladoNum(parent,true,this.txPrecio);
-     tld.setVisible(true);
-     tld.addWindowListener(new WindowListener() {
+    private void numeros() {
+        tld = new DlTecladoNum(parent, true, this.txPrecio);
+        tld.setVisible(true);
+        tld.addWindowListener(new WindowListener() {
 
             @Override
             public void windowOpened(WindowEvent e) {
-                
             }
 
             @Override
             public void windowClosing(WindowEvent e) {
-                
             }
 
             @Override
             public void windowClosed(WindowEvent e) {
                 System.out.println("Escribiendo....");
                
-               linea.setPrecio(Double.parseDouble(txPrecio.getText()));
-               linea.setTotal(Double.parseDouble(txPrecio.getText()));
-               parent.actualizarLinea(linea);
-               System.out.println(linea.getPrecio());
+                    linea.setPrecio(Double.parseDouble(txPrecio.getText()));
+                    linea.setTotal(Double.parseDouble(txPrecio.getText()));
+                if(tld.isInvita()){
+            linea.setInvitacion(true);
+            linea.setTotal(0.0);
+            txPrecio.setText("0.0"); 
+        }
+                parent.actualizarLinea(linea);
+
+                txPrecio.transferFocus();
+                System.out.println(linea.getPrecio());
             }
 
             @Override
             public void windowIconified(WindowEvent e) {
-                
             }
 
             @Override
             public void windowDeiconified(WindowEvent e) {
-               
             }
 
             @Override
             public void windowActivated(WindowEvent e) {
-               
             }
 
             @Override
             public void windowDeactivated(WindowEvent e) {
-               
             }
         });
-}
+       
+    }
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-       if(JOptionPane.showConfirmDialog(parent, "¿Esta seguro de eliminar este producto?")==0){
-           this.parent.eliminarLinea(linea);
-       }
+        if (JOptionPane.showConfirmDialog(parent, "¿Esta seguro de eliminar este producto?") == 0) {
+            this.parent.eliminarLinea(linea);
+        }
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void lbProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbProductoMouseClicked
-        if(this.jCheckBox1.isSelected()){
+        if (this.jCheckBox1.isSelected()) {
             this.jCheckBox1.setSelected(false);
-        }else{
+        } else {
             this.jCheckBox1.setSelected(true);
         }
     }//GEN-LAST:event_lbProductoMouseClicked
 
     private void txPrecioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txPrecioFocusGained
-       numeros();
+        numeros();
     }//GEN-LAST:event_txPrecioFocusGained
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
@@ -205,7 +211,7 @@ private void numeros(){
     private javax.swing.JTextField txPrecio1;
     // End of variables declaration//GEN-END:variables
 
-private void addProducto(){
+    private void addProducto() {
         this.lbProducto.setText(this.producto.getNombre());
         this.txPrecio.setText(this.producto.getPrecio().toString());
         this.linea.setPrecio(this.producto.getPrecio());
@@ -214,7 +220,7 @@ private void addProducto(){
         this.linea.setUbicacion(this.parent.getUbicacion());
         this.linea.setTotal(this.producto.getPrecio());
         this.parent.lineas.saveDato(this.linea);
-}
+    }
 
     public boolean isSelect() {
         return this.jCheckBox1.isSelected();
@@ -231,7 +237,4 @@ private void addProducto(){
     public void setLinea(Linea linea) {
         this.linea = linea;
     }
-
-  
-    
 }

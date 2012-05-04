@@ -211,10 +211,14 @@ public class VentanaArqueoCaja extends javax.swing.JDialog {
              movimiento.setCamarero(camarero);
              movimiento.setMovimiento(nf.parse(this.diferencia.getText().replace(".", ",")).doubleValue());
              movimiento.setSaldo(nf.parse(this.jTextField2.getText().replace(".", ",")).doubleValue());
+             
              cuadre.setDiferencia(nf.parse(this.diferencia.getText().replace(".", ",")).doubleValue());
              caja.saveDato(movimiento);
              cuadre.setCaja(movimiento);
              arqueo.saveDato(cuadre);
+             movimiento.setDescripcion("Arqueo caja "+cuadre.getIdArqueo()
+                     +" Camarero "+camarero.getNombre()+", "+camarero.getApellidos());
+             caja.saveDato(movimiento);
         } catch (ParseException ex) {
             Logger.getLogger(VentanaArqueoCaja.class.getName()).log(Level.SEVERE, null, ex);
         }

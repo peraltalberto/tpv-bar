@@ -30,9 +30,9 @@ public class VentanaCobro extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(parent);
         this.valor = valor;
-        this.jLabel1.setText(nf.format(valor));
+        this.jLabel1.setText(nf.format(valor.getTotal()));
         this.importe = valor.getTotal();
-        this.jTextField1.setText(nf.format(valor));
+        this.jTextField1.setText(nf.format(valor.getTotal()));
         this.jPanel2.add(new TecladoNumerico(this.jTextField1));
     }
       Double importe = 0.0;
