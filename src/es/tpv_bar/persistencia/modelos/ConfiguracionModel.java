@@ -54,4 +54,9 @@ public class ConfiguracionModel extends AbstractModel {
         Configuracion conf = (Configuracion) super.busquedaDato("clave", clave);
         return conf.getValue();
     }
+    public void setValue(String clave,String value){
+        Configuracion conf = (Configuracion) super.busquedaDato("clave", clave);
+        conf.setValue(value);
+        super.saveDato(conf);
+    }
 }

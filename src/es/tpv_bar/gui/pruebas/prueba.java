@@ -51,7 +51,7 @@ TecladoNumerico tn;
 
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/1335694776_cup_add.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/1336215319_Configuration-Settings.png"))); // NOI18N
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,7 +70,7 @@ TecladoNumerico tn;
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
                         .addComponent(jButton1)
-                        .addGap(0, 292, Short.MAX_VALUE))
+                        .addGap(0, 160, Short.MAX_VALUE))
                     .addComponent(jTextField1))
                 .addContainerGap())
         );
@@ -85,7 +85,7 @@ TecladoNumerico tn;
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 176, Short.MAX_VALUE)
+                        .addGap(0, 62, Short.MAX_VALUE)
                         .addComponent(jButton1)
                         .addGap(20, 20, 20))))
         );

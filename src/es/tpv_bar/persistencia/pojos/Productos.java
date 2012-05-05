@@ -104,7 +104,10 @@ public class Productos  implements java.io.Serializable {
         this.lineas = lineas;
     }
 
-
+    public String getActivo(){
+        
+        return activo?"SI":"NO";
+    }
 
 
 }

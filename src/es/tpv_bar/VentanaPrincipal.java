@@ -13,6 +13,7 @@ import es.tpv_bar.persistencia.modelos.ConfiguracionModel;
 import es.tpv_bar.persistencia.pojos.Cabezera;
 import es.tpv_bar.persistencia.pojos.Configuracion;
 import es.tpv_bar.prints.TicketCierre;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -25,6 +26,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     public VentanaPrincipal() {
         initComponents();
+        this.setIconImage(new ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/iconoTerraza.png")).getImage());
+  
     }
 
     /**
