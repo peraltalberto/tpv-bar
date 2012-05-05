@@ -5,6 +5,7 @@
 package es.tpv_bar.gui.administracion;
 
 
+import es.tpv_bar.VentanaPrincipal;
 import es.tpv_bar.gui.administracion.dialogs.EditProducto;
 import es.tpv_bar.persistencia.modelos.ProductosModel;
 import es.tpv_bar.persistencia.pojos.Productos;
@@ -25,6 +26,12 @@ public class AdministracionTotal extends javax.swing.JFrame {
      */
     public AdministracionTotal() {
         this.setTitle("TPV-TL --- Configuración");
+                try{ 
+javax.swing.UIManager.setLookAndFeel( 
+javax.swing.UIManager.getCrossPlatformLookAndFeelClassName()); 
+}catch ( Exception e ) { } 
+      
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setIconImage(new ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/configIcon.png")).getImage());
