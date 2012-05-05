@@ -28,6 +28,7 @@ import javax.print.attribute.standard.MediaSizeName;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.export.JRPrintServiceExporter;
 import net.sf.jasperreports.engine.export.JRPrintServiceExporterParameter;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -40,14 +41,14 @@ public class TicketCierre {
         
     }
     
-    
+    int codU = 0;
         int copias = 1;
    
     String impresora = "";
     String etiqueta="C:\\tpv\\jaspers\\ticketTotal.jasper";
     ConfiguracionModel conf = new ConfiguracionModel();
     public void startPrint() {
-        try {
+       try {
             Map parameters = new HashMap();
            
             parameters.put("fecha", new Date());
@@ -55,15 +56,17 @@ public class TicketCierre {
 
             JasperPrint print = JasperFillManager.fillReport(etiqueta, parameters,
                    recorredor );
+            JasperViewer.viewReport(print, false);
+            /*
             PrinterJob job = PrinterJob.getPrinterJob();
             
-            /* Create an array of PrintServices */
+            
             PrintService[] services = PrintServiceLookup.lookupPrintServices(null, null);
             int selectedService = 0;
-            /* Scan found services to see if anyone suits our needs */
+           
             for (int i = 0; i < services.length; i++) {
                 if (services[i].getName().equals(this.impresora)) {
-                    /*If the service is named as what we are querying we select it */
+                   
                     selectedService = i;
                     break;
                 }
@@ -77,7 +80,7 @@ public class TicketCierre {
             JRPrintServiceExporter exporter;
             exporter = new JRPrintServiceExporter();
             exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
-            /* We set the selected service and pass it as a paramenter */
+          
             exporter.setParameter(JRPrintServiceExporterParameter.PRINT_SERVICE, services[selectedService]);
             exporter.setParameter(JRPrintServiceExporterParameter.PRINT_SERVICE_ATTRIBUTE_SET, services[selectedService].getAttributes());
             exporter.setParameter(JRPrintServiceExporterParameter.PRINT_REQUEST_ATTRIBUTE_SET, printRequestAttributeSet);
@@ -85,7 +88,10 @@ public class TicketCierre {
             exporter.setParameter(JRPrintServiceExporterParameter.DISPLAY_PRINT_DIALOG, Boolean.FALSE);
             exporter.exportReport();
             System.out.println("Fin reporte");
-        } catch (PrinterException | JRException ex) {
+            */
+            if(codU!=0)
+            conf.setValue("cierre", String.valueOf(codU));
+        } catch ( JRException ex) {
             Logger.getLogger(TicketCierre.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -113,9 +119,10 @@ public class TicketCierre {
         @Override
         public Object getFieldValue(JRField jrf) throws JRException {
             Object value = "";
-
+            
            System.out.println(jrf.getName());
             if("codigo".equals(jrf.getName())){
+              codU =lista.get(iActual).getIdCabezera();
                 if(lista.get(iActual).getEstado()==3){
                     value = " A -";
                 }

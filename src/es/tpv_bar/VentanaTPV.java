@@ -83,7 +83,10 @@ public class VentanaTPV extends javax.swing.JFrame {
         this.pProductos.removeAll();
         ArrayList<Productos> prod = (ArrayList<Productos>) productos.busquedaDatos("categoria", cat);
         for (int i = 0; i < prod.size(); i++) {
+            if(!prod.get(i).isActivo())
+                continue;
             final BTProducto bt = new BTProducto(prod.get(i));
+            
             bt.addActionListener(new ActionListener() {
 
                 @Override

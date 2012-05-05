@@ -21,6 +21,7 @@ public class EditProducto extends javax.swing.JDialog {
      * Creates new form EditProducto
      */
     public EditProducto(java.awt.Frame parent, boolean modal) {
+        
         this(parent, modal,new Productos());
         
     }
@@ -28,6 +29,7 @@ public class EditProducto extends javax.swing.JDialog {
     public EditProducto(java.awt.Frame parent, boolean modal,Productos producto) {
         super(parent, modal);
         initComponents();
+       
         this.producto = producto;
         try{
         this.jTextField1.setText(producto.getNombre());

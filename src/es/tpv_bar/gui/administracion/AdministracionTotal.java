@@ -11,6 +11,8 @@ import es.tpv_bar.persistencia.pojos.Productos;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import org.hibernate.exception.ConstraintViolationException;
 
 /**
  *
@@ -22,6 +24,7 @@ public class AdministracionTotal extends javax.swing.JFrame {
      * Creates new form AdministracionTotal
      */
     public AdministracionTotal() {
+        this.setTitle("TPV-TL --- Configuración");
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setIconImage(new ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/configIcon.png")).getImage());
@@ -98,6 +101,11 @@ public class AdministracionTotal extends javax.swing.JFrame {
         jButton3.setFocusable(false);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jButton3);
 
         jTableArrayList1.setModel(new javax.swing.table.DefaultTableModel(
@@ -171,6 +179,18 @@ public class AdministracionTotal extends javax.swing.JFrame {
         new EditProducto(this,true,prod).setVisible(true);
        this.jTableArrayList1.setList(productos.getLista());
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+       try{
+        Productos prod = (Productos)this.jTableArrayList1.getSelectElement();
+        productos.removeDato(prod);
+       this.jTableArrayList1.setList(productos.getLista());
+       }catch(ConstraintViolationException e){
+           JOptionPane.showMessageDialog(this, "Ya ha echo alguna venta de este producto\n"
+                   + "por lo que no es posible ELIMINARLO \n"
+                   + "si no desea su vilualizacion modifiquelo en el menu editar");
+       }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
