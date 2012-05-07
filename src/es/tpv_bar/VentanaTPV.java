@@ -53,7 +53,14 @@ public class VentanaTPV extends javax.swing.JFrame {
      * Creates new form VentanaTPV
      */
     public VentanaTPV() {
+        
+         try{ 
+javax.swing.UIManager.setLookAndFeel( 
+javax.swing.UIManager.getSystemLookAndFeelClassName()); 
+}catch ( Exception e ) { } 
+     
         initComponents();
+        
         this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
         this.setVisible(true);
 

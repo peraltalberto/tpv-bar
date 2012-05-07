@@ -284,6 +284,7 @@ public class EditProducto extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        this.producto.setNombre(this.jTextField1.getText());
+       this.producto.setTextoBt(this.jTextField3.getText());
        this.producto.setPrecio(Double.parseDouble(
                this.jTextField2.getText().replace(",", ".")));
        this.producto.setActivo(this.jCheckBox1.isSelected());
