@@ -30,6 +30,7 @@ public class BTTickets extends javax.swing.JPanel {
     VentanaTPV parent;
     Cabezera cab;
     CabezeraModel cm = new CabezeraModel();
+    boolean select = false;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -128,4 +129,17 @@ public class BTTickets extends javax.swing.JPanel {
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar jToolBar2;
     // End of variables declaration//GEN-END:variables
+
+    public boolean isSelect() {
+        return this.jCheckBox1.isSelected();
+    }
+
+    public void setSelect(boolean select) {
+        this.jCheckBox1.setSelected(select);
+    }
+
+    public Cabezera getCab() {
+        return cab;
+    }
+    
 }

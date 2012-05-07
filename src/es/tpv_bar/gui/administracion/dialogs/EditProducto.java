@@ -37,7 +37,7 @@ public class EditProducto extends javax.swing.JDialog {
         this.jTextField2.setText(producto.getPrecio().toString());
         this.jLabel5.setText(producto.getCategoria().getNombre());
         this.jTextField4.setText(producto.getCategoria().getIdCategoria().toString());
-        this.jTextField3.setText(producto.getNombre());
+        this.jTextField3.setText(producto.getTextoBt());
         }catch(NullPointerException e){
         }
     }

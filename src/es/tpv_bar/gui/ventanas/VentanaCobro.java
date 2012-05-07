@@ -8,6 +8,7 @@ import es.tpv_bar.gui.TecladoNumerico;
 import es.tpv_bar.persistencia.modelos.CajaModel;
 import es.tpv_bar.persistencia.pojos.Cabezera;
 import es.tpv_bar.persistencia.pojos.Caja;
+import es.tpv_bar.persistencia.pojos.Camarero;
 import java.awt.Frame;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -35,9 +36,38 @@ public class VentanaCobro extends javax.swing.JDialog {
         this.jTextField1.setText(nf.format(valor.getTotal()));
         this.jPanel2.add(new TecladoNumerico(this.jTextField1));
     }
+    
+    public VentanaCobro(java.awt.Frame parent, boolean modal,Cabezera[] valor) {
+        super(parent, modal);
+        initComponents();
+        this.multiple = true;
+        this.setLocationRelativeTo(parent);
+        this.valores = valor;
+        double total = suma();
+        this.jLabel1.setText(nf.format(total));
+        this.importe = total;
+        this.jTextField1.setText(nf.format(total));
+        this.jPanel2.add(new TecladoNumerico(this.jTextField1));
+    }
+    
+    private Double suma(){
+        
+        Double resultado = 0.0;
+        for(int i = 0; i<this.valores.length; i++){
+        try{
+            resultado += this.valores[i].getTotal();
+        }catch(NullPointerException e){continue;}
+        }
+        
+        return resultado;
+    }
+    
+    
+      boolean multiple= false;
       Double importe = 0.0;
       NumberFormat nf = new DecimalFormat("0.00");
       Cabezera valor;
+      Cabezera[] valores;
       CajaModel cm = new CajaModel();
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,6 +88,7 @@ public class VentanaCobro extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -106,7 +137,10 @@ public class VentanaCobro extends javax.swing.JDialog {
         jLabel5.setText("0.0");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/32money.png"))); // NOI18N
-        jButton1.setText("Aceptar");
+        jButton1.setText("Efectivo");
+        jButton1.setToolTipText("");
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -118,6 +152,17 @@ public class VentanaCobro extends javax.swing.JDialog {
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/1336370725_credit-cards.png"))); // NOI18N
+        jButton3.setText("Tarjeta");
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton3.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
             }
         });
 
@@ -137,8 +182,11 @@ public class VentanaCobro extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3)
@@ -165,9 +213,11 @@ public class VentanaCobro extends javax.swing.JDialog {
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 42, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 47, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -188,15 +238,31 @@ public class VentanaCobro extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextField1CaretUpdate
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-          Caja movimiento = new Caja();
+       if(this.multiple){  
+           Camarero cama = new VentanaCamareros((Frame)this.getParent(),true).getCamarero();
+       for(int i = 0; i<this.valores.length; i++){
+         try{
+           Caja movimiento = new Caja();
+        movimiento.setCajaPago(0); //Efectivo
+        movimiento.setCamarero(cama);
+        movimiento.setCabezera(valores[i]);
+        movimiento.setFecha(new Date());
+        movimiento.setMovimiento(valores[i].getTotal());
+        movimiento.setSaldo(cm.getSaldo(1) + valores[i].getTotal());
+        cm.saveDato(movimiento);
+        System.out.println(movimiento.getIdCaja());
+         }catch(NullPointerException e){continue;}
+       }
+      }else{
+        Caja movimiento = new Caja();
+        movimiento.setCajaPago(0); //Efectivo
         movimiento.setCamarero(new VentanaCamareros((Frame)this.getParent(),true).getCamarero());
         movimiento.setCabezera(valor);
         movimiento.setFecha(new Date());
         movimiento.setMovimiento(valor.getTotal());
-        movimiento.setSaldo(cm.getSaldo() + valor.getTotal());
+        movimiento.setSaldo(cm.getSaldo(1) + valor.getTotal());
         cm.saveDato(movimiento);
-        System.out.println(movimiento.getIdCaja());
-        
+      }
         result = true;
        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -205,6 +271,38 @@ public class VentanaCobro extends javax.swing.JDialog {
        result = false;
        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+       
+      if(this.multiple){  
+         Camarero cama = new VentanaCamareros((Frame)this.getParent(),true).getCamarero();
+       for(int i = 0; i<this.valores.length; i++){
+         try{
+          Caja movimiento = new Caja();
+        movimiento.setCajaPago(1); //Tarjeta
+        movimiento.setCamarero(cama);
+        movimiento.setCabezera(valores[i]);
+        movimiento.setFecha(new Date());
+        movimiento.setMovimiento(valores[i].getTotal());
+        movimiento.setSaldo(cm.getSaldo(1) + valores[i].getTotal());
+        
+        cm.saveDato(movimiento);
+        System.out.println(movimiento.getIdCaja());
+        }catch(NullPointerException e){continue;}
+       }
+      }else{
+        Caja movimiento = new Caja();
+        movimiento.setCajaPago(1); //Tarjeta
+        movimiento.setCamarero(new VentanaCamareros((Frame)this.getParent(),true).getCamarero());
+        movimiento.setCabezera(valor);
+        movimiento.setFecha(new Date());
+        movimiento.setMovimiento(valor.getTotal());
+        movimiento.setSaldo(cm.getSaldo(1) + valor.getTotal());
+        cm.saveDato(movimiento);
+      }
+        result = true;
+       this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
     boolean result= false;
     
     public boolean HelpCambio(){
@@ -218,6 +316,7 @@ public class VentanaCobro extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

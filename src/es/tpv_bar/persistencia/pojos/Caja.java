@@ -1,8 +1,11 @@
 package es.tpv_bar.persistencia.pojos;
-// Generated 04-may-2012 19:46:39 by Hibernate Tools 3.2.1.GA
+// Generated 07-may-2012 8:14:14 by Hibernate Tools 3.2.1.GA
 
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,6 +14,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,24 +36,29 @@ public class Caja  implements java.io.Serializable {
      private double movimiento;
      private double saldo;
      private String descripcion;
+     private int cajaPago;
+     private Set<Arqueos> arqueoses = new HashSet<Arqueos>(0);
 
     public Caja() {
     }
 
 	
-    public Caja(Camarero camarero, Date fecha, double movimiento, double saldo) {
+    public Caja(Camarero camarero, Date fecha, double movimiento, double saldo, int cajaPago) {
         this.camarero = camarero;
         this.fecha = fecha;
         this.movimiento = movimiento;
         this.saldo = saldo;
+        this.cajaPago = cajaPago;
     }
-    public Caja(Camarero camarero, Cabezera cabezera, Date fecha, double movimiento, double saldo, String descripcion) {
+    public Caja(Camarero camarero, Cabezera cabezera, Date fecha, double movimiento, double saldo, String descripcion, int cajaPago, Set<Arqueos> arqueoses) {
        this.camarero = camarero;
        this.cabezera = cabezera;
        this.fecha = fecha;
        this.movimiento = movimiento;
        this.saldo = saldo;
        this.descripcion = descripcion;
+       this.cajaPago = cajaPago;
+       this.arqueoses = arqueoses;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -115,6 +124,23 @@ public class Caja  implements java.io.Serializable {
     
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+    
+    @Column(name="cajaPago", nullable=false)
+    public int getCajaPago() {
+        return this.cajaPago;
+    }
+    
+    public void setCajaPago(int cajaPago) {
+        this.cajaPago = cajaPago;
+    }
+@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="caja")
+    public Set<Arqueos> getArqueoses() {
+        return this.arqueoses;
+    }
+    
+    public void setArqueoses(Set<Arqueos> arqueoses) {
+        this.arqueoses = arqueoses;
     }
 
 

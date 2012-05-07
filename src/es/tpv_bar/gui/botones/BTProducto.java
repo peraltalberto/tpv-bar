@@ -20,7 +20,7 @@ public class BTProducto extends JButton {
    
    public BTProducto(Productos producto){
        this.producto = producto;
-       this.setText(this.producto.getNombre());
+       this.setText(this.producto.getTextoBt());
       this.setFont(new java.awt.Font("Arial", 1, 16));
    }
    

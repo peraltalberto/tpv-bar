@@ -1,5 +1,5 @@
 package es.tpv_bar.persistencia.pojos;
-// Generated 04-may-2012 19:46:39 by Hibernate Tools 3.2.1.GA
+// Generated 07-may-2012 8:14:14 by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -79,13 +79,8 @@ public class Categoria  implements java.io.Serializable {
         this.productoses = productoses;
     }
 
-    @Override
-    public String toString() {
-        return  nombre;
-    }
 
 
-    
 
 }
 

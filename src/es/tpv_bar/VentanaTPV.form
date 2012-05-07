@@ -288,7 +288,7 @@
                           <Component id="jScrollPane1" pref="345" max="32767" attributes="0"/>
                           <Component id="jToolBar7" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="3" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -297,7 +297,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jToolBar7" min="-2" pref="44" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="389" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="379" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -311,6 +311,20 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
               <SubComponents>
+                <Component class="javax.swing.JButton" name="jButton10">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/es/tpv_bar/gui/resources/1335698153_select.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Sel.Todo"/>
+                    <Property name="focusable" type="boolean" value="false"/>
+                    <Property name="horizontalTextPosition" type="int" value="4"/>
+                    <Property name="verticalTextPosition" type="int" value="3"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton10ActionPerformed"/>
+                  </Events>
+                </Component>
                 <Component class="javax.swing.JButton" name="jButton5">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -361,7 +375,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="jToolBar5" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="95" max="32767" attributes="0"/>
+                      <EmptySpace pref="39" max="32767" attributes="0"/>
                       <Component id="jToolBar6" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -376,7 +390,7 @@
                           <Component id="jToolBar6" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane4" pref="403" max="32767" attributes="0"/>
+                      <Component id="jScrollPane4" pref="389" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -411,6 +425,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Sel.Todo"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton9ActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

@@ -1,5 +1,5 @@
 package es.tpv_bar.persistencia.pojos;
-// Generated 04-may-2012 19:46:39 by Hibernate Tools 3.2.1.GA
+// Generated 07-may-2012 8:14:14 by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -31,21 +31,24 @@ public class Productos  implements java.io.Serializable {
      private String nombre;
      private Double precio;
      private boolean activo;
+     private String textoBt;
      private Set<Linea> lineas = new HashSet<Linea>(0);
 
     public Productos() {
     }
 
 	
-    public Productos(Categoria categoria, boolean activo) {
+    public Productos(Categoria categoria, boolean activo, String textoBt) {
         this.categoria = categoria;
         this.activo = activo;
+        this.textoBt = textoBt;
     }
-    public Productos(Categoria categoria, String nombre, Double precio, boolean activo, Set<Linea> lineas) {
+    public Productos(Categoria categoria, String nombre, Double precio, boolean activo, String textoBt, Set<Linea> lineas) {
        this.categoria = categoria;
        this.nombre = nombre;
        this.precio = precio;
        this.activo = activo;
+       this.textoBt = textoBt;
        this.lineas = lineas;
     }
    
@@ -95,6 +98,15 @@ public class Productos  implements java.io.Serializable {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
+    
+    @Column(name="textoBT", nullable=false, length=45)
+    public String getTextoBt() {
+        return this.textoBt;
+    }
+    
+    public void setTextoBt(String textoBt) {
+        this.textoBt = textoBt;
+    }
 @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="productos")
     public Set<Linea> getLineas() {
         return this.lineas;
@@ -104,10 +116,7 @@ public class Productos  implements java.io.Serializable {
         this.lineas = lineas;
     }
 
-    public String getActivo(){
-        
-        return activo?"SI":"NO";
-    }
+
 
 
 }

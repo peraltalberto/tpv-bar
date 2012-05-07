@@ -10,6 +10,7 @@ import es.tpv_bar.gui.botones.BTProducto;
 import es.tpv_bar.gui.botones.BTTickets;
 import es.tpv_bar.gui.ventanas.AnularTicket;
 import es.tpv_bar.gui.ventanas.VentanaCamareros;
+import es.tpv_bar.gui.ventanas.VentanaCobro;
 import es.tpv_bar.gui.ventanas.VentanaMesas;
 import es.tpv_bar.persistencia.modelos.*;
 import es.tpv_bar.persistencia.pojos.*;
@@ -47,6 +48,7 @@ public class VentanaTPV extends javax.swing.JFrame {
     Camarero camarero;
     public LineaModel lineas = new LineaModel();
     NumberFormat nf = new DecimalFormat("0.00");
+
     /**
      * Creates new form VentanaTPV
      */
@@ -59,8 +61,8 @@ public class VentanaTPV extends javax.swing.JFrame {
         this.setAlwaysOnTop(true);
         cargarCategorias();
         instanceOf = this;
-        this.jTabbedPane1.setIconAt(0,new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/addCafe.png")) );
-        this.jTabbedPane1.setIconAt(1,new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/ticketCafe.png")) );  
+        this.jTabbedPane1.setIconAt(0, new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/addCafe.png")));
+        this.jTabbedPane1.setIconAt(1, new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/ticketCafe.png")));
         this.cargaTickets();
     }
 
@@ -83,10 +85,11 @@ public class VentanaTPV extends javax.swing.JFrame {
         this.pProductos.removeAll();
         ArrayList<Productos> prod = (ArrayList<Productos>) productos.busquedaDatos("categoria", cat);
         for (int i = 0; i < prod.size(); i++) {
-            if(!prod.get(i).isActivo())
+            if (!prod.get(i).isActivo()) {
                 continue;
+            }
             final BTProducto bt = new BTProducto(prod.get(i));
-            
+
             bt.addActionListener(new ActionListener() {
 
                 @Override
@@ -131,6 +134,7 @@ public class VentanaTPV extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jToolBar7 = new javax.swing.JToolBar();
+        jButton10 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         panelLineas = new javax.swing.JPanel();
@@ -227,6 +231,18 @@ public class VentanaTPV extends javax.swing.JFrame {
 
         jToolBar7.setFloatable(false);
 
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/1335698153_select.png"))); // NOI18N
+        jButton10.setText("Sel.Todo");
+        jButton10.setFocusable(false);
+        jButton10.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jButton10.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        jToolBar7.add(jButton10);
+
         jButton5.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/1335695322_java_src.png"))); // NOI18N
         jButton5.setText("Ticket");
@@ -251,14 +267,14 @@ public class VentanaTPV extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
                     .addComponent(jToolBar7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 3, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addComponent(jToolBar7, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -283,6 +299,11 @@ public class VentanaTPV extends javax.swing.JFrame {
 
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/1335698153_select.png"))); // NOI18N
         jButton9.setText("Sel.Todo");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
         jToolBar5.add(jButton9);
 
         jToolBar6.setFloatable(false);
@@ -309,7 +330,7 @@ public class VentanaTPV extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jToolBar5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(jToolBar6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addComponent(jScrollPane4)
@@ -321,7 +342,7 @@ public class VentanaTPV extends javax.swing.JFrame {
                     .addComponent(jToolBar5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jToolBar6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Tickets", jPanel1);
@@ -470,7 +491,7 @@ public class VentanaTPV extends javax.swing.JFrame {
         }
         cab.setTotal(totalCab);
         cabezeras.saveDato(cab);
-     
+
         impresora.setImpresora(((Configuracion) conf.busquedaDato(1)).getValue());
         impresora.setEtiqueta("C:\\tpv\\jaspers\\ticket.jasper");
         impresora.setCabezera(cab);
@@ -493,29 +514,30 @@ public class VentanaTPV extends javax.swing.JFrame {
             for (int i = 0; i < services.length; i++) {
                 if (services[i].getName().equals(((Configuracion) conf.busquedaDato(2)).getValue())) {
                     /*
-                     * If the service is named as what we are querying we select it
+                     * If the service is named as what we are querying we select
+                     * it
                      */
                     selectedService = i;
                     break;
                 }
             }
             PrintService printService = PrintServiceLookup.lookupDefaultPrintService();
-            char[] a = {0x1b,0x70,0x00,0x19,0xff};
-            
-            String zplCommand ="";
-            for (int i = 0; i<a.length;i++){
+            char[] a = {0x1b, 0x70, 0x00, 0x19, 0xff};
+
+            String zplCommand = "";
+            for (int i = 0; i < a.length; i++) {
                 zplCommand += a[i];
             }
 
-    // convertimos el comando a bytes
+            // convertimos el comando a bytes
             byte[] by = zplCommand.getBytes();
             DocFlavor flavor = DocFlavor.BYTE_ARRAY.AUTOSENSE;
             Doc doc = new SimpleDoc(by, flavor, null);
 
-    // creamos el printjob
+            // creamos el printjob
             DocPrintJob job = printService.createPrintJob();
 
-    // imprimimos
+            // imprimimos
             job.print(doc, null);
             /**
              * impresora.setImpresora(((Configuracion)conf.busquedaDato(2)).getValue());
@@ -538,8 +560,46 @@ public class VentanaTPV extends javax.swing.JFrame {
     }//GEN-LAST:event_txTotalActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
+        Component[] c = this.jPanel3.getComponents();
+        Cabezera[] cab = new Cabezera[c.length];
+        CabezeraModel cm = new CabezeraModel();
+        for (int i = 0; i < c.length; i++) {
+            BTTickets bt = (BTTickets) c[i];
+            if (bt.isSelect()) {
+                cab[i] = bt.getCab();
+            }
+        }
+        if (new VentanaCobro(this, true, cab).HelpCambio()) {
+
+            for (int i = 0; i < cab.length; i++) {
+                BTTickets bt = (BTTickets) c[i];
+                if (bt.isSelect()) {
+                    cab[i].setEstado(1);
+                    cm.saveDato(cab[i]);
+                    this.jPanel3.remove(bt);
+                }
+                
+            }
+        }
+        this.jPanel3.updateUI();
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        Component[] c = this.jPanel3.getComponents();
+        for (int i = 0; i < c.length; i++) {
+            BTTickets bt = (BTTickets) c[i];
+            bt.setSelect(true);
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+
+        Component[] c = this.panelLineas.getComponents();
+        for (int i = 0; i < c.length; i++) {
+            BTLineas bt = (BTLineas) c[i];
+            bt.setSelect(true);
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -600,23 +660,25 @@ public class VentanaTPV extends javax.swing.JFrame {
         this.txTotal.setText(nf.format(total));
     }
 
-    public void cargaTickets(){
+    public void cargaTickets() {
         this.jPanel3.removeAll();
         this.tickets = (ArrayList<Cabezera>) cabezeras.getTicketsSC();
         System.out.println("Tickets: " + this.tickets.size());
         total = 0.0;
         for (int i = 0; i < tickets.size(); i++) {
             Cabezera l = tickets.get(i);
-            jPanel3.add(new BTTickets(instanceOf,l));
-            
+            jPanel3.add(new BTTickets(instanceOf, l));
+
         }
         this.jPanel3.updateUI();
-    
+
     }
-    public void removeTicket(BTTickets btCab){
+
+    public void removeTicket(BTTickets btCab) {
         this.jPanel3.remove(btCab);
         this.jPanel3.updateUI();
     }
+
     public Ubicacion getUbicacion() {
         return ubicacion;
     }
@@ -635,12 +697,13 @@ public class VentanaTPV extends javax.swing.JFrame {
         System.out.println(l.isInvitacion());
         this.setUbicacion(ubicacion);
     }
-    ArrayList<Cabezera>tickets;
+    ArrayList<Cabezera> tickets;
     ArrayList<Linea> lineasUbi;
     Ubicacion ubicacion = null;
     Double total = 0.0;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

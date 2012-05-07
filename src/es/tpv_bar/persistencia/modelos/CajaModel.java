@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 
 
 /**
@@ -29,11 +30,11 @@ public class CajaModel extends AbstractModel {
         return (ArrayList<Caja>) super.getLista();
     }
     
-    public Double getSaldo(){
+    public Double getSaldo(int caja){
         try{
         Session ses = factory.getCurrentSession();
         Transaction tx = ses.beginTransaction();
-        Integer id= (Integer)ses.createCriteria(Caja.class)
+        Integer id= (Integer)ses.createCriteria(Caja.class).add(Restrictions.eq("cajaPago", caja))
                 .setProjection(Projections.max("idCaja")).uniqueResult();
         System.out.println(id);
         Caja c=  (Caja) ses.load(Caja.class,id);

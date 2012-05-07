@@ -167,7 +167,7 @@ public class MovimientoCaja extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        CajaModel caja = new CajaModel();
-       Double saldo = caja.getSaldo();
+       Double saldo = caja.getSaldo(0);
        Caja mov = new Caja();
        mov.setFecha(new Date());
        new VentanaCamareros(this,true).setVisible(true);
