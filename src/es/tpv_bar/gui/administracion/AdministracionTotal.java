@@ -5,11 +5,14 @@
 package es.tpv_bar.gui.administracion;
 
 import es.tpv_bar.VentanaPrincipal;
+import es.tpv_bar.gui.administracion.dialogs.EditCamarero;
 import es.tpv_bar.gui.administracion.dialogs.EditCategoria;
 import es.tpv_bar.gui.administracion.dialogs.EditProducto;
+import es.tpv_bar.persistencia.modelos.CamareroModel;
 import es.tpv_bar.persistencia.modelos.CategoriaModel;
 import es.tpv_bar.persistencia.modelos.ConfiguracionModel;
 import es.tpv_bar.persistencia.modelos.ProductosModel;
+import es.tpv_bar.persistencia.pojos.Camarero;
 import es.tpv_bar.persistencia.pojos.Categoria;
 import es.tpv_bar.persistencia.pojos.Configuracion;
 import es.tpv_bar.persistencia.pojos.Productos;
@@ -61,6 +64,15 @@ public class AdministracionTotal extends javax.swing.JFrame {
         this.jTableArrayList2.setCaps(propsCat, cabCat);
         this.jTableArrayList2.setList(categorias.getLista());
 
+        /*
+         * Pestaña camareros
+         */
+        String[] cabCam = {"Visible","Telefono", "Apellidos",  "Nombre", "Codigo"};
+        String[] propsCam = {"activo","telefono", "apellidos",  "nombre", "idCamarero"};
+        this.jTableArrayList3.setCaps(propsCam, cabCam);
+        this.jTableArrayList3.setList(camareros.getLista());
+
+        
 
         /*
          * Pestaña Configuracion global
@@ -88,6 +100,7 @@ public class AdministracionTotal extends javax.swing.JFrame {
     }
     TableRowSorter<TableModel> sorter;
     CategoriaModel categorias = new CategoriaModel();
+    CamareroModel camareros = new CamareroModel();
     ProductosModel productos = new ProductosModel();
     ConfiguracionModel conf = new ConfiguracionModel();
 
@@ -157,6 +170,18 @@ public class AdministracionTotal extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
         jButton9 = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        jToolBar4 = new javax.swing.JToolBar();
+        jButton13 = new javax.swing.JButton();
+        jSeparator8 = new javax.swing.JToolBar.Separator();
+        jButton14 = new javax.swing.JButton();
+        jSeparator9 = new javax.swing.JToolBar.Separator();
+        jButton15 = new javax.swing.JButton();
+        jSeparator10 = new javax.swing.JToolBar.Separator();
+        jLabel11 = new javax.swing.JLabel();
+        jComboBox3 = new javax.swing.JComboBox();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTableArrayList4 = new es.timmp.componets.JTableArrayList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -629,6 +654,104 @@ public class AdministracionTotal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Configuracion Global", jPanel2);
 
+        jPanel7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jPanel7KeyTyped(evt);
+            }
+        });
+
+        jToolBar4.setFloatable(false);
+
+        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/config/add.png"))); // NOI18N
+        jButton13.setToolTipText("Añadir producto");
+        jButton13.setFocusable(false);
+        jButton13.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton13.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+        jToolBar4.add(jButton13);
+        jToolBar4.add(jSeparator8);
+
+        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/config/edit.png"))); // NOI18N
+        jButton14.setToolTipText("Editar");
+        jButton14.setFocusable(false);
+        jButton14.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton14.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+        jToolBar4.add(jButton14);
+        jToolBar4.add(jSeparator9);
+
+        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/config/remove.png"))); // NOI18N
+        jButton15.setToolTipText("Eliminar");
+        jButton15.setFocusable(false);
+        jButton15.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton15.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+        jToolBar4.add(jButton15);
+        jToolBar4.add(jSeparator10);
+
+        jLabel11.setText("Mostrar Ubicacion:   ");
+        jToolBar4.add(jLabel11);
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TODAS" }));
+        jComboBox3.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox3ItemStateChanged(evt);
+            }
+        });
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
+        jToolBar4.add(jComboBox3);
+
+        jTableArrayList4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTableArrayList4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTableArrayList4KeyTyped(evt);
+            }
+        });
+        jScrollPane4.setViewportView(jTableArrayList4);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jToolBar4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 884, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(jToolBar4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Mesas", jPanel7);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -767,19 +890,33 @@ public class AdministracionTotal extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox2ItemStateChanged
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
+            new EditCamarero(this, true).setVisible(true);
+            this.jTableArrayList3.setList(this.camareros.getLista());
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
+        new EditCamarero(this, true, (Camarero) this.jTableArrayList3.getSelectElement()).setVisible(true);
+        this.jTableArrayList3.setList(this.camareros.getLista());
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
+       try {
+            Camarero prod = (Camarero) this.jTableArrayList3.getSelectElement();
+            camareros.removeDato(prod);
+            this.jTableArrayList3.setList(camareros.getLista());
+        } catch (ConstraintViolationException e) {
+            JOptionPane.showMessageDialog(this, "Este camarero ya ha realizado "
+                    + "operaciones en la aplicación,\n"
+                    + "por lo que no es posible eliminarlo.\n"
+                    + "Puede hacerlo no visible editando los datos de camareros");
+        }
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jTableArrayList3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableArrayList3KeyTyped
-        // TODO add your handling code here:
+        if (evt.getKeyChar() == '+') {
+                new EditCamarero(this, true).setVisible(true);
+                this.jTableArrayList3.setList(this.camareros.getLista());
+        }
     }//GEN-LAST:event_jTableArrayList3KeyTyped
 
     private void jPanel6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel6KeyTyped
@@ -794,6 +931,34 @@ public class AdministracionTotal extends javax.swing.JFrame {
             this.txContador.setText(conf.getValue("codTicket"));
         }
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jComboBox3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox3ItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox3ItemStateChanged
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox3ActionPerformed
+
+    private void jTableArrayList4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableArrayList4KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTableArrayList4KeyTyped
+
+    private void jPanel7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel7KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel7KeyTyped
 
     /**
      * @param args the command line arguments
@@ -841,6 +1006,9 @@ public class AdministracionTotal extends javax.swing.JFrame {
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -851,8 +1019,10 @@ public class AdministracionTotal extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JComboBox jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -867,26 +1037,33 @@ public class AdministracionTotal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JPasswordField jPasswordField3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JToolBar.Separator jSeparator1;
+    private javax.swing.JToolBar.Separator jSeparator10;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator4;
     private javax.swing.JToolBar.Separator jSeparator5;
     private javax.swing.JToolBar.Separator jSeparator6;
     private javax.swing.JToolBar.Separator jSeparator7;
+    private javax.swing.JToolBar.Separator jSeparator8;
+    private javax.swing.JToolBar.Separator jSeparator9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private es.timmp.componets.JTableArrayList jTableArrayList1;
     private es.timmp.componets.JTableArrayList jTableArrayList2;
     private es.timmp.componets.JTableArrayList jTableArrayList3;
+    private es.timmp.componets.JTableArrayList jTableArrayList4;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
     private javax.swing.JToolBar jToolBar3;
+    private javax.swing.JToolBar jToolBar4;
     private javax.swing.JPanel pnlConf;
     private javax.swing.JTextField txCP;
     private javax.swing.JTextField txCif;
