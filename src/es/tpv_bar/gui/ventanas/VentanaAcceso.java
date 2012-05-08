@@ -20,6 +20,7 @@ public class VentanaAcceso extends javax.swing.JDialog {
      */
     public VentanaAcceso(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.setLocationRelativeTo(parent);
         initComponents();
         this.jPanel1.add(new TecladoNumerico(this.jPasswordField1));
     }

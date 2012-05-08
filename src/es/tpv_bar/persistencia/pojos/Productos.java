@@ -30,7 +30,7 @@ public class Productos  implements java.io.Serializable {
      private Categoria categoria;
      private String nombre;
      private Double precio;
-     private boolean activo;
+     private boolean activo = true;
      private String textoBt;
      private Set<Linea> lineas = new HashSet<Linea>(0);
 

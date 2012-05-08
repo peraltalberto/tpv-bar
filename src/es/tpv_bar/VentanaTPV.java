@@ -8,13 +8,11 @@ import es.tpv_bar.gui.botones.BTCategoria;
 import es.tpv_bar.gui.botones.BTLineas;
 import es.tpv_bar.gui.botones.BTProducto;
 import es.tpv_bar.gui.botones.BTTickets;
-import es.tpv_bar.gui.ventanas.AnularTicket;
-import es.tpv_bar.gui.ventanas.VentanaCamareros;
-import es.tpv_bar.gui.ventanas.VentanaCobro;
-import es.tpv_bar.gui.ventanas.VentanaMesas;
+import es.tpv_bar.gui.ventanas.*;
 import es.tpv_bar.persistencia.modelos.*;
 import es.tpv_bar.persistencia.pojos.*;
 import es.tpv_bar.prints.Print;
+import es.tpv_bar.prints.TicketCierre;
 import java.awt.Component;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -76,6 +74,9 @@ javax.swing.UIManager.getSystemLookAndFeelClassName());
     private void cargarCategorias() {
         ArrayList<Categoria> cat = categorias.getLista();
         for (int i = 0; i < cat.size(); i++) {
+            if(!cat.get(i).isActivo())
+                continue;
+            
             final BTCategoria bt = new BTCategoria(cat.get(i));
             bt.addActionListener(new ActionListener() {
 
@@ -142,9 +143,10 @@ javax.swing.UIManager.getSystemLookAndFeelClassName());
         jPanel2 = new javax.swing.JPanel();
         jToolBar7 = new javax.swing.JToolBar();
         jButton10 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         panelLineas = new javax.swing.JPanel();
+        jToolBar8 = new javax.swing.JToolBar();
+        jButton5 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jToolBar5 = new javax.swing.JToolBar();
         jButton8 = new javax.swing.JButton();
@@ -250,6 +252,11 @@ javax.swing.UIManager.getSystemLookAndFeelClassName());
         });
         jToolBar7.add(jButton10);
 
+        panelLineas.setLayout(new javax.swing.BoxLayout(panelLineas, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane1.setViewportView(panelLineas);
+
+        jToolBar8.setFloatable(false);
+
         jButton5.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/1335695322_java_src.png"))); // NOI18N
         jButton5.setText("Ticket");
@@ -261,10 +268,7 @@ javax.swing.UIManager.getSystemLookAndFeelClassName());
                 jButton5ActionPerformed(evt);
             }
         });
-        jToolBar7.add(jButton5);
-
-        panelLineas.setLayout(new javax.swing.BoxLayout(panelLineas, javax.swing.BoxLayout.Y_AXIS));
-        jScrollPane1.setViewportView(panelLineas);
+        jToolBar8.add(jButton5);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -272,16 +276,21 @@ javax.swing.UIManager.getSystemLookAndFeelClassName());
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
-                    .addComponent(jToolBar7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jToolBar7, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jToolBar8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(jToolBar7, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jToolBar8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jToolBar7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -559,7 +568,11 @@ javax.swing.UIManager.getSystemLookAndFeelClassName());
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        new AnularTicket(this, true).setVisible(true);
+       
+         if(new VentanaAcceso(this,true).getAcceso()){
+           new AnularTicket(this, true).setVisible(true);
+       }
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void txTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txTotalActionPerformed
@@ -739,6 +752,7 @@ javax.swing.UIManager.getSystemLookAndFeelClassName());
     private javax.swing.JToolBar jToolBar5;
     private javax.swing.JToolBar jToolBar6;
     private javax.swing.JToolBar jToolBar7;
+    private javax.swing.JToolBar jToolBar8;
     private javax.swing.JLabel lbUbicacion;
     private javax.swing.JPanel pCategorias;
     private javax.swing.JPanel pProductos;
