@@ -4,7 +4,10 @@
  */
 package es.tpv_bar.gui.administracion.dialogs;
 
+import es.tpv_bar.persistencia.modelos.BloqueUbicacionModel;
+import es.tpv_bar.persistencia.pojos.Bloqueubicacion;
 import es.tpv_bar.persistencia.pojos.Ubicacion;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,13 +19,26 @@ public class EditMesa extends javax.swing.JDialog {
      * Creates new form EditMesa
      */
     public EditMesa(java.awt.Frame parent, boolean modal) {
-        this(parent,modal,new Ubicacion());
+        this(parent, modal, new Ubicacion());
     }
-    
-    public EditMesa(java.awt.Frame parent, boolean modal,Ubicacion ubicaciones) {
+
+    public EditMesa(java.awt.Frame parent, boolean modal, Ubicacion ubicaciones) {
         super(parent, modal);
         initComponents();
+
+        ArrayList<Bloqueubicacion> list = bum.getLista();
+        for (int i = 0; i < list.size(); i++) {
+            this.jComboBox1.addItem(list.get(i));
+        }
+        try {
+            this.jTextField1.setText(ubicaciones.getNombre());
+            this.jTextField2.setText(ubicaciones.getDescripcion());
+            this.jCheckBox1.setSelected(ubicaciones.isActivo());
+        } catch (NullPointerException e) {
+        }
     }
+    BloqueUbicacionModel bum = new BloqueUbicacionModel();
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
