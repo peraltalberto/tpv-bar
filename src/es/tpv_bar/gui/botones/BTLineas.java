@@ -203,7 +203,9 @@ public class BTLineas extends javax.swing.JPanel {
     }//GEN-LAST:event_lbProductoMouseClicked
 
     private void txPrecioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txPrecioFocusGained
+        txPrecio.transferFocus();
         numeros();
+        
     }//GEN-LAST:event_txPrecioFocusGained
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox jCheckBox1;
