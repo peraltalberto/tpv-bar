@@ -79,7 +79,11 @@ public class Categoria  implements java.io.Serializable {
         this.productoses = productoses;
     }
 
+    @Override
+public String toString(){
+return nombre;
 
+}
 
 
 }

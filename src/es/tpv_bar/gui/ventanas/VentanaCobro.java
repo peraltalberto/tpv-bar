@@ -248,7 +248,7 @@ public class VentanaCobro extends javax.swing.JDialog {
         movimiento.setCabezera(valores[i]);
         movimiento.setFecha(new Date());
         movimiento.setMovimiento(valores[i].getTotal());
-        movimiento.setSaldo(cm.getSaldo(1) + valores[i].getTotal());
+        movimiento.setSaldo(cm.getSaldo(0) + valores[i].getTotal());
         cm.saveDato(movimiento);
         System.out.println(movimiento.getIdCaja());
          }catch(NullPointerException e){continue;}
@@ -260,7 +260,7 @@ public class VentanaCobro extends javax.swing.JDialog {
         movimiento.setCabezera(valor);
         movimiento.setFecha(new Date());
         movimiento.setMovimiento(valor.getTotal());
-        movimiento.setSaldo(cm.getSaldo(1) + valor.getTotal());
+        movimiento.setSaldo(cm.getSaldo(0) + valor.getTotal());
         cm.saveDato(movimiento);
       }
         result = true;
