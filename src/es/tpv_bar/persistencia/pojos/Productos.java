@@ -126,8 +126,13 @@ public class Productos  implements java.io.Serializable {
         this.atipicases = atipicases;
     }
 
-
-
+  public String getActivo(){
+        return this.activo?"visible":"oculto";
+    }
+ @Override
+    public String toString() {
+        return  nombre ;
+    }
 
 }
 

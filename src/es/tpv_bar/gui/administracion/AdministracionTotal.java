@@ -5,17 +5,12 @@
 package es.tpv_bar.gui.administracion;
 
 import es.tpv_bar.VentanaPrincipal;
+import es.tpv_bar.gui.administracion.dialogs.EditAtipica;
 import es.tpv_bar.gui.administracion.dialogs.EditCamarero;
 import es.tpv_bar.gui.administracion.dialogs.EditCategoria;
 import es.tpv_bar.gui.administracion.dialogs.EditProducto;
-import es.tpv_bar.persistencia.modelos.CamareroModel;
-import es.tpv_bar.persistencia.modelos.CategoriaModel;
-import es.tpv_bar.persistencia.modelos.ConfiguracionModel;
-import es.tpv_bar.persistencia.modelos.ProductosModel;
-import es.tpv_bar.persistencia.pojos.Camarero;
-import es.tpv_bar.persistencia.pojos.Categoria;
-import es.tpv_bar.persistencia.pojos.Configuracion;
-import es.tpv_bar.persistencia.pojos.Productos;
+import es.tpv_bar.persistencia.modelos.*;
+import es.tpv_bar.persistencia.pojos.*;
 import java.awt.Image;
 import java.util.ArrayList;
 import javax.print.PrintService;
@@ -73,6 +68,13 @@ public class AdministracionTotal extends javax.swing.JFrame {
         this.jTableArrayList3.setList(camareros.getLista());
 
         
+        /**
+         * pestaña atipicas
+         */
+        String[] cabat = {"Precio", "Ubicacion",  "Producto", "Codigo"};
+        String[] propsat = {"precio", "bloqueubicacion",  "productos", "id"};
+        this.jtaAtipicas.setCaps(propsat, cabat);
+        this.jtaAtipicas.setList(atipicas.getLista());
 
         /*
          * Pestaña Configuracion global
@@ -103,7 +105,7 @@ public class AdministracionTotal extends javax.swing.JFrame {
     CamareroModel camareros = new CamareroModel();
     ProductosModel productos = new ProductosModel();
     ConfiguracionModel conf = new ConfiguracionModel();
-
+    AtipicasModel atipicas = new AtipicasModel();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -182,6 +184,15 @@ public class AdministracionTotal extends javax.swing.JFrame {
         jComboBox3 = new javax.swing.JComboBox();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTableArrayList4 = new es.timmp.componets.JTableArrayList();
+        jPanel8 = new javax.swing.JPanel();
+        jToolBar5 = new javax.swing.JToolBar();
+        btAddAtipicas = new javax.swing.JButton();
+        jSeparator11 = new javax.swing.JToolBar.Separator();
+        btEditAtipicas = new javax.swing.JButton();
+        jSeparator12 = new javax.swing.JToolBar.Separator();
+        btDelAtipicas = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jtaAtipicas = new es.timmp.componets.JTableArrayList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -752,6 +763,87 @@ public class AdministracionTotal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Mesas", jPanel7);
 
+        jPanel8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jPanel8KeyTyped(evt);
+            }
+        });
+
+        jToolBar5.setFloatable(false);
+
+        btAddAtipicas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/config/add.png"))); // NOI18N
+        btAddAtipicas.setToolTipText("Añadir producto");
+        btAddAtipicas.setFocusable(false);
+        btAddAtipicas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btAddAtipicas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btAddAtipicas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAddAtipicasActionPerformed(evt);
+            }
+        });
+        jToolBar5.add(btAddAtipicas);
+        jToolBar5.add(jSeparator11);
+
+        btEditAtipicas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/config/edit.png"))); // NOI18N
+        btEditAtipicas.setToolTipText("Editar");
+        btEditAtipicas.setFocusable(false);
+        btEditAtipicas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btEditAtipicas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btEditAtipicas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEditAtipicasActionPerformed(evt);
+            }
+        });
+        jToolBar5.add(btEditAtipicas);
+        jToolBar5.add(jSeparator12);
+
+        btDelAtipicas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/config/remove.png"))); // NOI18N
+        btDelAtipicas.setToolTipText("Eliminar");
+        btDelAtipicas.setFocusable(false);
+        btDelAtipicas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btDelAtipicas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btDelAtipicas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btDelAtipicasActionPerformed(evt);
+            }
+        });
+        jToolBar5.add(btDelAtipicas);
+
+        jtaAtipicas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jtaAtipicas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtaAtipicasKeyTyped(evt);
+            }
+        });
+        jScrollPane5.setViewportView(jtaAtipicas);
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jToolBar5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 884, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addComponent(jToolBar5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Atipicas", jPanel8);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -960,6 +1052,34 @@ public class AdministracionTotal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel7KeyTyped
 
+    private void btAddAtipicasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddAtipicasActionPerformed
+                new EditAtipica(this, true).setVisible(true);
+                this.jtaAtipicas.setList(this.atipicas.getLista());
+    }//GEN-LAST:event_btAddAtipicasActionPerformed
+
+    private void btEditAtipicasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditAtipicasActionPerformed
+       Atipicas prod = (Atipicas) this.jtaAtipicas.getSelectElement();
+             new EditAtipica(this, true,prod).setVisible(true);
+                this.jtaAtipicas.setList(this.atipicas.getLista());
+    }//GEN-LAST:event_btEditAtipicasActionPerformed
+
+    private void btDelAtipicasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDelAtipicasActionPerformed
+        Atipicas prod = (Atipicas) this.jtaAtipicas.getSelectElement();
+            atipicas.removeDato(prod);
+            this.jtaAtipicas.setList(atipicas.getLista());
+    }//GEN-LAST:event_btDelAtipicasActionPerformed
+
+    private void jtaAtipicasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtaAtipicasKeyTyped
+        if (evt.getKeyChar() == '+') {
+                new EditAtipica(this, true).setVisible(true);
+                this.jtaAtipicas.setList(this.atipicas.getLista());
+        }
+    }//GEN-LAST:event_jtaAtipicasKeyTyped
+
+    private void jPanel8KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel8KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel8KeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -1002,6 +1122,9 @@ public class AdministracionTotal extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAddAtipicas;
+    private javax.swing.JButton btDelAtipicas;
+    private javax.swing.JButton btEditAtipicas;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -1038,6 +1161,7 @@ public class AdministracionTotal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JPasswordField jPasswordField3;
@@ -1045,8 +1169,11 @@ public class AdministracionTotal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator10;
+    private javax.swing.JToolBar.Separator jSeparator11;
+    private javax.swing.JToolBar.Separator jSeparator12;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator4;
@@ -1064,6 +1191,8 @@ public class AdministracionTotal extends javax.swing.JFrame {
     private javax.swing.JToolBar jToolBar2;
     private javax.swing.JToolBar jToolBar3;
     private javax.swing.JToolBar jToolBar4;
+    private javax.swing.JToolBar jToolBar5;
+    private es.timmp.componets.JTableArrayList jtaAtipicas;
     private javax.swing.JPanel pnlConf;
     private javax.swing.JTextField txCP;
     private javax.swing.JTextField txCif;

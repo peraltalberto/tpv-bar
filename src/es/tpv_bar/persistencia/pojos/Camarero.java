@@ -111,7 +111,9 @@ public class Camarero  implements java.io.Serializable {
         this.cajas = cajas;
     }
 
-
+public String getActivo(){
+        return this.activo?"visible":"oculto";
+    }
 
 
 }
