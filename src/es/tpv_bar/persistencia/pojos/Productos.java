@@ -1,5 +1,5 @@
 package es.tpv_bar.persistencia.pojos;
-// Generated 07-may-2012 8:14:14 by Hibernate Tools 3.2.1.GA
+// Generated 14-may-2012 18:52:04 by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -30,9 +30,10 @@ public class Productos  implements java.io.Serializable {
      private Categoria categoria;
      private String nombre;
      private Double precio;
-     private boolean activo = true;
+     private boolean activo;
      private String textoBt;
      private Set<Linea> lineas = new HashSet<Linea>(0);
+     private Set<Atipicas> atipicases = new HashSet<Atipicas>(0);
 
     public Productos() {
     }
@@ -43,13 +44,14 @@ public class Productos  implements java.io.Serializable {
         this.activo = activo;
         this.textoBt = textoBt;
     }
-    public Productos(Categoria categoria, String nombre, Double precio, boolean activo, String textoBt, Set<Linea> lineas) {
+    public Productos(Categoria categoria, String nombre, Double precio, boolean activo, String textoBt, Set<Linea> lineas, Set<Atipicas> atipicases) {
        this.categoria = categoria;
        this.nombre = nombre;
        this.precio = precio;
        this.activo = activo;
        this.textoBt = textoBt;
        this.lineas = lineas;
+       this.atipicases = atipicases;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -114,6 +116,14 @@ public class Productos  implements java.io.Serializable {
     
     public void setLineas(Set<Linea> lineas) {
         this.lineas = lineas;
+    }
+@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="productos")
+    public Set<Atipicas> getAtipicases() {
+        return this.atipicases;
+    }
+    
+    public void setAtipicases(Set<Atipicas> atipicases) {
+        this.atipicases = atipicases;
     }
 
 

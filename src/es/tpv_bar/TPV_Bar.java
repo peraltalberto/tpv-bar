@@ -4,6 +4,8 @@
  */
 package es.tpv_bar;
 
+import es.tpv_bar.persistencia.modelos.ConfiguracionModel;
+
 /**
  *
  * @author aperalta
@@ -20,4 +22,14 @@ javax.swing.UIManager.getSystemLookAndFeelClassName());
 }catch ( Exception e ) { } 
         new VentanaPrincipal().setVisible(true);
     }
+    
+    
+public static String getModKey(){
+    ConfiguracionModel conf = new ConfiguracionModel();
+    return conf.getValue("fechaKey");
+} 
+public static void setModKey(Long fecha){
+    ConfiguracionModel conf = new ConfiguracionModel();
+     conf.setValue("fechaKey",fecha.toString());
+} 
 }

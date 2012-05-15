@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-may-2012 18:52:10 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="es.tpv_bar.persistencia.pojos.Atipicas" table="atipicas" catalog="mydb">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="productos" class="es.tpv_bar.persistencia.pojos.Productos" fetch="select">
+            <column name="productos" not-null="true" />
+        </many-to-one>
+        <many-to-one name="bloqueubicacion" class="es.tpv_bar.persistencia.pojos.Bloqueubicacion" fetch="select">
+            <column name="bloqueubicacion" not-null="true" />
+        </many-to-one>
+        <property name="tipo" type="int">
+            <column name="tipo" not-null="true" />
+        </property>
+        <property name="precio" type="java.lang.Double">
+            <column name="precio" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

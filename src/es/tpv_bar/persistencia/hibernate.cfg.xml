@@ -15,12 +15,11 @@
     <mapping resource="es/tpv_bar/persistencia/pojos/Productos.hbm.xml"/>
     <mapping resource="es/tpv_bar/persistencia/pojos/Ubicacion.hbm.xml"/>
     <mapping resource="es/tpv_bar/persistencia/pojos/Linea.hbm.xml"/>
-    
     <mapping resource="es/tpv_bar/persistencia/pojos/Configuracion.hbm.xml"/>
     <mapping resource="es/tpv_bar/persistencia/pojos/Caja.hbm.xml"/>
-  
     <mapping resource="es/tpv_bar/persistencia/pojos/Bloqueubicacion.hbm.xml"/>
-
     <mapping resource="es/tpv_bar/persistencia/pojos/Arqueos.hbm.xml"/>
+   
+    <mapping resource="es/tpv_bar/persistencia/pojos/Atipicas.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

@@ -39,6 +39,8 @@ public class VentanaTPV extends javax.swing.JFrame {
     VentanaMesas mesa;
     CategoriaModel categorias = new CategoriaModel();
     ProductosModel productos = new ProductosModel();
+    AtipicasModel atipicas = new AtipicasModel();
+    
     CajaModel caja = new CajaModel();
     CabezeraModel cabezeras = new CabezeraModel();
     ConfiguracionModel conf = new ConfiguracionModel();
@@ -104,10 +106,19 @@ javax.swing.UIManager.getSystemLookAndFeelClassName());
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (ubicacion != null) {
+                        Atipicas ati = atipicas.getAtipica(ubicacion.getBloqueubicacion(), bt.getProducto());
+                       
+                            
                         int mul = Integer.parseInt(multiplicador.getText());
                         for(int i =0 ; i<mul;i++){
-                            panelLineas.add(new BTLineas(bt.getProducto(), instanceOf));
+                            BTLineas btl = new BTLineas(bt.getProducto(), instanceOf);
+                            panelLineas.add(btl);
+                            if(ati != null){
+                             btl.setNewPrecio(ati.getPrecio());   
+                             //total += ati.getPrecio();  
+                            }else{
                             total += bt.getProducto().getPrecio();
+                            }
                         }
                         multiplicador.setText("1");
                     }

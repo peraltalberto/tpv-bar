@@ -1,5 +1,5 @@
 package es.tpv_bar.persistencia.pojos;
-// Generated 07-may-2012 8:14:14 by Hibernate Tools 3.2.1.GA
+// Generated 14-may-2012 18:52:04 by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -27,6 +27,7 @@ public class Bloqueubicacion  implements java.io.Serializable {
      private Integer id;
      private String nombre;
      private String descripcion;
+     private Set<Atipicas> atipicases = new HashSet<Atipicas>(0);
      private Set<Ubicacion> ubicacions = new HashSet<Ubicacion>(0);
 
     public Bloqueubicacion() {
@@ -36,9 +37,10 @@ public class Bloqueubicacion  implements java.io.Serializable {
     public Bloqueubicacion(String nombre) {
         this.nombre = nombre;
     }
-    public Bloqueubicacion(String nombre, String descripcion, Set<Ubicacion> ubicacions) {
+    public Bloqueubicacion(String nombre, String descripcion, Set<Atipicas> atipicases, Set<Ubicacion> ubicacions) {
        this.nombre = nombre;
        this.descripcion = descripcion;
+       this.atipicases = atipicases;
        this.ubicacions = ubicacions;
     }
    
@@ -69,6 +71,14 @@ public class Bloqueubicacion  implements java.io.Serializable {
     
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="bloqueubicacion")
+    public Set<Atipicas> getAtipicases() {
+        return this.atipicases;
+    }
+    
+    public void setAtipicases(Set<Atipicas> atipicases) {
+        this.atipicases = atipicases;
     }
 @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="bloqueubicacion")
     public Set<Ubicacion> getUbicacions() {

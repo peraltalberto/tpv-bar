@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 07-may-2012 8:14:17 by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 14-may-2012 18:52:10 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="es.tpv_bar.persistencia.pojos.Arqueos" table="Arqueos" catalog="mydb">
+    <class name="es.tpv_bar.persistencia.pojos.Arqueos" table="arqueos" catalog="mydb">
         <id name="idArqueo" type="java.lang.Integer">
             <column name="idArqueo" />
             <generator class="identity" />

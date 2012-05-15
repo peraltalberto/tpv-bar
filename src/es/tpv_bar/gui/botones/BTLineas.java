@@ -241,4 +241,14 @@ public class BTLineas extends javax.swing.JPanel {
     public void setLinea(Linea linea) {
         this.linea = linea;
     }
+
+    public void setNewPrecio(Double precio) {
+                linea.setPrecio(precio);
+                linea.setTotal(precio);
+                
+                this.txPrecio.setText(precio.toString());
+                parent.actualizarLinea(linea);
+
+                lbProducto.grabFocus();
+    }
 }
