@@ -103,9 +103,7 @@ public class Ubicacion  implements java.io.Serializable {
     public void setLineas(Set<Linea> lineas) {
         this.lineas = lineas;
     }
-public String getActivo(){
-        return this.activo?"visible":"oculto";
-    }
+
 
 
 

@@ -66,9 +66,7 @@ public class Categoria  implements java.io.Serializable {
     public boolean isActivo() {
         return this.activo;
     }
-    public String getActivo(){
-        return this.activo?"visible":"oculto";
-    }
+ 
     
     public void setActivo(boolean activo) {
         this.activo = activo;
