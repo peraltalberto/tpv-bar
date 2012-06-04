@@ -40,8 +40,8 @@ public class AdministracionTotal extends javax.swing.JFrame {
         /*
          * Pestaña productos
          */
-        String[] cab = {"Visible", "Categoria", "Precio", "Nombre", "Codigo"};
-        String[] props = {"activo", "categoria", "precio", "nombre", "idProductos"};
+        String[] cab = {"Categoria", "Precio", "Nombre", "Codigo","Visible"};
+        String[] props = { "categoria", "precio", "nombre", "idProductos","activo"};
         this.jTableArrayList1.setCaps(props, cab);
         this.jTableArrayList1.setList(productos.getLista());
         ArrayList<Categoria> catF = categorias.getLista();
