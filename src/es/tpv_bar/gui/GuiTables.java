@@ -9,6 +9,7 @@ import java.awt.Component;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 
 /**
@@ -25,11 +26,15 @@ public class GuiTables extends DefaultTableCellRenderer {
             int row,
             int column) {
         super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-        System.out.println(table.getColumnName(column));
+        
+        this.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        //System.out.println(table.getColumnName(column));
         NumberFormat nf = new DecimalFormat("0.00");
 
         if (value.getClass().equals(Double.class)) {
             value = nf.format(value);
+           // this.setHorizontalAlignment(SwingConstants.RIGHT);
         }
         if (table.getColumnName(column).equals("Visible")) {
 

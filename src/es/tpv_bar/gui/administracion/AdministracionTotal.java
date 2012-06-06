@@ -209,12 +209,15 @@ public class AdministracionTotal extends javax.swing.JFrame {
         });
 
         jToolBar1.setFloatable(false);
+        jToolBar1.setMargin(new java.awt.Insets(2, 2, 2, 2));
 
+        jToolBar6.setBorder(null);
         jToolBar6.setFloatable(false);
         jToolBar6.setBorderPainted(false);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/config/add.png"))); // NOI18N
         jButton1.setToolTipText("Añadir producto");
+        jButton1.setBorder(null);
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -228,6 +231,7 @@ public class AdministracionTotal extends javax.swing.JFrame {
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/config/edit.png"))); // NOI18N
         jButton2.setToolTipText("Editar");
+        jButton2.setBorder(null);
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -241,6 +245,7 @@ public class AdministracionTotal extends javax.swing.JFrame {
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/config/remove.png"))); // NOI18N
         jButton3.setToolTipText("Eliminar");
+        jButton3.setBorder(null);
         jButton3.setFocusable(false);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -256,6 +261,7 @@ public class AdministracionTotal extends javax.swing.JFrame {
 
         jToolBar1.add(jToolBar6);
 
+        jToolBar7.setBorder(null);
         jToolBar7.setFloatable(false);
         jToolBar7.setBorderPainted(false);
 
