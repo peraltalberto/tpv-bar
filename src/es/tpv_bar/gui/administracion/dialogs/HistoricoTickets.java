@@ -2,31 +2,28 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package es.tpv_bar.gui.ventanas;
+package es.tpv_bar.gui.administracion.dialogs;
 
-import es.tpv_bar.gui.*;
-import javax.swing.JTextField;
+import es.tpv_bar.persistencia.modelos.CabezeraModel;
 
 /**
  *
  * @author aperalta
  */
-public class VentanaTeclado extends javax.swing.JDialog {
+public class HistoricoTickets extends javax.swing.JDialog {
 
     /**
-     * Creates new form DlTecladoNum
+     * Creates new form HistoricoTickets
      */
-    public VentanaTeclado(java.awt.Frame parent, boolean modal,JTextField campo) {
+    public HistoricoTickets(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        
         initComponents();
-        this.setLocationRelativeTo(parent);
-        tn.setPantalla(campo);
-        this.jPanel1.add(tn);
-       
+        String[] cab = {"Codigo", "Fecha", "Total"};
+        String[] props = { "cod", "fecha", "total"};
+        this.jTableArrayList1.setCaps(props, cab);
+        this.jTableArrayList1.setList(cm.getLista());
     }
-TecladoNumerico tn = new TecladoNumerico();
-
+    CabezeraModel cm = new CabezeraModel();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,52 +33,40 @@ TecladoNumerico tn = new TecladoNumerico();
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableArrayList1 = new es.timmp.componets.JTableArrayList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setUndecorated(true);
 
-        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/1334675214_Select.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        jTableArrayList1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        });
+        ));
+        jScrollPane1.setViewportView(jTableArrayList1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 59, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-   
-
-    
     /**
      * @param args the command line arguments
      */
@@ -103,13 +88,13 @@ TecladoNumerico tn = new TecladoNumerico();
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaTeclado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HistoricoTickets.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaTeclado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HistoricoTickets.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaTeclado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HistoricoTickets.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaTeclado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HistoricoTickets.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -119,7 +104,7 @@ TecladoNumerico tn = new TecladoNumerico();
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                VentanaTeclado dialog = new VentanaTeclado(new javax.swing.JFrame(), true, new JTextField());
+                HistoricoTickets dialog = new HistoricoTickets(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     @Override
@@ -132,7 +117,7 @@ TecladoNumerico tn = new TecladoNumerico();
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private es.timmp.componets.JTableArrayList jTableArrayList1;
     // End of variables declaration//GEN-END:variables
 }

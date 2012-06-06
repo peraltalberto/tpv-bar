@@ -96,7 +96,9 @@ public class Productos  implements java.io.Serializable {
     public boolean isActivo() {
         return this.activo;
     }
-    
+     public boolean getActivo() {
+        return this.activo;
+    }
     public void setActivo(boolean activo) {
         this.activo = activo;
     }

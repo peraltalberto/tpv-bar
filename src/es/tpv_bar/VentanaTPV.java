@@ -55,10 +55,7 @@ public class VentanaTPV extends javax.swing.JFrame {
      */
     public VentanaTPV() {
         
-         try{ 
-javax.swing.UIManager.setLookAndFeel( 
-javax.swing.UIManager.getSystemLookAndFeelClassName()); 
-}catch ( Exception e ) { } 
+ 
      
         initComponents();
         

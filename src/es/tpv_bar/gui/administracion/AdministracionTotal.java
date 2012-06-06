@@ -4,7 +4,10 @@
  */
 package es.tpv_bar.gui.administracion;
 
+import com.jgoodies.looks.HeaderStyle;
+import com.jgoodies.looks.Options;
 import es.tpv_bar.VentanaPrincipal;
+import es.tpv_bar.gui.GuiTables;
 import es.tpv_bar.gui.administracion.dialogs.EditAtipica;
 import es.tpv_bar.gui.administracion.dialogs.EditCamarero;
 import es.tpv_bar.gui.administracion.dialogs.EditCategoria;
@@ -44,12 +47,13 @@ public class AdministracionTotal extends javax.swing.JFrame {
         String[] props = { "categoria", "precio", "nombre", "idProductos","activo"};
         this.jTableArrayList1.setCaps(props, cab);
         this.jTableArrayList1.setList(productos.getLista());
+        
         ArrayList<Categoria> catF = categorias.getLista();
         for (int i = 0; i < catF.size(); i++) {
             this.jComboBox2.addItem(catF.get(i));
         }
         sorter = new TableRowSorter<TableModel>(this.jTableArrayList1.getModel());
-
+        this.jTableArrayList1.setDefaultRenderer(Object.class, new GuiTables());
 
         /*
          * Pestaña categorias
@@ -118,12 +122,14 @@ public class AdministracionTotal extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
+        jToolBar6 = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
         jButton2 = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
         jButton3 = new javax.swing.JButton();
         jSeparator5 = new javax.swing.JToolBar.Separator();
+        jToolBar7 = new javax.swing.JToolBar();
         jLabel10 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -204,6 +210,9 @@ public class AdministracionTotal extends javax.swing.JFrame {
 
         jToolBar1.setFloatable(false);
 
+        jToolBar6.setFloatable(false);
+        jToolBar6.setBorderPainted(false);
+
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/config/add.png"))); // NOI18N
         jButton1.setToolTipText("Añadir producto");
         jButton1.setFocusable(false);
@@ -214,8 +223,8 @@ public class AdministracionTotal extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButton1);
-        jToolBar1.add(jSeparator1);
+        jToolBar6.add(jButton1);
+        jToolBar6.add(jSeparator1);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/config/edit.png"))); // NOI18N
         jButton2.setToolTipText("Editar");
@@ -227,8 +236,8 @@ public class AdministracionTotal extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButton2);
-        jToolBar1.add(jSeparator2);
+        jToolBar6.add(jButton2);
+        jToolBar6.add(jSeparator2);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/config/remove.png"))); // NOI18N
         jButton3.setToolTipText("Eliminar");
@@ -240,12 +249,21 @@ public class AdministracionTotal extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButton3);
-        jToolBar1.add(jSeparator5);
+        jToolBar6.add(jButton3);
+        jToolBar6.add(jSeparator5);
 
+        jToolBar6.putClientProperty(Options.HEADER_STYLE_KEY, HeaderStyle.BOTH);
+
+        jToolBar1.add(jToolBar6);
+
+        jToolBar7.setFloatable(false);
+        jToolBar7.setBorderPainted(false);
+
+        jLabel10.setForeground(new java.awt.Color(1, 1, 1));
         jLabel10.setText("Mostrar Categoria:   ");
-        jToolBar1.add(jLabel10);
+        jToolBar7.add(jLabel10);
 
+        jComboBox2.setForeground(new java.awt.Color(1, 1, 1));
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TODAS" }));
         jComboBox2.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -257,7 +275,10 @@ public class AdministracionTotal extends javax.swing.JFrame {
                 jComboBox2ActionPerformed(evt);
             }
         });
-        jToolBar1.add(jComboBox2);
+        jToolBar7.add(jComboBox2);
+
+        jToolBar1.add(jToolBar7);
+        jToolBar7.putClientProperty(Options.HEADER_STYLE_KEY, HeaderStyle.BOTH);
 
         jTableArrayList1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -281,16 +302,22 @@ public class AdministracionTotal extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 860, Short.MAX_VALUE)
+                .addContainerGap())
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 884, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
+                .addContainerGap())
         );
+
+        jToolBar1.putClientProperty(Options.HEADER_STYLE_KEY, HeaderStyle.BOTH);
 
         jTabbedPane1.addTab("Productos", jPanel1);
 
@@ -553,7 +580,7 @@ public class AdministracionTotal extends javax.swing.JFrame {
                 .addComponent(txContador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton5)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         txTelefono.setText("jTextField3");
@@ -1192,6 +1219,8 @@ public class AdministracionTotal extends javax.swing.JFrame {
     private javax.swing.JToolBar jToolBar3;
     private javax.swing.JToolBar jToolBar4;
     private javax.swing.JToolBar jToolBar5;
+    private javax.swing.JToolBar jToolBar6;
+    private javax.swing.JToolBar jToolBar7;
     private es.timmp.componets.JTableArrayList jtaAtipicas;
     private javax.swing.JPanel pnlConf;
     private javax.swing.JTextField txCP;

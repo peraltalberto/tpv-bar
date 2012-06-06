@@ -4,7 +4,13 @@
  */
 package es.tpv_bar;
 
+import com.jgoodies.looks.plastic.Plastic3DLookAndFeel;
+import com.jgoodies.looks.plastic.PlasticLookAndFeel;
+import com.jgoodies.looks.plastic.theme.DesertBlue;
+import com.jgoodies.looks.plastic.theme.ExperienceBlue;
+import com.jgoodies.looks.plastic.theme.LightGray;
 import es.tpv_bar.persistencia.modelos.ConfiguracionModel;
+import javax.swing.UIManager;
 
 /**
  *
@@ -16,10 +22,13 @@ public class TPV_Bar {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        try{ 
-javax.swing.UIManager.setLookAndFeel( 
-javax.swing.UIManager.getSystemLookAndFeelClassName()); 
-}catch ( Exception e ) { } 
+       PlasticLookAndFeel.setPlasticTheme(new LightGray());
+   try {
+      UIManager.setLookAndFeel(new Plastic3DLookAndFeel());
+         UIManager.put("ScrollBar.is3DEnabled", Boolean.FALSE);
+   
+   
+   } catch (Exception e) {}
         new VentanaPrincipal().setVisible(true);
     }
     
