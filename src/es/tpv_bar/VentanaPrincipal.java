@@ -7,6 +7,7 @@ package es.tpv_bar;
 import com.jgoodies.looks.HeaderStyle;
 import com.jgoodies.looks.Options;
 import es.tpv_bar.gui.administracion.*;
+import es.tpv_bar.gui.administracion.dialogs.HistoricoTickets;
 import es.tpv_bar.gui.ventanas.MovimientoCaja;
 import es.tpv_bar.gui.ventanas.VentanaAcceso;
 import es.tpv_bar.gui.ventanas.VentanaArqueoCaja;
@@ -58,6 +59,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -115,6 +117,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jMenuBar1.setBackground(javax.swing.UIManager.getDefaults().getColor("MenuBar.background"));
+
         jMenu1.setText("Archivo");
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.ALT_MASK));
@@ -149,6 +153,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Informes");
+
+        jMenuItem4.setText("Historico Tickets");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem4);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Ayuda");
@@ -244,6 +257,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
        jButton6ActionPerformed(evt);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+       new HistoricoTickets(this,true).setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -299,6 +316,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     // End of variables declaration//GEN-END:variables

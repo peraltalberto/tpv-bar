@@ -4,7 +4,16 @@
  */
 package es.tpv_bar.gui.administracion.dialogs;
 
+import com.jgoodies.looks.HeaderStyle;
+import com.jgoodies.looks.Options;
+import es.tpv_bar.gui.GuiTables;
 import es.tpv_bar.persistencia.modelos.CabezeraModel;
+import es.tpv_bar.persistencia.modelos.ConfiguracionModel;
+import es.tpv_bar.persistencia.pojos.Cabezera;
+import es.tpv_bar.persistencia.pojos.Configuracion;
+import es.tpv_bar.persistencia.pojos.Linea;
+import es.tpv_bar.prints.Print;
+import java.util.Iterator;
 
 /**
  *
@@ -18,10 +27,12 @@ public class HistoricoTickets extends javax.swing.JDialog {
     public HistoricoTickets(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+         this.setLocationRelativeTo(parent);
         String[] cab = {"Codigo", "Fecha", "Total"};
         String[] props = { "cod", "fecha", "total"};
         this.jTableArrayList1.setCaps(props, cab);
         this.jTableArrayList1.setList(cm.getLista());
+        this.jTableArrayList1.setDefaultRenderer(Object.class, new GuiTables());
     }
     CabezeraModel cm = new CabezeraModel();
     /**
@@ -35,6 +46,8 @@ public class HistoricoTickets extends javax.swing.JDialog {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableArrayList1 = new es.timmp.componets.JTableArrayList();
+        jToolBar1 = new javax.swing.JToolBar();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -51,21 +64,51 @@ public class HistoricoTickets extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTableArrayList1);
 
+        jToolBar1.setRollover(true);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/1335695322_java_src.png"))); // NOI18N
+        jButton1.setText("Imprimir");
+        jButton1.setFocusable(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 852, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 59, Short.MAX_VALUE)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jToolBar1.putClientProperty(Options.HEADER_STYLE_KEY, HeaderStyle.BOTH);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+Print impresora = new Print();
+ConfiguracionModel conf = new ConfiguracionModel();
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        impresora.setImpresora(((Configuracion) conf.busquedaDato(1)).getValue());
+        impresora.setEtiqueta("C:\\tpv\\jaspers\\ticket.jasper");
+        Cabezera ca = (Cabezera)this.jTableArrayList1.getSelectElement();
+        impresora.setCabezera(ca);
+        Iterator it = ca.getLineas().iterator();
+        impresora.setUbi(((Linea)it.next()).getUbicacion());
+        impresora.startPrint();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -117,7 +160,9 @@ public class HistoricoTickets extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private es.timmp.componets.JTableArrayList jTableArrayList1;
+    private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 }

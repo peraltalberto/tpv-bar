@@ -43,8 +43,8 @@ public class AdministracionTotal extends javax.swing.JFrame {
         /*
          * Pestaña productos
          */
-        String[] cab = {"Categoria", "Precio", "Nombre", "Codigo","Visible"};
-        String[] props = { "categoria", "precio", "nombre", "idProductos","activo"};
+        String[] cab = {"Codigo","Nombre","Categoria", "Precio",  "Visible"};
+        String[] props = {"idProductos","nombre",  "categoria", "precio", "activo"};
         this.jTableArrayList1.setCaps(props, cab);
         this.jTableArrayList1.setList(productos.getLista());
         
@@ -58,28 +58,28 @@ public class AdministracionTotal extends javax.swing.JFrame {
         /*
          * Pestaña categorias
          */
-        String[] cabCat = {"Visible", "Nombre", "Codigo"};
-        String[] propsCat = {"activo", "nombre", "idCategoria"};
+        String[] cabCat = { "Codigo", "Nombre","Visible"};
+        String[] propsCat = { "idCategoria","nombre", "activo"};
         this.jTableArrayList2.setCaps(propsCat, cabCat);
         this.jTableArrayList2.setList(categorias.getLista());
-
+         this.jTableArrayList2.setDefaultRenderer(Object.class, new GuiTables());
         /*
          * Pestaña camareros
          */
-        String[] cabCam = {"Visible","Telefono", "Apellidos",  "Nombre", "Codigo"};
-        String[] propsCam = {"activo","telefono", "apellidos",  "nombre", "idCamarero"};
+        String[] cabCam = {"Codigo","Nombre", "Apellidos",  "Telefono", "Visible"};
+        String[] propsCam = {"idCamarero", "nombre","apellidos","telefono", "activo"  };
         this.jTableArrayList3.setCaps(propsCam, cabCam);
         this.jTableArrayList3.setList(camareros.getLista());
-
+         this.jTableArrayList3.setDefaultRenderer(Object.class, new GuiTables());
         
         /**
          * pestaña atipicas
          */
-        String[] cabat = {"Precio", "Ubicacion",  "Producto", "Codigo"};
-        String[] propsat = {"precio", "bloqueubicacion",  "productos", "id"};
+        String[] cabat = {"Codigo", "Ubicacion",  "Producto","Precio" };
+        String[] propsat = {"id", "bloqueubicacion",  "productos", "precio"};
         this.jtaAtipicas.setCaps(propsat, cabat);
         this.jtaAtipicas.setList(atipicas.getLista());
-
+         this.jtaAtipicas.setDefaultRenderer(Object.class, new GuiTables());
         /*
          * Pestaña Configuracion global
          */
