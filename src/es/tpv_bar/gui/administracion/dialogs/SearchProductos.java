@@ -77,6 +77,11 @@ public class SearchProductos extends javax.swing.JDialog {
                 jTextField1CaretUpdate(evt);
             }
         });
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,6 +117,10 @@ public class SearchProductos extends javax.swing.JDialog {
         this.selectProduct =(Productos) this.jTableArrayList1.getSelectElement();
         this.dispose();
     }//GEN-LAST:event_jTableArrayList1MouseClicked
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments

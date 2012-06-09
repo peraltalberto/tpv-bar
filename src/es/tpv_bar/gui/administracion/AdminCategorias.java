@@ -231,4 +231,5 @@ public CategoriaModel getCategoria() {
     public void setCamarero(CategoriaModel categoria) {
         this.categoria = categoria;
     }
+    
 }

@@ -67,6 +67,11 @@ public class EditAtipica extends javax.swing.JDialog {
                 jComboBox1ItemStateChanged(evt);
             }
         });
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Ubicación:");
 
@@ -180,6 +185,10 @@ public class EditAtipica extends javax.swing.JDialog {
         am.saveDato(this.atipica);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments

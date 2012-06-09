@@ -21,6 +21,7 @@ public class VentanaAcceso extends javax.swing.JDialog {
     public VentanaAcceso(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         this.setLocationRelativeTo(parent);
+        this.setLocation(this.getX()-100, this.getY()-250);
         initComponents();
         this.jPanel1.add(new TecladoNumerico(this.jPasswordField1));
     }
@@ -48,6 +49,11 @@ public class VentanaAcceso extends javax.swing.JDialog {
         jPasswordField1.setToolTipText("");
 
         jLabel1.setText("Control de acceso, Teclee su numero secreto");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -124,6 +130,14 @@ public class VentanaAcceso extends javax.swing.JDialog {
        this.dispose();
        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        if(evt.getClickCount()==3){
+                   Configuracion pass =  (Configuracion) conf.busquedaDato("clave", "pass");
+
+            JOptionPane.showMessageDialog(this, "Su contraseña de acceso es: "+pass.getValue());
+        }
+    }//GEN-LAST:event_jLabel1MouseClicked
 
    public boolean getAcceso(){
        this.setVisible(true);

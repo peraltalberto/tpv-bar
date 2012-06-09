@@ -22,7 +22,7 @@ public class EditProducto extends javax.swing.JDialog {
      */
     public EditProducto(java.awt.Frame parent, boolean modal) {
         
-        this(parent, modal,new Productos());
+        this(parent, modal,new Productos()); 
         
     }
 
