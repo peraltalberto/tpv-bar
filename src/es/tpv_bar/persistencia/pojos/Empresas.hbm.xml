@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 09-jun-2012 17:46:58 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="es.tpv_bar.persistencia.pojos.Empresas" table="empresas" catalog="mydb">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="Nombre" length="45" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="Direccion" length="45" />
+        </property>
+        <property name="cif" type="string">
+            <column name="Cif" length="45" />
+        </property>
+        <property name="telefono" type="java.lang.Integer">
+            <column name="Telefono" />
+        </property>
+        <property name="mail" type="string">
+            <column name="Mail" length="45" />
+        </property>
+        <property name="fax" type="java.lang.Integer">
+            <column name="Fax" />
+        </property>
+        <property name="contadorCod" type="java.lang.Integer">
+            <column name="ContadorCod" />
+        </property>
+        <set name="camareros" inverse="true">
+            <key>
+                <column name="IdEmpresa" not-null="true" />
+            </key>
+            <one-to-many class="es.tpv_bar.persistencia.pojos.Camarero" />
+        </set>
+    </class>
+</hibernate-mapping>

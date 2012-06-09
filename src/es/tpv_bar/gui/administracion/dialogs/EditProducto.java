@@ -6,7 +6,10 @@ package es.tpv_bar.gui.administracion.dialogs;
 
 import es.tpv_bar.persistencia.modelos.ProductosModel;
 import es.tpv_bar.persistencia.pojos.Productos;
+import java.awt.Color;
 import java.awt.Frame;
+import javax.swing.JColorChooser;
+
 
 /**
  *
@@ -38,6 +41,9 @@ public class EditProducto extends javax.swing.JDialog {
         this.jLabel5.setText(producto.getCategoria().getNombre());
         this.jTextField4.setText(producto.getCategoria().getIdCategoria().toString());
         this.jTextField3.setText(producto.getTextoBt());
+        try{
+        this.jButton4.setBackground(new Color(producto.getColor()));
+        }catch(NullPointerException e){}
         }catch(NullPointerException e){
         }
     }
@@ -63,6 +69,7 @@ public class EditProducto extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jCheckBox1 = new javax.swing.JCheckBox();
+        jButton4 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
@@ -176,19 +183,27 @@ public class EditProducto extends javax.swing.JDialog {
             }
         });
 
+        jButton4.setText("Color Boton");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(jCheckBox1)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(67, 67, 67))
         );
         jPanel2Layout.setVerticalGroup(
@@ -199,7 +214,9 @@ public class EditProducto extends javax.swing.JDialog {
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                .addComponent(jCheckBox1)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckBox1)
+                    .addComponent(jButton4))
                 .addContainerGap())
         );
 
@@ -287,9 +304,18 @@ public class EditProducto extends javax.swing.JDialog {
        this.producto.setPrecio(Double.parseDouble(
                this.jTextField2.getText().replace(",", ".")));
        this.producto.setActivo(this.jCheckBox1.isSelected());
+       this.producto.setColor(this.jButton4.getBackground().getRGB());
        this.productos.saveDato(this.producto);
        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        
+       this.jButton4.setBackground( JColorChooser.showDialog(this,
+                                 "Choose Background Color",
+                                this.jButton4.getBackground()));
+        this.jButton4.updateUI();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -344,6 +370,7 @@ public class EditProducto extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

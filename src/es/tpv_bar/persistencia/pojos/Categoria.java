@@ -1,5 +1,5 @@
 package es.tpv_bar.persistencia.pojos;
-// Generated 14-may-2012 18:52:04 by Hibernate Tools 3.2.1.GA
+// Generated 09-jun-2012 17:46:57 by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -27,6 +27,7 @@ public class Categoria  implements java.io.Serializable {
      private Integer idCategoria;
      private String nombre;
      private boolean activo;
+     private Integer color;
      private Set<Productos> productoses = new HashSet<Productos>(0);
 
     public Categoria() {
@@ -36,9 +37,10 @@ public class Categoria  implements java.io.Serializable {
     public Categoria(boolean activo) {
         this.activo = activo;
     }
-    public Categoria(String nombre, boolean activo, Set<Productos> productoses) {
+    public Categoria(String nombre, boolean activo, Integer color, Set<Productos> productoses) {
        this.nombre = nombre;
        this.activo = activo;
+       this.color = color;
        this.productoses = productoses;
     }
    
@@ -73,6 +75,15 @@ public class Categoria  implements java.io.Serializable {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
+    
+    @Column(name="Color")
+    public Integer getColor() {
+        return this.color;
+    }
+    
+    public void setColor(Integer color) {
+        this.color = color;
+    }
 @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="categoria")
     public Set<Productos> getProductoses() {
         return this.productoses;
@@ -86,7 +97,6 @@ public class Categoria  implements java.io.Serializable {
     public String toString() {
         return  nombre ;
     }
-
 
 
 

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-may-2012 18:52:10 by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 09-jun-2012 17:46:58 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
     <class name="es.tpv_bar.persistencia.pojos.Configuracion" table="configuracion" catalog="mydb">
         <id name="id" type="int">

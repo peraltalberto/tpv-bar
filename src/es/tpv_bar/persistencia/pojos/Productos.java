@@ -1,5 +1,5 @@
 package es.tpv_bar.persistencia.pojos;
-// Generated 14-may-2012 18:52:04 by Hibernate Tools 3.2.1.GA
+// Generated 09-jun-2012 17:46:57 by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -30,8 +30,9 @@ public class Productos  implements java.io.Serializable {
      private Categoria categoria;
      private String nombre;
      private Double precio;
-     private boolean activo;
      private String textoBt;
+     private boolean activo;
+     private Integer color;
      private Set<Linea> lineas = new HashSet<Linea>(0);
      private Set<Atipicas> atipicases = new HashSet<Atipicas>(0);
 
@@ -39,17 +40,18 @@ public class Productos  implements java.io.Serializable {
     }
 
 	
-    public Productos(Categoria categoria, boolean activo, String textoBt) {
+    public Productos(Categoria categoria, String textoBt, boolean activo) {
         this.categoria = categoria;
-        this.activo = activo;
         this.textoBt = textoBt;
+        this.activo = activo;
     }
-    public Productos(Categoria categoria, String nombre, Double precio, boolean activo, String textoBt, Set<Linea> lineas, Set<Atipicas> atipicases) {
+    public Productos(Categoria categoria, String nombre, Double precio, String textoBt, boolean activo, Integer color, Set<Linea> lineas, Set<Atipicas> atipicases) {
        this.categoria = categoria;
        this.nombre = nombre;
        this.precio = precio;
-       this.activo = activo;
        this.textoBt = textoBt;
+       this.activo = activo;
+       this.color = color;
        this.lineas = lineas;
        this.atipicases = atipicases;
     }
@@ -92,6 +94,15 @@ public class Productos  implements java.io.Serializable {
         this.precio = precio;
     }
     
+    @Column(name="textoBT", nullable=false, length=45)
+    public String getTextoBt() {
+        return this.textoBt;
+    }
+    
+    public void setTextoBt(String textoBt) {
+        this.textoBt = textoBt;
+    }
+    
     @Column(name="Activo", nullable=false)
     public boolean isActivo() {
         return this.activo;
@@ -103,13 +114,13 @@ public class Productos  implements java.io.Serializable {
         this.activo = activo;
     }
     
-    @Column(name="textoBT", nullable=false, length=45)
-    public String getTextoBt() {
-        return this.textoBt;
+    @Column(name="Color")
+    public Integer getColor() {
+        return this.color;
     }
     
-    public void setTextoBt(String textoBt) {
-        this.textoBt = textoBt;
+    public void setColor(Integer color) {
+        this.color = color;
     }
 @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="productos")
     public Set<Linea> getLineas() {

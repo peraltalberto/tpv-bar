@@ -19,7 +19,7 @@
     <mapping resource="es/tpv_bar/persistencia/pojos/Caja.hbm.xml"/>
     <mapping resource="es/tpv_bar/persistencia/pojos/Bloqueubicacion.hbm.xml"/>
     <mapping resource="es/tpv_bar/persistencia/pojos/Arqueos.hbm.xml"/>
-   
     <mapping resource="es/tpv_bar/persistencia/pojos/Atipicas.hbm.xml"/>
+    <mapping resource="es/tpv_bar/persistencia/pojos/Empresas.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

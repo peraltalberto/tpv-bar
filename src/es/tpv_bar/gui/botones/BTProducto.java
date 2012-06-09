@@ -5,6 +5,7 @@
 package es.tpv_bar.gui.botones;
 
 import es.tpv_bar.persistencia.pojos.Productos;
+import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JButton;
 
@@ -21,6 +22,9 @@ public class BTProducto extends JButton {
    public BTProducto(Productos producto){
        this.producto = producto;
        this.setText(this.producto.getTextoBt());
+       try{
+       this.setBackground(new Color(producto.getColor()));
+       }catch(NullPointerException e){}
       this.setFont(new java.awt.Font("Arial", 1, 16));
    }
    

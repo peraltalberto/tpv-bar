@@ -1,5 +1,5 @@
 package es.tpv_bar.persistencia.pojos;
-// Generated 14-may-2012 18:52:04 by Hibernate Tools 3.2.1.GA
+// Generated 09-jun-2012 17:46:57 by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -11,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,6 +27,7 @@ public class Camarero  implements java.io.Serializable {
 
 
      private Integer idCamarero;
+     private Empresas empresas;
      private String nombre;
      private String apellidos;
      private Integer telefono;
@@ -36,10 +39,12 @@ public class Camarero  implements java.io.Serializable {
     }
 
 	
-    public Camarero(boolean activo) {
+    public Camarero(Empresas empresas, boolean activo) {
+        this.empresas = empresas;
         this.activo = activo;
     }
-    public Camarero(String nombre, String apellidos, Integer telefono, boolean activo, Set<Cabezera> cabezeras, Set<Caja> cajas) {
+    public Camarero(Empresas empresas, String nombre, String apellidos, Integer telefono, boolean activo, Set<Cabezera> cabezeras, Set<Caja> cajas) {
+       this.empresas = empresas;
        this.nombre = nombre;
        this.apellidos = apellidos;
        this.telefono = telefono;
@@ -57,6 +62,15 @@ public class Camarero  implements java.io.Serializable {
     
     public void setIdCamarero(Integer idCamarero) {
         this.idCamarero = idCamarero;
+    }
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="IdEmpresa", nullable=false)
+    public Empresas getEmpresas() {
+        return this.empresas;
+    }
+    
+    public void setEmpresas(Empresas empresas) {
+        this.empresas = empresas;
     }
     
     @Column(name="Nombre", length=45)
@@ -112,6 +126,7 @@ public class Camarero  implements java.io.Serializable {
     public void setCajas(Set<Caja> cajas) {
         this.cajas = cajas;
     }
+
 
 
 
