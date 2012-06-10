@@ -13,6 +13,9 @@ import es.tpv_bar.persistencia.pojos.Cabezera;
 import es.tpv_bar.persistencia.pojos.Configuracion;
 import es.tpv_bar.persistencia.pojos.Linea;
 import es.tpv_bar.prints.Print;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 
 /**
@@ -27,11 +30,13 @@ public class HistoricoTickets extends javax.swing.JDialog {
     public HistoricoTickets(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.jXDatePicker1.setDate(new Date());
+        
          this.setLocationRelativeTo(parent);
         String[] cab = {"Codigo", "Fecha", "Total"};
         String[] props = { "cod", "fecha", "total"};
         this.jTableArrayList1.setCaps(props, cab);
-        this.jTableArrayList1.setList(cm.getLista());
+        this.jTableArrayList1.setList(cm.getDiaTickets(new Date()));
         this.jTableArrayList1.setDefaultRenderer(Object.class, new GuiTables());
     }
     CabezeraModel cm = new CabezeraModel();
@@ -48,6 +53,10 @@ public class HistoricoTickets extends javax.swing.JDialog {
         jTableArrayList1 = new es.timmp.componets.JTableArrayList();
         jToolBar1 = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JToolBar.Separator();
+        jButton2 = new javax.swing.JButton();
+        jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -64,12 +73,13 @@ public class HistoricoTickets extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTableArrayList1);
 
-        jToolBar1.setRollover(true);
+        jToolBar1.setFloatable(false);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/1335695322_java_src.png"))); // NOI18N
-        jButton1.setText("Imprimir");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/1339318065_printer_blue.png"))); // NOI18N
+        jButton1.setToolTipText("");
+        jButton1.setBorder(null);
         jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,6 +87,38 @@ public class HistoricoTickets extends javax.swing.JDialog {
             }
         });
         jToolBar1.add(jButton1);
+
+        jSeparator1.setBackground(new java.awt.Color(51, 51, 255));
+        jSeparator1.setRequestFocusEnabled(false);
+        jSeparator1.setSeparatorSize(new java.awt.Dimension(10, 50));
+        jToolBar1.add(jSeparator1);
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/1339317930_navigation-left-frame_blue.png"))); // NOI18N
+        jButton2.setBorder(null);
+        jButton2.setFocusable(false);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton2);
+
+        jXDatePicker1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jToolBar1.add(jXDatePicker1);
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/1339317845_navigation-right-frame_blue.png"))); // NOI18N
+        jButton3.setBorder(null);
+        jButton3.setFocusable(false);
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,9 +130,9 @@ public class HistoricoTickets extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE))
         );
 
         jToolBar1.putClientProperty(Options.HEADER_STYLE_KEY, HeaderStyle.BOTH);
@@ -109,6 +151,24 @@ ConfiguracionModel conf = new ConfiguracionModel();
         impresora.setUbi(((Linea)it.next()).getUbicacion());
         impresora.startPrint();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+      Calendar cal  = GregorianCalendar.getInstance();
+      cal.setTime(this.jXDatePicker1.getDate());
+      cal.add(Calendar.DAY_OF_MONTH, -1);
+      this.jXDatePicker1.setDate(cal.getTime());
+      this.jTableArrayList1.setList(cm.getDiaTickets(cal.getTime()));
+      this.jTableArrayList1.updateUI();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        Calendar cal  = GregorianCalendar.getInstance();
+      cal.setTime(this.jXDatePicker1.getDate());
+      cal.add(Calendar.DAY_OF_MONTH, 1);
+      this.jXDatePicker1.setDate(cal.getTime());
+      this.jTableArrayList1.setList(cm.getDiaTickets(cal.getTime()));
+      this.jTableArrayList1.updateUI();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,8 +221,12 @@ ConfiguracionModel conf = new ConfiguracionModel();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JToolBar.Separator jSeparator1;
     private es.timmp.componets.JTableArrayList jTableArrayList1;
     private javax.swing.JToolBar jToolBar1;
+    private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
     // End of variables declaration//GEN-END:variables
 }
