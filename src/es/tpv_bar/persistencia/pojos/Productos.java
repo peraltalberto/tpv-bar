@@ -1,5 +1,5 @@
 package es.tpv_bar.persistencia.pojos;
-// Generated 09-jun-2012 17:46:57 by Hibernate Tools 3.2.1.GA
+// Generated 19-sep-2016 11:23:55 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -21,7 +21,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="productos"
-    ,catalog="mydb"
 )
 public class Productos  implements java.io.Serializable {
 
@@ -33,6 +32,8 @@ public class Productos  implements java.io.Serializable {
      private String textoBt;
      private boolean activo;
      private Integer color;
+     private Integer txtImg;
+     private String pathImg;
      private Set<Linea> lineas = new HashSet<Linea>(0);
      private Set<Atipicas> atipicases = new HashSet<Atipicas>(0);
 
@@ -57,7 +58,7 @@ public class Productos  implements java.io.Serializable {
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
-    
+
     @Column(name="IdProductos", unique=true, nullable=false)
     public Integer getIdProductos() {
         return this.idProductos;
@@ -66,6 +67,7 @@ public class Productos  implements java.io.Serializable {
     public void setIdProductos(Integer idProductos) {
         this.idProductos = idProductos;
     }
+
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="IdCategoria", nullable=false)
     public Categoria getCategoria() {
@@ -75,6 +77,7 @@ public class Productos  implements java.io.Serializable {
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
+
     
     @Column(name="Nombre", length=45)
     public String getNombre() {
@@ -84,6 +87,7 @@ public class Productos  implements java.io.Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
     
     @Column(name="Precio", precision=22, scale=0)
     public Double getPrecio() {
@@ -93,6 +97,7 @@ public class Productos  implements java.io.Serializable {
     public void setPrecio(Double precio) {
         this.precio = precio;
     }
+
     
     @Column(name="textoBT", nullable=false, length=45)
     public String getTextoBt() {
@@ -102,6 +107,7 @@ public class Productos  implements java.io.Serializable {
     public void setTextoBt(String textoBt) {
         this.textoBt = textoBt;
     }
+
     
     @Column(name="Activo", nullable=false)
     public boolean isActivo() {
@@ -113,6 +119,7 @@ public class Productos  implements java.io.Serializable {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
+
     
     @Column(name="Color")
     public Integer getColor() {
@@ -122,7 +129,24 @@ public class Productos  implements java.io.Serializable {
     public void setColor(Integer color) {
         this.color = color;
     }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="productos")
+    @Column(name="txtImg", nullable=false)
+    public Integer getTxtImg() {
+        return txtImg;
+    }
+
+    public void setTxtImg(Integer txtImg) {
+        this.txtImg = txtImg;
+    }
+    @Column(name="pathImg",nullable=false, length=250)
+    public String getPathImg() {
+        return pathImg;
+    }
+
+    public void setPathImg(String pathImg) {
+        this.pathImg = pathImg;
+    }
+
+@OneToMany(fetch=FetchType.EAGER, mappedBy="productos")
     public Set<Linea> getLineas() {
         return this.lineas;
     }
@@ -130,7 +154,8 @@ public class Productos  implements java.io.Serializable {
     public void setLineas(Set<Linea> lineas) {
         this.lineas = lineas;
     }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="productos")
+
+@OneToMany(fetch=FetchType.EAGER, mappedBy="productos")
     public Set<Atipicas> getAtipicases() {
         return this.atipicases;
     }
@@ -143,6 +168,8 @@ public class Productos  implements java.io.Serializable {
     public String toString() {
         return  nombre ;
     }
+
+
 
 }
 

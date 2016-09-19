@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 09-jun-2012 17:46:58 by Hibernate Tools 3.2.1.GA -->
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-sep-2016 11:23:57 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="es.tpv_bar.persistencia.pojos.Productos" table="productos" >
+    <class name="es.tpv_bar.persistencia.pojos.Productos" table="productos">
         <id name="idProductos" type="java.lang.Integer">
             <column name="IdProductos" />
-            <generator class="identity" />
+            <generator class="identity"></generator>
         </id>
         <many-to-one name="categoria" class="es.tpv_bar.persistencia.pojos.Categoria" fetch="select">
             <column name="IdCategoria" not-null="true" />
@@ -26,13 +26,19 @@
         <property name="color" type="java.lang.Integer">
             <column name="Color" />
         </property>
-        <set name="lineas" inverse="true">
+        <property name="txtImg" type="java.lang.Integer">
+            <column name="txtImg" />
+        </property>
+        <property name="pathImg" type="java.lang.String">
+            <column name="pathImg" length="250" not-null="true" />
+        </property>
+        <set name="lineas" table="linea" inverse="true" lazy="true">
             <key>
                 <column name="IdProductos" not-null="true" />
             </key>
             <one-to-many class="es.tpv_bar.persistencia.pojos.Linea" />
         </set>
-        <set name="atipicases" inverse="true">
+        <set name="atipicases" table="atipicas" inverse="true" lazy="true">
             <key>
                 <column name="productos" not-null="true" />
             </key>

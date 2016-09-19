@@ -1,5 +1,5 @@
 package es.tpv_bar.persistencia.pojos;
-// Generated 09-jun-2012 17:46:57 by Hibernate Tools 3.2.1.GA
+// Generated 19-sep-2016 11:23:55 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -12,7 +12,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="configuracion"
-    ,catalog="mydb"
 )
 public class Configuracion  implements java.io.Serializable {
 
@@ -35,8 +34,9 @@ public class Configuracion  implements java.io.Serializable {
     }
    
      @Id 
+
     
-    @Column(name="id", unique=true, nullable=false)
+    @Column(name="id", nullable=false)
     public int getId() {
         return this.id;
     }
@@ -44,6 +44,7 @@ public class Configuracion  implements java.io.Serializable {
     public void setId(int id) {
         this.id = id;
     }
+
     
     @Column(name="clave", length=45)
     public String getClave() {
@@ -53,6 +54,7 @@ public class Configuracion  implements java.io.Serializable {
     public void setClave(String clave) {
         this.clave = clave;
     }
+
     
     @Column(name="value", length=45)
     public String getValue() {

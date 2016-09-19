@@ -1,10 +1,9 @@
 package es.tpv_bar.persistencia.pojos;
-// Generated 09-jun-2012 17:46:57 by Hibernate Tools 3.2.1.GA
+// Generated 19-sep-2016 11:23:55 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,7 +18,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="bloqueubicacion"
-    ,catalog="mydb"
 )
 public class Bloqueubicacion  implements java.io.Serializable {
 
@@ -45,8 +43,9 @@ public class Bloqueubicacion  implements java.io.Serializable {
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
+
     
-    @Column(name="id", unique=true, nullable=false)
+    @Column(name="id", nullable=false)
     public Integer getId() {
         return this.id;
     }
@@ -54,6 +53,7 @@ public class Bloqueubicacion  implements java.io.Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
+
     
     @Column(name="Nombre", nullable=false, length=45)
     public String getNombre() {
@@ -63,6 +63,7 @@ public class Bloqueubicacion  implements java.io.Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
     
     @Column(name="Descripcion", length=100)
     public String getDescripcion() {
@@ -72,7 +73,8 @@ public class Bloqueubicacion  implements java.io.Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="bloqueubicacion")
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="bloqueubicacion")
     public Set<Atipicas> getAtipicases() {
         return this.atipicases;
     }
@@ -80,7 +82,8 @@ public class Bloqueubicacion  implements java.io.Serializable {
     public void setAtipicases(Set<Atipicas> atipicases) {
         this.atipicases = atipicases;
     }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="bloqueubicacion")
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="bloqueubicacion")
     public Set<Ubicacion> getUbicacions() {
         return this.ubicacions;
     }
@@ -94,6 +97,7 @@ public class Bloqueubicacion  implements java.io.Serializable {
     public String toString() {
         return  nombre ;
     }
+
 
 }
 

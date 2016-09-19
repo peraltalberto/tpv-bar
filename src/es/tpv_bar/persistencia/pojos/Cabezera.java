@@ -1,11 +1,10 @@
 package es.tpv_bar.persistencia.pojos;
-// Generated 09-jun-2012 17:46:57 by Hibernate Tools 3.2.1.GA
+// Generated 19-sep-2016 11:23:55 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,7 +23,6 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="cabezera"
-    ,catalog="mydb"
 )
 public class Cabezera  implements java.io.Serializable {
 
@@ -57,8 +55,9 @@ public class Cabezera  implements java.io.Serializable {
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
+
     
-    @Column(name="IdCabezera", unique=true, nullable=false)
+    @Column(name="IdCabezera", nullable=false)
     public Integer getIdCabezera() {
         return this.idCabezera;
     }
@@ -66,6 +65,7 @@ public class Cabezera  implements java.io.Serializable {
     public void setIdCabezera(Integer idCabezera) {
         this.idCabezera = idCabezera;
     }
+
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="IdCamarero", nullable=false)
     public Camarero getCamarero() {
@@ -75,6 +75,7 @@ public class Cabezera  implements java.io.Serializable {
     public void setCamarero(Camarero camarero) {
         this.camarero = camarero;
     }
+
     
     @Column(name="Total", precision=22, scale=0)
     public Double getTotal() {
@@ -84,6 +85,7 @@ public class Cabezera  implements java.io.Serializable {
     public void setTotal(Double total) {
         this.total = total;
     }
+
     
     @Column(name="Estado")
     public Integer getEstado() {
@@ -93,6 +95,7 @@ public class Cabezera  implements java.io.Serializable {
     public void setEstado(Integer estado) {
         this.estado = estado;
     }
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="Fecha", length=19)
     public Date getFecha() {
@@ -102,6 +105,7 @@ public class Cabezera  implements java.io.Serializable {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
     
     @Column(name="cod", nullable=false)
     public int getCod() {
@@ -111,7 +115,8 @@ public class Cabezera  implements java.io.Serializable {
     public void setCod(int cod) {
         this.cod = cod;
     }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="cabezera")
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="cabezera")
     public Set<Caja> getCajas() {
         return this.cajas;
     }
@@ -119,7 +124,8 @@ public class Cabezera  implements java.io.Serializable {
     public void setCajas(Set<Caja> cajas) {
         this.cajas = cajas;
     }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="cabezera")
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="cabezera")
     public Set<Linea> getLineas() {
         return this.lineas;
     }

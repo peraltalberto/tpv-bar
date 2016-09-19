@@ -1,10 +1,9 @@
 package es.tpv_bar.persistencia.pojos;
-// Generated 09-jun-2012 17:46:57 by Hibernate Tools 3.2.1.GA
+// Generated 19-sep-2016 11:23:55 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,7 +18,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="categoria"
-    ,catalog="mydb"
 )
 public class Categoria  implements java.io.Serializable {
 
@@ -45,8 +43,9 @@ public class Categoria  implements java.io.Serializable {
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
+
     
-    @Column(name="IdCategoria", unique=true, nullable=false)
+    @Column(name="IdCategoria", nullable=false)
     public Integer getIdCategoria() {
         return this.idCategoria;
     }
@@ -54,6 +53,7 @@ public class Categoria  implements java.io.Serializable {
     public void setIdCategoria(Integer idCategoria) {
         this.idCategoria = idCategoria;
     }
+
     
     @Column(name="Nombre", length=45)
     public String getNombre() {
@@ -63,6 +63,7 @@ public class Categoria  implements java.io.Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
     
     @Column(name="Activo", nullable=false)
     public boolean isActivo() {
@@ -75,6 +76,7 @@ public class Categoria  implements java.io.Serializable {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
+
     
     @Column(name="Color")
     public Integer getColor() {
@@ -84,7 +86,8 @@ public class Categoria  implements java.io.Serializable {
     public void setColor(Integer color) {
         this.color = color;
     }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="categoria")
+
+@OneToMany(fetch=FetchType.EAGER, mappedBy="categoria")
     public Set<Productos> getProductoses() {
         return this.productoses;
     }
@@ -95,8 +98,9 @@ public class Categoria  implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return  nombre ;
+        return this.getNombre(); //To change body of generated methods, choose Tools | Templates.
     }
+
 
 
 

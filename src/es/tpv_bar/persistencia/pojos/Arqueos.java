@@ -1,5 +1,5 @@
 package es.tpv_bar.persistencia.pojos;
-// Generated 09-jun-2012 17:46:57 by Hibernate Tools 3.2.1.GA
+// Generated 19-sep-2016 11:23:55 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -20,7 +20,6 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="arqueos"
-    ,catalog="mydb"
 )
 public class Arqueos  implements java.io.Serializable {
 
@@ -40,8 +39,9 @@ public class Arqueos  implements java.io.Serializable {
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
+
     
-    @Column(name="idArqueo", unique=true, nullable=false)
+    @Column(name="idArqueo", nullable=false)
     public Integer getIdArqueo() {
         return this.idArqueo;
     }
@@ -49,6 +49,7 @@ public class Arqueos  implements java.io.Serializable {
     public void setIdArqueo(Integer idArqueo) {
         this.idArqueo = idArqueo;
     }
+
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="IdCaja", nullable=false)
     public Caja getCaja() {
@@ -58,6 +59,7 @@ public class Arqueos  implements java.io.Serializable {
     public void setCaja(Caja caja) {
         this.caja = caja;
     }
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="Fecha", nullable=false, length=19)
     public Date getFecha() {
@@ -67,6 +69,7 @@ public class Arqueos  implements java.io.Serializable {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
     
     @Column(name="Diferencia", nullable=false, precision=22, scale=0)
     public double getDiferencia() {

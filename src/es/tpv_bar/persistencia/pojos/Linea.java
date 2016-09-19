@@ -1,5 +1,5 @@
 package es.tpv_bar.persistencia.pojos;
-// Generated 09-jun-2012 17:46:57 by Hibernate Tools 3.2.1.GA
+// Generated 19-sep-2016 11:23:55 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -17,7 +17,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="linea"
-    ,catalog="mydb"
 )
 public class Linea  implements java.io.Serializable {
 
@@ -54,8 +53,9 @@ public class Linea  implements java.io.Serializable {
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
+
     
-    @Column(name="IdLinea", unique=true, nullable=false)
+    @Column(name="IdLinea", nullable=false)
     public Integer getIdLinea() {
         return this.idLinea;
     }
@@ -63,6 +63,7 @@ public class Linea  implements java.io.Serializable {
     public void setIdLinea(Integer idLinea) {
         this.idLinea = idLinea;
     }
+
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="IdProductos", nullable=false)
     public Productos getProductos() {
@@ -72,6 +73,7 @@ public class Linea  implements java.io.Serializable {
     public void setProductos(Productos productos) {
         this.productos = productos;
     }
+
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="IdCabezera")
     public Cabezera getCabezera() {
@@ -81,6 +83,7 @@ public class Linea  implements java.io.Serializable {
     public void setCabezera(Cabezera cabezera) {
         this.cabezera = cabezera;
     }
+
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="IdUbicacion", nullable=false)
     public Ubicacion getUbicacion() {
@@ -90,6 +93,7 @@ public class Linea  implements java.io.Serializable {
     public void setUbicacion(Ubicacion ubicacion) {
         this.ubicacion = ubicacion;
     }
+
     
     @Column(name="Precio", precision=22, scale=0)
     public Double getPrecio() {
@@ -99,6 +103,7 @@ public class Linea  implements java.io.Serializable {
     public void setPrecio(Double precio) {
         this.precio = precio;
     }
+
     
     @Column(name="catidad", precision=22, scale=0)
     public Double getCatidad() {
@@ -108,6 +113,7 @@ public class Linea  implements java.io.Serializable {
     public void setCatidad(Double catidad) {
         this.catidad = catidad;
     }
+
     
     @Column(name="Total", precision=22, scale=0)
     public Double getTotal() {
@@ -117,6 +123,7 @@ public class Linea  implements java.io.Serializable {
     public void setTotal(Double total) {
         this.total = total;
     }
+
     
     @Column(name="cobrado", nullable=false)
     public int getCobrado() {
@@ -126,6 +133,7 @@ public class Linea  implements java.io.Serializable {
     public void setCobrado(int cobrado) {
         this.cobrado = cobrado;
     }
+
     
     @Column(name="Invitacion", nullable=false)
     public boolean isInvitacion() {

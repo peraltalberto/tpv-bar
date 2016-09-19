@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 09-jun-2012 17:46:58 by Hibernate Tools 3.2.1.GA -->
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-sep-2016 11:23:57 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="es.tpv_bar.persistencia.pojos.Caja" table="caja" >
+    <class name="es.tpv_bar.persistencia.pojos.Caja" table="caja">
         <id name="idCaja" type="java.lang.Integer">
             <column name="idCaja" />
-            <generator class="identity" />
+            <generator class="identity"></generator>
         </id>
         <many-to-one name="camarero" class="es.tpv_bar.persistencia.pojos.Camarero" fetch="select">
             <column name="IdCamarero" not-null="true" />
@@ -29,7 +29,7 @@
         <property name="cajaPago" type="int">
             <column name="cajaPago" not-null="true" />
         </property>
-        <set name="arqueoses" inverse="true">
+        <set name="arqueoses" table="arqueos" inverse="true" lazy="true">
             <key>
                 <column name="IdCaja" not-null="true" />
             </key>

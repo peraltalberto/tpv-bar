@@ -1,11 +1,10 @@
 package es.tpv_bar.persistencia.pojos;
-// Generated 09-jun-2012 17:46:57 by Hibernate Tools 3.2.1.GA
+// Generated 19-sep-2016 11:23:55 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,7 +23,6 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="caja"
-    ,catalog="mydb"
 )
 public class Caja  implements java.io.Serializable {
 
@@ -62,8 +60,9 @@ public class Caja  implements java.io.Serializable {
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
+
     
-    @Column(name="idCaja", unique=true, nullable=false)
+    @Column(name="idCaja", nullable=false)
     public Integer getIdCaja() {
         return this.idCaja;
     }
@@ -71,6 +70,7 @@ public class Caja  implements java.io.Serializable {
     public void setIdCaja(Integer idCaja) {
         this.idCaja = idCaja;
     }
+
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="IdCamarero", nullable=false)
     public Camarero getCamarero() {
@@ -80,6 +80,7 @@ public class Caja  implements java.io.Serializable {
     public void setCamarero(Camarero camarero) {
         this.camarero = camarero;
     }
+
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="IdCabezera")
     public Cabezera getCabezera() {
@@ -89,6 +90,7 @@ public class Caja  implements java.io.Serializable {
     public void setCabezera(Cabezera cabezera) {
         this.cabezera = cabezera;
     }
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="fecha", nullable=false, length=19)
     public Date getFecha() {
@@ -98,6 +100,7 @@ public class Caja  implements java.io.Serializable {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
     
     @Column(name="movimiento", nullable=false, precision=22, scale=0)
     public double getMovimiento() {
@@ -107,6 +110,7 @@ public class Caja  implements java.io.Serializable {
     public void setMovimiento(double movimiento) {
         this.movimiento = movimiento;
     }
+
     
     @Column(name="saldo", nullable=false, precision=22, scale=0)
     public double getSaldo() {
@@ -116,6 +120,7 @@ public class Caja  implements java.io.Serializable {
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
+
     
     @Column(name="descripcion")
     public String getDescripcion() {
@@ -125,6 +130,7 @@ public class Caja  implements java.io.Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
     
     @Column(name="cajaPago", nullable=false)
     public int getCajaPago() {
@@ -134,7 +140,8 @@ public class Caja  implements java.io.Serializable {
     public void setCajaPago(int cajaPago) {
         this.cajaPago = cajaPago;
     }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="caja")
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="caja")
     public Set<Arqueos> getArqueoses() {
         return this.arqueoses;
     }

@@ -1,10 +1,9 @@
 package es.tpv_bar.persistencia.pojos;
-// Generated 09-jun-2012 17:46:57 by Hibernate Tools 3.2.1.GA
+// Generated 19-sep-2016 11:23:55 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,7 +20,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="ubicacion"
-    ,catalog="mydb"
 )
 public class Ubicacion  implements java.io.Serializable {
 
@@ -50,8 +48,9 @@ public class Ubicacion  implements java.io.Serializable {
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
+
     
-    @Column(name="IdUbicacion", unique=true, nullable=false)
+    @Column(name="IdUbicacion", nullable=false)
     public Integer getIdUbicacion() {
         return this.idUbicacion;
     }
@@ -59,6 +58,7 @@ public class Ubicacion  implements java.io.Serializable {
     public void setIdUbicacion(Integer idUbicacion) {
         this.idUbicacion = idUbicacion;
     }
+
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="IdBloqueUbicacion", nullable=false)
     public Bloqueubicacion getBloqueubicacion() {
@@ -68,6 +68,7 @@ public class Ubicacion  implements java.io.Serializable {
     public void setBloqueubicacion(Bloqueubicacion bloqueubicacion) {
         this.bloqueubicacion = bloqueubicacion;
     }
+
     
     @Column(name="Nombre", length=45)
     public String getNombre() {
@@ -77,6 +78,7 @@ public class Ubicacion  implements java.io.Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
     
     @Column(name="Descripcion", length=100)
     public String getDescripcion() {
@@ -86,19 +88,18 @@ public class Ubicacion  implements java.io.Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
     
     @Column(name="Activo", nullable=false)
     public boolean isActivo() {
-        return this.activo;
-    }
-    public boolean getActivo() {
         return this.activo;
     }
     
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="ubicacion")
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="ubicacion")
     public Set<Linea> getLineas() {
         return this.lineas;
     }

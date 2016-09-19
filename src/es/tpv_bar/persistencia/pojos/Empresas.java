@@ -1,10 +1,9 @@
 package es.tpv_bar.persistencia.pojos;
-// Generated 09-jun-2012 17:46:57 by Hibernate Tools 3.2.1.GA
+// Generated 19-sep-2016 11:23:55 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,7 +16,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="empresas"
-    ,catalog="mydb"
 )
 public class Empresas  implements java.io.Serializable {
 
@@ -52,8 +50,9 @@ public class Empresas  implements java.io.Serializable {
     }
    
      @Id 
+
     
-    @Column(name="id", unique=true, nullable=false)
+    @Column(name="id", nullable=false)
     public int getId() {
         return this.id;
     }
@@ -61,6 +60,7 @@ public class Empresas  implements java.io.Serializable {
     public void setId(int id) {
         this.id = id;
     }
+
     
     @Column(name="Nombre", length=45)
     public String getNombre() {
@@ -70,6 +70,7 @@ public class Empresas  implements java.io.Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
     
     @Column(name="Direccion", length=45)
     public String getDireccion() {
@@ -79,6 +80,7 @@ public class Empresas  implements java.io.Serializable {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+
     
     @Column(name="Cif", length=45)
     public String getCif() {
@@ -88,6 +90,7 @@ public class Empresas  implements java.io.Serializable {
     public void setCif(String cif) {
         this.cif = cif;
     }
+
     
     @Column(name="Telefono")
     public Integer getTelefono() {
@@ -97,6 +100,7 @@ public class Empresas  implements java.io.Serializable {
     public void setTelefono(Integer telefono) {
         this.telefono = telefono;
     }
+
     
     @Column(name="Mail", length=45)
     public String getMail() {
@@ -106,6 +110,7 @@ public class Empresas  implements java.io.Serializable {
     public void setMail(String mail) {
         this.mail = mail;
     }
+
     
     @Column(name="Fax")
     public Integer getFax() {
@@ -115,6 +120,7 @@ public class Empresas  implements java.io.Serializable {
     public void setFax(Integer fax) {
         this.fax = fax;
     }
+
     
     @Column(name="ContadorCod")
     public Integer getContadorCod() {
@@ -124,7 +130,8 @@ public class Empresas  implements java.io.Serializable {
     public void setContadorCod(Integer contadorCod) {
         this.contadorCod = contadorCod;
     }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="empresas")
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="empresas")
     public Set<Camarero> getCamareros() {
         return this.camareros;
     }

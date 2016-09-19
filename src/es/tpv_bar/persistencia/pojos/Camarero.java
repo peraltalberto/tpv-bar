@@ -1,10 +1,9 @@
 package es.tpv_bar.persistencia.pojos;
-// Generated 09-jun-2012 17:46:57 by Hibernate Tools 3.2.1.GA
+// Generated 19-sep-2016 11:23:55 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,7 +20,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="camarero"
-    ,catalog="mydb"
 )
 public class Camarero  implements java.io.Serializable {
 
@@ -54,8 +52,9 @@ public class Camarero  implements java.io.Serializable {
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
+
     
-    @Column(name="IdCamarero", unique=true, nullable=false)
+    @Column(name="IdCamarero", nullable=false)
     public Integer getIdCamarero() {
         return this.idCamarero;
     }
@@ -63,6 +62,7 @@ public class Camarero  implements java.io.Serializable {
     public void setIdCamarero(Integer idCamarero) {
         this.idCamarero = idCamarero;
     }
+
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="IdEmpresa", nullable=false)
     public Empresas getEmpresas() {
@@ -72,6 +72,7 @@ public class Camarero  implements java.io.Serializable {
     public void setEmpresas(Empresas empresas) {
         this.empresas = empresas;
     }
+
     
     @Column(name="Nombre", length=45)
     public String getNombre() {
@@ -81,6 +82,7 @@ public class Camarero  implements java.io.Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
     
     @Column(name="Apellidos", length=100)
     public String getApellidos() {
@@ -90,6 +92,7 @@ public class Camarero  implements java.io.Serializable {
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
     }
+
     
     @Column(name="Telefono")
     public Integer getTelefono() {
@@ -99,18 +102,18 @@ public class Camarero  implements java.io.Serializable {
     public void setTelefono(Integer telefono) {
         this.telefono = telefono;
     }
+
     
     @Column(name="Activo", nullable=false)
     public boolean isActivo() {
         return this.activo;
     }
-    public boolean getActivo() {
-        return this.activo;
-    }
+    
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="camarero")
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="camarero")
     public Set<Cabezera> getCabezeras() {
         return this.cabezeras;
     }
@@ -118,7 +121,8 @@ public class Camarero  implements java.io.Serializable {
     public void setCabezeras(Set<Cabezera> cabezeras) {
         this.cabezeras = cabezeras;
     }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="camarero")
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="camarero")
     public Set<Caja> getCajas() {
         return this.cajas;
     }
@@ -127,6 +131,10 @@ public class Camarero  implements java.io.Serializable {
         this.cajas = cajas;
     }
 
+    @Override
+    public String toString() {
+        return this.nombre; //To change body of generated methods, choose Tools | Templates.
+    }
 
 
 

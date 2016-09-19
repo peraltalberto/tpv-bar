@@ -29,7 +29,7 @@ public class GuiTables extends DefaultTableCellRenderer {
             int row,
             int column) {
         super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-        
+        try{
         this.setHorizontalAlignment(SwingConstants.CENTER);
         
         //System.out.println(value.getClass());
@@ -80,7 +80,9 @@ public class GuiTables extends DefaultTableCellRenderer {
             }
             
         }
-        
+        }catch(Exception e){
+        //    e.printStackTrace();
+        }
         return this;
     }
 }

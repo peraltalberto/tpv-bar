@@ -67,6 +67,7 @@ public class VentanaTPV extends javax.swing.JFrame {
         this.setAlwaysOnTop(true);
         cargarCategorias();
         instanceOf = this;
+        this.lbTitulo.setText(conf.getValue("nombre"));
         this.jTabbedPane1.setIconAt(0, new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/addCafe.png")));
         this.jTabbedPane1.setIconAt(1, new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/ticketCafe.png")));
         this.cargaTickets();
@@ -151,7 +152,7 @@ public class VentanaTPV extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jToolBar2 = new javax.swing.JToolBar();
         txTotal = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        lbTitulo = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
@@ -237,12 +238,12 @@ public class VentanaTPV extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Verdana", 3, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(26, 0, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/leo.png"))); // NOI18N
-        jLabel1.setText("La Tasca de leo");
-        jLabel1.setToolTipText("");
+        lbTitulo.setFont(new java.awt.Font("Verdana", 3, 24)); // NOI18N
+        lbTitulo.setForeground(new java.awt.Color(26, 0, 255));
+        lbTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/leo.png"))); // NOI18N
+        lbTitulo.setText("La Tasca de leo");
+        lbTitulo.setToolTipText("");
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/1334848821_cashbox.png"))); // NOI18N
         jButton6.setText("Abrir Caja");
@@ -462,12 +463,12 @@ public class VentanaTPV extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(55, 55, 55)
                                         .addComponent(jToolBar4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(18, 18, 18))
+                        .addGap(18, 18, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(125, 125, 125)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2)
@@ -484,7 +485,7 @@ public class VentanaTPV extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
+                            .addComponent(lbTitulo)
                             .addComponent(jButton1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -847,7 +848,6 @@ public class VentanaTPV extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -867,6 +867,7 @@ public class VentanaTPV extends javax.swing.JFrame {
     private javax.swing.JToolBar jToolBar6;
     private javax.swing.JToolBar jToolBar7;
     private javax.swing.JToolBar jToolBar8;
+    private javax.swing.JLabel lbTitulo;
     private javax.swing.JLabel lbUbicacion;
     private javax.swing.JTextField multiplicador;
     private javax.swing.JPanel pCategorias;

@@ -1,5 +1,5 @@
 package es.tpv_bar.persistencia.pojos;
-// Generated 09-jun-2012 17:46:57 by Hibernate Tools 3.2.1.GA
+// Generated 19-sep-2016 11:23:55 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -17,7 +17,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="atipicas"
-    ,catalog="mydb"
 )
 public class Atipicas  implements java.io.Serializable {
 
@@ -45,8 +44,9 @@ public class Atipicas  implements java.io.Serializable {
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
+
     
-    @Column(name="id", unique=true, nullable=false)
+    @Column(name="id", nullable=false)
     public Integer getId() {
         return this.id;
     }
@@ -54,6 +54,7 @@ public class Atipicas  implements java.io.Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
+
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="productos", nullable=false)
     public Productos getProductos() {
@@ -63,6 +64,7 @@ public class Atipicas  implements java.io.Serializable {
     public void setProductos(Productos productos) {
         this.productos = productos;
     }
+
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="bloqueubicacion", nullable=false)
     public Bloqueubicacion getBloqueubicacion() {
@@ -72,6 +74,7 @@ public class Atipicas  implements java.io.Serializable {
     public void setBloqueubicacion(Bloqueubicacion bloqueubicacion) {
         this.bloqueubicacion = bloqueubicacion;
     }
+
     
     @Column(name="tipo", nullable=false)
     public int getTipo() {
@@ -81,6 +84,7 @@ public class Atipicas  implements java.io.Serializable {
     public void setTipo(int tipo) {
         this.tipo = tipo;
     }
+
     
     @Column(name="precio", precision=22, scale=0)
     public Double getPrecio() {

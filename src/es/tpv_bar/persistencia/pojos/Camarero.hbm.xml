@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 09-jun-2012 17:46:58 by Hibernate Tools 3.2.1.GA -->
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-sep-2016 11:23:57 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="es.tpv_bar.persistencia.pojos.Camarero" table="camarero" >
+    <class name="es.tpv_bar.persistencia.pojos.Camarero" table="camarero">
         <id name="idCamarero" type="java.lang.Integer">
             <column name="IdCamarero" />
-            <generator class="identity" />
+            <generator class="identity"></generator>
         </id>
         <many-to-one name="empresas" class="es.tpv_bar.persistencia.pojos.Empresas" fetch="select">
             <column name="IdEmpresa" not-null="true" />
@@ -23,13 +23,13 @@
         <property name="activo" type="boolean">
             <column name="Activo" not-null="true" />
         </property>
-        <set name="cabezeras" inverse="true">
+        <set name="cabezeras" table="cabezera" inverse="true" lazy="true">
             <key>
                 <column name="IdCamarero" not-null="true" />
             </key>
             <one-to-many class="es.tpv_bar.persistencia.pojos.Cabezera" />
         </set>
-        <set name="cajas" inverse="true">
+        <set name="cajas" table="caja" inverse="true" lazy="true">
             <key>
                 <column name="IdCamarero" not-null="true" />
             </key>

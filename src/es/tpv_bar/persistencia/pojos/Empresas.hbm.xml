@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 09-jun-2012 17:46:58 by Hibernate Tools 3.2.1.GA -->
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19-sep-2016 11:23:57 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="es.tpv_bar.persistencia.pojos.Empresas" table="empresas">
         <id name="id" type="int">
             <column name="id" />
-            <generator class="assigned" />
+            <generator class="assigned"></generator>
         </id>
         <property name="nombre" type="string">
             <column name="Nombre" length="45" />
@@ -29,7 +29,7 @@
         <property name="contadorCod" type="java.lang.Integer">
             <column name="ContadorCod" />
         </property>
-        <set name="camareros" inverse="true">
+        <set name="camareros" table="camarero" inverse="true" lazy="true">
             <key>
                 <column name="IdEmpresa" not-null="true" />
             </key>
