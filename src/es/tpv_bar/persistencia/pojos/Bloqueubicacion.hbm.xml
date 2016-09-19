@@ -14,6 +14,9 @@
         <property name="descripcion" type="string">
             <column name="Descripcion" length="100" />
         </property>
+        <property name="imagen" type="string">
+            <column name="imagen" length="255" />
+        </property>
         <set name="atipicases" table="atipicas" inverse="true" lazy="true">
             <key>
                 <column name="bloqueubicacion" not-null="true" />

@@ -9,6 +9,7 @@ import es.tpv_bar.gui.botones.BTCategoria;
 import es.tpv_bar.gui.botones.BTLineas;
 import es.tpv_bar.gui.botones.BTProducto;
 import es.tpv_bar.gui.botones.BTTickets;
+import es.tpv_bar.gui.renderes.ComboBoxImgRenderer;
 import es.tpv_bar.gui.ventanas.*;
 import es.tpv_bar.persistencia.modelos.*;
 import es.tpv_bar.persistencia.pojos.*;
@@ -41,7 +42,7 @@ public class VentanaTPV extends javax.swing.JFrame {
     CategoriaModel categorias = new CategoriaModel();
     ProductosModel productos = new ProductosModel();
     AtipicasModel atipicas = new AtipicasModel();
-    
+    BloqueUbicacionModel bloques = new BloqueUbicacionModel();
     CajaModel caja = new CajaModel();
     CabezeraModel cabezeras = new CabezeraModel();
     ConfiguracionModel conf = new ConfiguracionModel();
@@ -55,16 +56,15 @@ public class VentanaTPV extends javax.swing.JFrame {
      * Creates new form VentanaTPV
      */
     public VentanaTPV() {
-        
- 
-     
+
         initComponents();
-        
+
         this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
         this.setVisible(true);
 
         this.toFront();
         this.setAlwaysOnTop(true);
+        cargarBloques();
         cargarCategorias();
         instanceOf = this;
         this.lbTitulo.setText(conf.getValue("nombre"));
@@ -76,9 +76,10 @@ public class VentanaTPV extends javax.swing.JFrame {
     private void cargarCategorias() {
         ArrayList<Categoria> cat = categorias.getLista();
         for (int i = 0; i < cat.size(); i++) {
-            if(!cat.get(i).isActivo())
+            if (!cat.get(i).isActivo()) {
                 continue;
-            
+            }
+
             final BTCategoria bt = new BTCategoria(cat.get(i));
             bt.addActionListener(new ActionListener() {
 
@@ -89,6 +90,20 @@ public class VentanaTPV extends javax.swing.JFrame {
             });
             this.pCategorias.add(bt);
         }
+    }
+
+    private void cargarBloques() {
+        ArrayList<Bloqueubicacion> b = bloques.getLista();
+
+        ComboBoxImgRenderer renderer = new ComboBoxImgRenderer(b);
+        Integer[] imageIndex = new Integer[b.size()];
+        for (int i = 0; i < b.size();i++) {
+            imageIndex[i] = i;
+        }
+
+        this.cbBloques.addItem(imageIndex);
+        this.cbBloques.setRenderer(renderer);
+
     }
 
     private void cargarProductos(Categoria cat) {
@@ -106,17 +121,16 @@ public class VentanaTPV extends javax.swing.JFrame {
                 public void actionPerformed(ActionEvent e) {
                     if (ubicacion != null) {
                         Atipicas ati = atipicas.getAtipica(ubicacion.getBloqueubicacion(), bt.getProducto());
-                       
-                            
+
                         int mul = Integer.parseInt(multiplicador.getText());
-                        for(int i =0 ; i<mul;i++){
+                        for (int i = 0; i < mul; i++) {
                             BTLineas btl = new BTLineas(bt.getProducto(), instanceOf);
                             panelLineas.add(btl);
-                            if(ati != null){
-                             btl.setNewPrecio(ati.getPrecio());   
-                             //total += ati.getPrecio();  
-                            }else{
-                            total += bt.getProducto().getPrecio();
+                            if (ati != null) {
+                                btl.setNewPrecio(ati.getPrecio());
+                                //total += ati.getPrecio();  
+                            } else {
+                                total += bt.getProducto().getPrecio();
                             }
                         }
                         multiplicador.setText("1");
@@ -147,9 +161,7 @@ public class VentanaTPV extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         pProductos = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        cbBloques = new javax.swing.JComboBox();
         jToolBar2 = new javax.swing.JToolBar();
         txTotal = new javax.swing.JTextField();
         lbTitulo = new javax.swing.JLabel();
@@ -191,43 +203,12 @@ public class VentanaTPV extends javax.swing.JFrame {
 
         jToolBar1.setFloatable(false);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/iconoComedor.png"))); // NOI18N
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButton2);
-
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/iconoTerraza.png"))); // NOI18N
-        jButton3.setFocusable(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButton3);
-
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/iconoBarra.png"))); // NOI18N
-        jButton4.setFocusable(false);
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButton4);
+        jToolBar1.add(cbBloques);
 
         jToolBar2.setFloatable(false);
 
-        txTotal.setBackground(new java.awt.Color(1, 1, 1));
         txTotal.setEditable(false);
+        txTotal.setBackground(new java.awt.Color(1, 1, 1));
         txTotal.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         txTotal.setForeground(new java.awt.Color(255, 51, 0));
         txTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -455,14 +436,12 @@ public class VentanaTPV extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(65, 65, 65)
-                                        .addComponent(multiplicador, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(55, 55, 55)
-                                        .addComponent(jToolBar4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(286, 286, 286)
+                                .addComponent(multiplicador, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(19, 19, 19)
+                                .addComponent(jToolBar4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
@@ -489,7 +468,7 @@ public class VentanaTPV extends javax.swing.JFrame {
                             .addComponent(jButton1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                             .addComponent(jToolBar4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -514,7 +493,7 @@ public class VentanaTPV extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton6)
                             .addComponent(txTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 13, Short.MAX_VALUE))
                     .addComponent(jScrollPane3))
                 .addContainerGap())
         );
@@ -525,23 +504,6 @@ public class VentanaTPV extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        mesa = new VentanaMesas(this, true, 2);
-        mesa.setVisible(true);
-        lbUbicacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/iconoComedor24.png")));
-
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        new VentanaMesas(this, true, 1).setVisible(true);
-        lbUbicacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/iconoTerraza24.png")));
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        new VentanaMesas(this, true, 3).setVisible(true);
-        lbUbicacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/iconoBarra24.png")));
-    }//GEN-LAST:event_jButton4ActionPerformed
     double totalCab = 0.0;
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         new VentanaCamareros(this, true).setVisible(true);
@@ -627,11 +589,11 @@ public class VentanaTPV extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-       
-         if(new VentanaAcceso(this,true).getAcceso()){
-           new AnularTicket(this, true).setVisible(true);
-       }
-        
+
+        if (new VentanaAcceso(this, true).getAcceso()) {
+            new AnularTicket(this, true).setVisible(true);
+        }
+
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void txTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txTotalActionPerformed
@@ -657,7 +619,7 @@ public class VentanaTPV extends javax.swing.JFrame {
                     cm.saveDato(cab[i]);
                     this.jPanel3.remove(bt);
                 }
-                
+
             }
         }
         this.jPanel3.updateUI();
@@ -681,7 +643,7 @@ public class VentanaTPV extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-         new VentanaCamareros(this, true).setVisible(true);
+        new VentanaCamareros(this, true).setVisible(true);
         totalCab = 0.0;
         Component[] c = this.panelLineas.getComponents();
         Cabezera cab = new Cabezera();
@@ -709,8 +671,8 @@ public class VentanaTPV extends javax.swing.JFrame {
         impresora.setCabezera(cab);
         impresora.setUbi(ubicacion);
         impresora.startPrint();
-        
-          Caja movimiento = new Caja();
+
+        Caja movimiento = new Caja();
         movimiento.setCajaPago(0); //Efectivo
         movimiento.setCamarero(camarero);
         movimiento.setCabezera(cab);
@@ -718,21 +680,21 @@ public class VentanaTPV extends javax.swing.JFrame {
         movimiento.setMovimiento(cab.getTotal());
         movimiento.setSaldo(caja.getSaldo(0) + cab.getTotal());
         caja.saveDato(movimiento);
-        
+
         this.panelLineas.updateUI();
         cargaTickets();
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void multiplicadorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_multiplicadorKeyPressed
-     
+
     }//GEN-LAST:event_multiplicadorKeyPressed
 
     private void multiplicadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_multiplicadorMouseClicked
-       new VentanaTeclado(this,true,this.multiplicador).setVisible(true);
+        new VentanaTeclado(this, true, this.multiplicador).setVisible(true);
     }//GEN-LAST:event_multiplicadorMouseClicked
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-      new HistoricoTickets(this,true).setVisible(true);
+        new HistoricoTickets(this, true).setVisible(true);
     }//GEN-LAST:event_jButton12ActionPerformed
 
     /**
@@ -836,13 +798,11 @@ public class VentanaTPV extends javax.swing.JFrame {
     Ubicacion ubicacion = null;
     Double total = 0.0;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox cbBloques;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 19-09-2016 a las 13:24:33
+-- Tiempo de generación: 19-09-2016 a las 17:03:47
 -- Versión del servidor: 5.5.47
 -- Versión de PHP: 5.4.45-0+deb7u1
 
@@ -73,6 +73,7 @@ CREATE TABLE IF NOT EXISTS `bloqueubicacion` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(45) NOT NULL,
   `Descripcion` varchar(100) DEFAULT NULL,
+  `imagen` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
@@ -80,10 +81,10 @@ CREATE TABLE IF NOT EXISTS `bloqueubicacion` (
 -- Volcado de datos para la tabla `bloqueubicacion`
 --
 
-INSERT INTO `bloqueubicacion` (`id`, `Nombre`, `Descripcion`) VALUES
-(1, 'Terraza', 'Terraza'),
-(2, 'Comedor', 'Comedor'),
-(3, 'Barra', 'Barra');
+INSERT INTO `bloqueubicacion` (`id`, `Nombre`, `Descripcion`, `imagen`) VALUES
+(1, 'Terraza', 'Terraza', 'C:\\tpv\\img\\iconoTerraza.png'),
+(2, 'Comedor', 'Comedor', 'C:\\tpv\\img\\iconoComedor.png'),
+(3, 'Barra', 'Barra', 'C:\\tpv\\img\\iconoBarra.png');
 
 -- --------------------------------------------------------
 

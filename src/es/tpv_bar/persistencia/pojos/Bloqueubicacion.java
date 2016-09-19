@@ -25,6 +25,7 @@ public class Bloqueubicacion  implements java.io.Serializable {
      private Integer id;
      private String nombre;
      private String descripcion;
+     private String imagen;
      private Set<Atipicas> atipicases = new HashSet<Atipicas>(0);
      private Set<Ubicacion> ubicacions = new HashSet<Ubicacion>(0);
 
@@ -40,6 +41,13 @@ public class Bloqueubicacion  implements java.io.Serializable {
        this.descripcion = descripcion;
        this.atipicases = atipicases;
        this.ubicacions = ubicacions;
+    }
+
+    public Bloqueubicacion(Integer id, String nombre, String descripcion, String imagen) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.imagen = imagen;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -73,7 +81,18 @@ public class Bloqueubicacion  implements java.io.Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+ @Column(name="imagen", length=255)
+    public String getImagen() {
+        return imagen;
+    }
 
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    
+    
+    
 @OneToMany(fetch=FetchType.LAZY, mappedBy="bloqueubicacion")
     public Set<Atipicas> getAtipicases() {
         return this.atipicases;
