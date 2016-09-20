@@ -27,9 +27,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form VentanaPrincipal
      */
+     ConfiguracionModel conf = new ConfiguracionModel();
     public VentanaPrincipal() {
        
-        this.setTitle("TPV-TL --- La Tasca de Leo" );
+        this.setTitle("TPV-TL --- "+ conf.getValue("nombre"));
         initComponents();
         this.setIconImage(new ImageIcon(getClass().getResource("/es/tpv_bar/gui/resources/iconoTerraza.png")).getImage());
  jMenuBar1.putClientProperty(Options.HEADER_STYLE_KEY, HeaderStyle.BOTH);

@@ -34,8 +34,8 @@ public class ComboBoxImgRenderer extends JLabel implements ListCellRenderer {
 //Get the selected index. (The index param isn't
 //always valid, so just use the value.)
         try{
-            System.out.println(value);
-        int selectedIndex = ((Integer) value).intValue();
+            
+        int selectedIndex = Integer.parseInt(value.toString());
 
         if (isSelected) {
             setBackground(list.getSelectionBackground());
@@ -46,8 +46,8 @@ public class ComboBoxImgRenderer extends JLabel implements ListCellRenderer {
         }
 
 //Set the icon and text.
-        ImageIcon icon =new javax.swing.ImageIcon( bloques.get(index).getImagen());
-        String language = bloques.get(index).toString();
+        ImageIcon icon =new javax.swing.ImageIcon( bloques.get(selectedIndex).getImagen());
+        String language = bloques.get(selectedIndex).toString();
 
         setIcon(icon);
         if (icon != null) {

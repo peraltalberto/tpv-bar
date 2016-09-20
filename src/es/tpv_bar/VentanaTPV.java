@@ -17,6 +17,7 @@ import es.tpv_bar.prints.Print;
 import es.tpv_bar.prints.TicketCierre;
 import java.awt.Component;
 import java.awt.Frame;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,6 +28,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.print.*;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -58,7 +60,8 @@ public class VentanaTPV extends javax.swing.JFrame {
     public VentanaTPV() {
 
         initComponents();
-
+        ImageIcon imageIcon = new ImageIcon(new ImageIcon(this.conf.getValue("imagen")).getImage().getScaledInstance(150, 50, Image.SCALE_DEFAULT));
+         lbTitulo.setIcon(imageIcon);
         this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
         this.setVisible(true);
 
@@ -91,17 +94,16 @@ public class VentanaTPV extends javax.swing.JFrame {
             this.pCategorias.add(bt);
         }
     }
+    ArrayList<Bloqueubicacion> b;
 
     private void cargarBloques() {
-        ArrayList<Bloqueubicacion> b = bloques.getLista();
+        b = bloques.getLista();
 
         ComboBoxImgRenderer renderer = new ComboBoxImgRenderer(b);
-        Integer[] imageIndex = new Integer[b.size()];
-        for (int i = 0; i < b.size();i++) {
-            imageIndex[i] = i;
+        this.cbBloques.removeAllItems();
+        for (int i = 0; i < b.size(); i++) {
+            this.cbBloques.addItem(i);
         }
-
-        this.cbBloques.addItem(imageIndex);
         this.cbBloques.setRenderer(renderer);
 
     }
@@ -203,6 +205,17 @@ public class VentanaTPV extends javax.swing.JFrame {
 
         jToolBar1.setFloatable(false);
 
+        cbBloques.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1" }));
+        cbBloques.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbBloquesItemStateChanged(evt);
+            }
+        });
+        cbBloques.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbBloquesActionPerformed(evt);
+            }
+        });
         jToolBar1.add(cbBloques);
 
         jToolBar2.setFloatable(false);
@@ -696,6 +709,26 @@ public class VentanaTPV extends javax.swing.JFrame {
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         new HistoricoTickets(this, true).setVisible(true);
     }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void cbBloquesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbBloquesItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbBloquesItemStateChanged
+
+    private void cbBloquesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbBloquesActionPerformed
+        try {
+            System.out.println(this.cbBloques.getSelectedItem());
+            System.out.println(this.b.get((int) this.cbBloques.getSelectedItem()).getNombre());
+            mesa = new VentanaMesas(this, true, this.b.get((int) this.cbBloques.getSelectedItem()).getId());
+
+            if (this.ubicacion == null) {
+                this.setUbicacion(mesa.getDefault());
+            } else {
+                mesa.setVisible(true);
+            }
+            lbUbicacion.setIcon(new javax.swing.ImageIcon(this.b.get((int) this.cbBloques.getSelectedItem()).getImagen()));
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_cbBloquesActionPerformed
 
     /**
      * @param args the command line arguments
