@@ -14,7 +14,7 @@ public class Ticket {
     
     private String producto;
     private Double total;
-    private BigInteger cantidad;
+    private Double cantidad;
     private Double precio;
 
     public Ticket() {
@@ -22,18 +22,18 @@ public class Ticket {
 
     
     
-    public Ticket(String producto, Double total, BigInteger cantidad, Double precio) {
+    public Ticket(String producto, Double total, Double cantidad, Double precio) {
         this.producto = producto;
         this.total = total;
         this.cantidad = cantidad;
         this.precio = precio;
     }
 
-    public BigInteger getCantidad() {
+    public Double getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(BigInteger cantidad) {
+    public void setCantidad(Double cantidad) {
         this.cantidad = cantidad;
     }
 

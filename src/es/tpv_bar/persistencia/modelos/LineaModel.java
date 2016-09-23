@@ -71,18 +71,17 @@ public class LineaModel extends AbstractModel {
         Session session = factory.getCurrentSession();
         Transaction tx = session.beginTransaction();
         String sql = "SELECT "
-                +"(SELECT precio FROM productos "
-                + "WHERE idProductos = linea.idProductos ) "
+                +"precio "
                 + "AS precio,"
                 + "(SELECT nombre FROM productos "
                 + "WHERE idProductos = linea.idProductos ) "
                 + "AS producto,"
-                + " COUNT( idProductos ) "
+                + " SUM( catidad ) "
                 + "as cantidad , "
                 + "SUM( Total )"
                 + "as total "
                 + "FROM  `linea` WHERE idCabezera =" +cabezera
-                + " and Invitacion = 0 GROUP BY idProductos";
+                + " and Invitacion = 0 GROUP BY idProductos,precio ";
         
         result = (ArrayList<Ticket>) session.createSQLQuery(sql)
                 .setResultTransformer(Transformers.aliasToBean(Ticket.class))

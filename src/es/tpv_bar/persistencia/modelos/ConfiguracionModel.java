@@ -6,11 +6,14 @@
 package es.tpv_bar.persistencia.modelos;
 
 import es.tpv_bar.persistencia.AbstractModel;
+import static es.tpv_bar.persistencia.AbstractModel.factory;
 import es.tpv_bar.persistencia.pojos.Configuracion;
+import es.tpv_bar.prints.Ticket;
 import java.util.ArrayList;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.transform.Transformers;
 
 
 /**
@@ -58,5 +61,21 @@ public class ConfiguracionModel extends AbstractModel {
         Configuracion conf = (Configuracion) super.busquedaDato("clave", clave);
         conf.setValue(value);
         super.saveDato(conf);
+    }
+    
+    public ArrayList<Object[]> getVentas(){
+        String sql = "SELECT YEAR(Fecha) as year,YEAR(Fecha)   as month ,"
+                + "DAYOFMONTH(Fecha) as day , sum(Total) as total "
+                + "FROM `cabezera` group by YEAR(Fecha) ,YEAR(Fecha) ,"
+                + "DAYOFMONTH(Fecha) order by Fecha desc";
+        
+         Session session = factory.getCurrentSession();
+        Transaction tx = session.beginTransaction();
+ 
+        
+        ArrayList<Object[]> result = (ArrayList<Object[]>) 
+                session.createSQLQuery(sql).list();
+        return result;
+    
     }
 }

@@ -9,10 +9,12 @@ import es.tpv_bar.gui.DlTecladoNum;
 import es.tpv_bar.persistencia.modelos.LineaModel;
 import es.tpv_bar.persistencia.pojos.Linea;
 import es.tpv_bar.persistencia.pojos.Productos;
+import es.tpv_bar.util.TPVUtil;
 import java.awt.Color;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -53,6 +55,8 @@ public class BTLineas extends javax.swing.JPanel {
         }
         this.lbProducto.setText(this.producto.getNombre());
         this.txPrecio.setText(this.linea.getPrecio().toString());
+        this.txCantidad.setText(this.linea.getCatidad().toString());
+        this.lbTotal.setText(this.linea.getTotal().toString());
     }
 
     /**
@@ -69,17 +73,21 @@ public class BTLineas extends javax.swing.JPanel {
         jCheckBox1 = new javax.swing.JCheckBox();
         txPrecio = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        txCantidad = new javax.swing.JTextField();
+        lbTotal = new javax.swing.JLabel();
 
         txPrecio1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txPrecio1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txPrecio1.setText("0.0");
         txPrecio1.setToolTipText("");
 
-        setMaximumSize(new java.awt.Dimension(322, 39));
-        setName("");
+        setMaximumSize(new java.awt.Dimension(700, 26));
+        setName(""); // NOI18N
 
         lbProducto.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lbProducto.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbProducto.setText("Producto");
+        lbProducto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lbProducto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbProductoMouseClicked(evt);
@@ -92,14 +100,19 @@ public class BTLineas extends javax.swing.JPanel {
         txPrecio.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txPrecio.setText("0.0");
         txPrecio.setToolTipText("");
+        txPrecio.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txPrecioFocusGained(evt);
+            }
+        });
         txPrecio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txPrecioMouseClicked(evt);
             }
         });
-        txPrecio.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txPrecioFocusGained(evt);
+        txPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txPrecioActionPerformed(evt);
             }
         });
 
@@ -110,36 +123,64 @@ public class BTLineas extends javax.swing.JPanel {
             }
         });
 
+        txCantidad.setBackground(new java.awt.Color(204, 204, 204));
+        txCantidad.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        txCantidad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txCantidad.setText("001");
+        txCantidad.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txCantidad.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txCantidadFocusGained(evt);
+            }
+        });
+
+        lbTotal.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
+        lbTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbTotal.setText("999.99");
+        lbTotal.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jCheckBox1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lbProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(txCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
+                .addComponent(lbTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(lbProducto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCheckBox1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txPrecio, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap())
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(txCantidad)))
+                .addGap(1, 1, 1))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(2, 2, 2))
+            .addComponent(lbTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(txPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     DlTecladoNum tld;
     private void txPrecioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txPrecioMouseClicked
         // numeros();
     }//GEN-LAST:event_txPrecioMouseClicked
-    private void numeros() {
-        tld = new DlTecladoNum(parent, true, this.txPrecio);
+    private void numeros(final JTextField jt) {
+       
+        tld = new DlTecladoNum(parent, true, jt);
         tld.setVisible(true);
         tld.addWindowListener(new WindowListener() {
 
@@ -156,18 +197,20 @@ public class BTLineas extends javax.swing.JPanel {
                 System.out.println("Escribiendo....");
 
                 linea.setPrecio(Double.parseDouble(txPrecio.getText()));
-                linea.setTotal(Double.parseDouble(txPrecio.getText()));
+                linea.setCatidad(Double.parseDouble(txCantidad.getText()));
+                linea.setTotal(TPVUtil.round(Double.parseDouble(txPrecio.getText())*Double.parseDouble(txCantidad.getText())));
+                lbTotal.setText(linea.getTotal().toString());
                 if (tld.isInvita()) {
                     
                     linea.setInvitacion(true);
                     linea.setTotal(0.0);
+                    lbTotal.setText(linea.getTotal().toString());
                     txPrecio.setText("0.0");
                     System.out.print("yo invito");
                 }
                 parent.actualizarLinea(linea);
-
-                lbProducto.grabFocus();
                 System.out.println(linea.getPrecio());
+                
             }
 
             @Override
@@ -203,14 +246,27 @@ public class BTLineas extends javax.swing.JPanel {
     }//GEN-LAST:event_lbProductoMouseClicked
 
     private void txPrecioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txPrecioFocusGained
-        txPrecio.transferFocus();
-        numeros();
+        this.txPrecio.transferFocus();
+        numeros(this.txPrecio);
         
     }//GEN-LAST:event_txPrecioFocusGained
+
+    private void txCantidadFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txCantidadFocusGained
+       //this.txCantidad.transferFocus();
+        this.jCheckBox1.grabFocus();
+       numeros(this.txCantidad);
+    }//GEN-LAST:event_txCantidadFocusGained
+
+    private void txPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txPrecioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txPrecioActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lbProducto;
+    private javax.swing.JLabel lbTotal;
+    private javax.swing.JTextField txCantidad;
     private javax.swing.JTextField txPrecio;
     private javax.swing.JTextField txPrecio1;
     // End of variables declaration//GEN-END:variables
@@ -218,11 +274,12 @@ public class BTLineas extends javax.swing.JPanel {
     private void addProducto() {
         this.lbProducto.setText(this.producto.getNombre());
         this.txPrecio.setText(this.producto.getPrecio().toString());
-        this.linea.setPrecio(this.producto.getPrecio());
-        this.linea.setCatidad(1.0);
+        this.linea.setPrecio(TPVUtil.round(this.producto.getPrecio()));
+        this.linea.setCatidad(TPVUtil.round(Double.valueOf(this.txCantidad.getText())));
         this.linea.setProductos(producto);
         this.linea.setUbicacion(this.parent.getUbicacion());
-        this.linea.setTotal(this.producto.getPrecio());
+        this.linea.setTotal(TPVUtil.round(this.producto.getPrecio()*Double.valueOf(this.txCantidad.getText())));
+        lbTotal.setText(linea.getTotal().toString());
         this.parent.lineas.saveDato(this.linea);
     }
 
@@ -244,11 +301,20 @@ public class BTLineas extends javax.swing.JPanel {
 
     public void setNewPrecio(Double precio) {
                 linea.setPrecio(precio);
-                linea.setTotal(precio);
-                
+                linea.setTotal(TPVUtil.round(precio*Double.valueOf(this.txCantidad.getText())));
+                lbTotal.setText(linea.getTotal().toString());
                 this.txPrecio.setText(precio.toString());
                 parent.actualizarLinea(linea);
-
                 lbProducto.grabFocus();
+    }
+    public void setCantidad(Double cantidad){
+                linea.setCatidad(cantidad);
+                linea.setTotal(TPVUtil.round(linea.getPrecio()*cantidad));
+                lbTotal.setText(linea.getTotal().toString());
+                parent.actualizarLinea(linea);
+                lbProducto.grabFocus();
+    }
+    public double getTotal(){
+        return linea.getTotal();
     }
 }

@@ -228,10 +228,10 @@ public class Print {
                 
             }
             if ("cantidad".equals(jrf.getName())) {
-                value = lista.get(iActual).getCantidad().intValue();
+                value = lista.get(iActual).getCantidad();
             }
             if ("precio".equals(jrf.getName())) {
-                value = lista.get(iActual).getTotal();
+                value = lista.get(iActual).getPrecio();
             }
             if ("importe".equals(jrf.getName())) {
                 value = lista.get(iActual).getTotal();

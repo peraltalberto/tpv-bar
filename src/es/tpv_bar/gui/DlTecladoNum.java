@@ -4,6 +4,7 @@
  */
 package es.tpv_bar.gui;
 
+import javax.swing.JButton;
 import javax.swing.JTextField;
 
 /**
@@ -14,16 +15,20 @@ public class DlTecladoNum extends javax.swing.JDialog {
 
     /**
      * Creates new form DlTecladoNum
+     * @param parent
+     * @param modal
+     * @param campo
      */
     public DlTecladoNum(java.awt.Frame parent, boolean modal,JTextField campo) {
         super(parent, modal);
-        
         initComponents();
         this.setLocationRelativeTo(parent);
+        this.setAlwaysOnTop(true);
         tn.setPantalla(campo);
         this.jPanel1.add(tn);
        
     }
+ 
 TecladoNumerico tn = new TecladoNumerico();
 boolean invita = false;
     /**
