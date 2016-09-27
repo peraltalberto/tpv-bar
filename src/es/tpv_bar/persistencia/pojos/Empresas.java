@@ -140,6 +140,11 @@ public class Empresas  implements java.io.Serializable {
         this.camareros = camareros;
     }
 
+    @Override
+    public String toString() {
+          return this.nombre;
+    }
+
 
 
 

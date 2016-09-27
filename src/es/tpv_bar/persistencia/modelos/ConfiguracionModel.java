@@ -67,7 +67,7 @@ public class ConfiguracionModel extends AbstractModel {
         String sql = "SELECT YEAR(Fecha) as year,YEAR(Fecha)   as month ,"
                 + "DAYOFMONTH(Fecha) as day , sum(Total) as total "
                 + "FROM `cabezera` group by YEAR(Fecha) ,YEAR(Fecha) ,"
-                + "DAYOFMONTH(Fecha) order by Fecha desc";
+                + "DAYOFMONTH(Fecha) order by Fecha desc LIMIT 10";
         
          Session session = factory.getCurrentSession();
         Transaction tx = session.beginTransaction();

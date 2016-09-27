@@ -40,7 +40,9 @@ public abstract class AbstractModel {
         this.lista = new ArrayList();    
         factory = TBSessionFactory.getInstance();
     }
-
+    public Session getSesion(){
+        return factory.getCurrentSession();
+    }
 
     public ArrayList<?> cargarLista() {
         Session session = factory.getCurrentSession();
@@ -151,7 +153,15 @@ public ArrayList<?> busquedaDatos(String porpName, Object Value) {
         
         }
    
-
+   
+    public ArrayList<Object[]> executeSQL(String sql ){
+        Session session = factory.getCurrentSession();
+        Transaction tx = session.beginTransaction();
+         
+        
+       ArrayList<Object[]> result = (ArrayList<Object[]>) session.createSQLQuery(sql).list();
+        return result;
+    }
 
 
 

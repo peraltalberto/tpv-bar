@@ -88,6 +88,7 @@ public class BTLineas extends javax.swing.JPanel {
         lbProducto.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbProducto.setText("Producto");
         lbProducto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lbProducto.setMaximumSize(new java.awt.Dimension(100, 22));
         lbProducto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbProductoMouseClicked(evt);

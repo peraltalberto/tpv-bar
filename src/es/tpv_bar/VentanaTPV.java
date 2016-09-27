@@ -747,7 +747,9 @@ public class VentanaTPV extends javax.swing.JFrame {
     }//GEN-LAST:event_txTotalActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+       
         Component[] c = this.jPanel3.getComponents();
+        if(c.length > 0){
         Cabezera[] cab = new Cabezera[c.length];
         CabezeraModel cm = new CabezeraModel();
         for (int i = 0; i < c.length; i++) {
@@ -757,7 +759,6 @@ public class VentanaTPV extends javax.swing.JFrame {
             }
         }
         if (new VentanaCobro(this, true, cab).HelpCambio()) {
-
             for (int i = 0; i < cab.length; i++) {
                 BTTickets bt = (BTTickets) c[i];
                 if (bt.isSelect()) {
@@ -769,6 +770,10 @@ public class VentanaTPV extends javax.swing.JFrame {
             }
         }
         this.jPanel3.updateUI();
+        }else
+        {
+            new MovimientoCaja(this,true,false).setVisible(true);
+        }
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
